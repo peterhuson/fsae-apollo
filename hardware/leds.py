@@ -1,5 +1,5 @@
-# from driver import apa102
-from apa102_led import apa102
+from driver import apa102
+# from apa102_led import apa102
 import time, sys
 
 OFF = 0x000000 #Off
@@ -19,8 +19,10 @@ class LEDs:
 	def __init__(self):
 		self.strip = apa102.APA102(num_led=NUM_LED, mosi=MOSI, sclk=SCLK,order='rgb')
 		self.strip.clear_strip()
-		self.rainbow()
-
+		try:
+			self.rainbow()
+		except: 
+			self.shutdown()
 		# print("Brightness 0-100")
 		# for a in range(0,10):
 		# 	for b in range(0,100):
@@ -34,13 +36,13 @@ class LEDs:
 		# 			strip.show()
 		# 			time.sleep(0.03)
 
-		self.strip.clear_strip()
-		self.strip.cleanup()
+		#self.strip.clear_strip()
+		#self.strip.cleanup()
 
 
 	def setall(self, color, brightness):
-		for i in range(p.num_leds):
-			self.strip.set_pixel_rgb(i,color)
+		for i in range(NUM_LED):
+			self.strip.set_pixel_rgb(i,color, brightness)
 		self.strip.show()
 
 	def shutdown(self):
@@ -49,7 +51,7 @@ class LEDs:
 		self.strip.cleanup()
 
 	def rainbow(self):
-		for brightness in range(0, 100, 20):
+		for brightness in range(0, 40, 5):
 			self.setall(RED, brightness)
 			time.sleep(0.2)
 			self.setall(ORANGE, brightness)
@@ -94,9 +96,9 @@ class LEDs:
 		print("rainbow test complete")
 
 if __name__ == '__main__':
-	try:
-		l = LEDs()
-	except (KeyboardInterrupt, SystemExit):
-		l.shutdown()
-		sys.exit(0)
+	#try:
+	l = LEDs()
+	#except (KeyboardInterrupt, SystemExit):
+	l.shutdown()
+	sys.exit(0)
 
