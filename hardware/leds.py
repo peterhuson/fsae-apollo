@@ -43,7 +43,7 @@ class LEDs:
 		self.strip.show()
 
 	def shutdown(self):
-		print "received shutdown command"
+		print("received shutdown command")
 		self.strip.clear_strip()
 		self.strip.cleanup()
 
