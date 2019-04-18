@@ -1,4 +1,5 @@
-from driver import apa102
+# from driver import apa102
+from apa102_led import apa102
 import time, sys
 
 OFF = 0x000000 #Off
@@ -90,12 +91,12 @@ class LEDs:
 		# self.strip.show()
 		# time.sleep(0.1)
 
-		print "rainbow test complete"
+		print("rainbow test complete")
 
 if __name__ == '__main__':
 	try:
 		l = LEDs()
 	except (KeyboardInterrupt, SystemExit):
-        l.shutdown()
+		l.shutdown()
 		sys.exit(0)
 
