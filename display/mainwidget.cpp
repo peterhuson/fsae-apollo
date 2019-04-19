@@ -42,7 +42,6 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     gettimeofday(&startTime,NULL);
 }
 
-<<<<<<< HEAD
 void TMainWidget::qtdemoButtonClicked() {
     QPushButton* btn = (QPushButton*) sender();
     if (btn == qtdemoButton) {
@@ -68,8 +67,6 @@ void TMainWidget::resizeEvent(QResizeEvent*) {
         quitButton->hide();
     }
 }
-=======
->>>>>>> 669f0fe543fbb6a10526658dd68aea65868c6dbf
 
 static inline double time_diff(struct timeval _tstart,struct timeval _tend) {
   double t1 = 0.;
