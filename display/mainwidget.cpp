@@ -99,6 +99,7 @@ void TMainWidget::onKeepAlive() {
         // float f = ((sys_info.totalram-sys_info.freeram)*1.0/sys_info.totalram)*100;
         // memInfo = QString("%1%,F%2MB").arg(int(f)).arg(freemem);
          memInfo = QString("%1/%2 MB").arg(totalmem-freemem).arg(totalmem);
+         usageInfo = QString("%1 Bytes").arg(sys_info.totalram-sys_info.freeram);
     }
 
     BoardHardwareInfo* retBoardInfo;
@@ -218,6 +219,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
     p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
     p.drawText(60,itemHeight*8,width()-space*9,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Hey HEY HEYY!!!!!!! CPax wuz here!!!"));
+    p.drawText(100,itemHeight*8,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
     if (width() >= 800) {
         p.setPen(QPen(QColor(192,192,192)));
         // const int buttonWidth = width()/4;                                                                   
