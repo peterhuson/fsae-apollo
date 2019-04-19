@@ -39,6 +39,12 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
     mpKeepAliveTimer->start(50);
 
+    quitButton = new QPushButton("<< Quit", this);	
+    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));	
+
+     qtdemoButton = new QPushButton("Start Qt Demo >>", this);	
+    connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
+
     gettimeofday(&startTime,NULL);
 }
 
