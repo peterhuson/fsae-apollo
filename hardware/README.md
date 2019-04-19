@@ -11,5 +11,7 @@ In order to install the LED package, it is necessary to run the following comman
 pip install Adafruit_GPIO
 sudo mkdir /usr/lib/python2.7/dist-packages/apa102_led
 sudo curl https://raw.githubusercontent.com/tinue/apa102-pi/master/driver/apa102.py -o /usr/lib/python2.7/dist-packages/apa102_led/apa102.py
+sudo mkdir /root/fsae-apollo/venv/lib/python3.5/site-packages/apa102_led
+sudo curl https://raw.githubusercontent.com/tinue/apa102-pi/master/driver/apa102.py -o /root/fsae-apollo/venv/lib/python3.5/site-packages
 sudo touch /usr/lib/python2.7/dist-packages/apa102_led/__init__.py
 ```

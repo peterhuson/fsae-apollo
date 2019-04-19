@@ -63,17 +63,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Now try running it:
-``` sh
-python main.py
-```
-
 Deactivate the virtual environment using: 
 ``` sh
 deactivate
-```
-
-## Required `rc.local` changes
-```sh 
-
 ```

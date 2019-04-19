@@ -37,7 +37,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     mpKeepAliveTimer = new QTimer();
     mpKeepAliveTimer->setSingleShot(false);
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
-    mpKeepAliveTimer->start(1500);
+    mpKeepAliveTimer->start(500);
 
     quitButton = new QPushButton("<< Quit", this);
     connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
@@ -217,8 +217,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
     p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
-
-    p.drawText(space,itemHeight*8,width()-space*9,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Hey HEY HEYY!!!!!!! CPax wuz here!!!").arg(ip));
+    p.drawText(60,itemHeight*8,width()-space*9,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Hey HEY HEYY!!!!!!! CPax wuz here!!!"));
     if (width() >= 800) {
         p.setPen(QPen(QColor(192,192,192)));
         // const int buttonWidth = width()/4;                                                                   
@@ -226,7 +225,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
         p.drawText(10,height()-5-buttonHeight-5-buttonHeight, QString("View source code on github: %1").arg(sourceCodeUrl));
     }
 
-    if (isUsingTFT28LCD) {
+    if (1) {
         const int keyCount = sizeof(progresses)/sizeof(int);
         const int maxProgressBarWidth = width()-20;
         const int space = 5;
