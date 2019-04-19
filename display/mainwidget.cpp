@@ -39,40 +39,9 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
     mpKeepAliveTimer->start(50);
 
-    quitButton = new QPushButton("<< Quit", this);	
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));	
-
-     qtdemoButton = new QPushButton("Start Qt Demo >>", this);	
-    connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
-
     gettimeofday(&startTime,NULL);
 }
 
-void TMainWidget::qtdemoButtonClicked() {
-    QPushButton* btn = (QPushButton*) sender();
-    if (btn == qtdemoButton) {
-        system("/opt/QtE-Demo/run-qtexample.sh&");
-        exit(0);
-    } else if (btn == quitButton) {
-        QMessageBox::information(this, "Message", "Please press Alt-F2 to login from tty2.");
-        exit(0);
-    }
-}
-
-void TMainWidget::resizeEvent(QResizeEvent*) {
-    const int buttonWidth = width()/4;
-    const int buttonHeight = height()/12;
-    qtdemoButton->setGeometry(width()-buttonWidth-10,height()-5-buttonHeight,buttonWidth, buttonHeight);
-    quitButton->setGeometry(10,height()-5-buttonHeight,buttonWidth,buttonHeight);
-
-    if (width() < 800) {
-        qtdemoButton->hide();
-        quitButton->hide();
-    } else {
-        qtdemoButton->show();
-        quitButton->show();
-    }
-}
 
 static inline double time_diff(struct timeval _tstart,struct timeval _tend) {
   double t1 = 0.;
