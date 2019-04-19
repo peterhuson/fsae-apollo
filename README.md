@@ -2,6 +2,18 @@
 
 This project contains the bare bones for the Brown FSAE Driver Feedback Project. Feel free to play around with `main.py` and figure out how PyQt5 works. 
 
+## Compile Qt 
+
+To compile the Qt package, you will need to run the following: 
+
+```
+cd build/
+# Generate the Makefile 
+/usr/local/Trolltech/Qt-5.10.0-nexell32-sdk/bin/qmake ../display/QtE-Demo.pro 
+# idk, it just works
+make
+```
+
 ## Install fsae-apollo 
 You will need Python 3.7 installed to run fsae-apollo. 
 
