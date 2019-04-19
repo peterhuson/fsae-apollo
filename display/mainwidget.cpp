@@ -21,7 +21,7 @@
 #include "boardtype_friendlyelec.h"
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
-    QWidget(parent),bg(QPixmap(":/screen1.png")),transparent(transparency),sourceCodeUrl(surl)
+    QWidget(parent),bg(QPixmap(":/backgrounds/screen1.png")),transparent(transparency),sourceCodeUrl(surl)
 {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
     isUsingTFT28LCD = qwsDisplay.contains("/dev/fb-st7789s");
@@ -243,7 +243,6 @@ void TMainWidget::paintEvent(QPaintEvent *)
     if (ip == "0.0.0.0") {
         ip = wlan0IP;
     }
-
 
     p.setPen(QPen(QColor(255,255,255)));
     p.drawText(space,itemHeight*0,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
