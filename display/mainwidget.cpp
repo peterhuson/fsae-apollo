@@ -69,8 +69,8 @@ void TMainWidget::resizeEvent(QResizeEvent*) {
         qtdemoButton->hide();
         quitButton->hide();
     } else {
-        qtdemoButton->show();
-        quitButton->show();
+        qtdemoButton->hide();
+        quitButton->hide();
     }
 }
 
