@@ -46,7 +46,7 @@ source ~/fsae-apollo/venv/bin/activate
 cd ~
 ```
 
-
+TODO: Flash a friendlycore image onto the NanoPi and get it to boot reliably. I tried with the image they have at the following link, but it seemed to have console logging disabled and/or would not boot. https://drive.google.com/drive/folders/1177wtytvjXfSYFHc6MyalHUWK_ilKIlr
 
 ## Install fsae-apollo 
 You will need Python 3.7 installed to run fsae-apollo. 
