@@ -48,6 +48,7 @@ private:
     QString maxCPUTemp;
     QString freqStr;
     QString memInfo;
+    QString usageInfo;
     QPixmap bg;
     QString eth0IP;
     QString wlan0IP;
