@@ -74,6 +74,16 @@ void TMainWidget::resizeEvent(QResizeEvent*) {
     }
 }
 
+static inline double time_diff(struct timeval _tstart,struct timeval _tend) {
+  double t1 = 0.;
+  double t2 = 0.;
+
+  t1 = ((double)_tstart.tv_sec * 1000 + (double)_tstart.tv_usec/1000.0) ;
+  t2 = ((double)_tend.tv_sec * 1000 + (double)_tend.tv_usec/1000.0) ;
+
+  return t2-t1;
+}
+
 void TMainWidget::onKeepAlive() {
     static char ipStr[50];
     memset(ipStr, 0, sizeof(ipStr));
@@ -193,6 +203,17 @@ void TMainWidget::onKeepAlive() {
             }
         }
     }
+
+
+    struct timeval endTime;
+    gettimeofday(&endTime,NULL);
+    double global_time = time_diff(startTime,endTime); 
+             memInfo = QString("%1/%2 MB").arg(totalmem-freemem).arg(totalmem);
+
+    timeSinceStart = "";
+    QString timestr;
+    timeSinceStart = timestr.sprintf("globalTime: %.2fms", global_time);
+
     update();
 }
 
@@ -221,8 +242,6 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(60,itemHeight*8,width()-space*9,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Hey HEY HEYY!!!!!!! CPax wuz here!!!"));
     p.drawText(0,itemHeight*8,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
     
-    gettimeofday(&endTime,NULL);
-    double timeSinceStart = time_diff(startTime,endTime); 
     p.drawText(10,itemHeight*4,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("Time: %1").arg(timeSinceStart));
 
     
@@ -259,15 +278,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     }
 }
 
-static inline double time_diff(struct timeval _tstart,struct timeval _tend) {
-  double t1 = 0.;
-  double t2 = 0.;
 
-  t1 = ((double)_tstart.tv_sec * 1000 + (double)_tstart.tv_usec/1000.0) ;
-  t2 = ((double)_tend.tv_sec * 1000 + (double)_tend.tv_usec/1000.0) ;
-
-  return t2-t1;
-}
 
 void TMainWidget::customEvent(QEvent *e)
 {
