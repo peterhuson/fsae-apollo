@@ -21,7 +21,7 @@
 #include "boardtype_friendlyelec.h"
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
-    QWidget(parent),bg(QPixmap(":/bg.png")),transparent(transparency),sourceCodeUrl(surl)
+    QWidget(parent),bg(QPixmap(":/screen1.png")),transparent(transparency),sourceCodeUrl(surl)
 {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
     isUsingTFT28LCD = qwsDisplay.contains("/dev/fb-st7789s");
@@ -38,12 +38,6 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     mpKeepAliveTimer->setSingleShot(false);
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
     mpKeepAliveTimer->start(50);
-
-    quitButton = new QPushButton("<< Quit", this);
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
-
-    qtdemoButton = new QPushButton("Start Qt Demo >>", this);
-    connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
 
     gettimeofday(&startTime,NULL);
 }
@@ -250,16 +244,24 @@ void TMainWidget::paintEvent(QPaintEvent *)
         ip = wlan0IP;
     }
 
+
     p.setPen(QPen(QColor(255,255,255)));
     p.drawText(space,itemHeight*0,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
     p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
+    
+    int blockHeight = 40;
 
     p.setFont(QFont("Arial",35));
-    p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 40,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
-    p.drawText(10,itemHeight*4,width()-space*9,itemHeight + 55,Qt::AlignRight | Qt::AlignVCenter,QString("Time: %1").arg(timeSinceStart));
+    p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
+    p.drawText(10,itemHeight*4,width()-space*9,itemHeight + 35,Qt::AlignRight | Qt::AlignVCenter,QString("Time: %1").arg(timeSinceStart));
 
+    int sideBorder = 30;
+
+    p.drawText(sideBorder,blockHeight*1,70,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("3400"));
+    p.drawText(sideBorder,blockHeight*4,70,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
+    p.drawText(sideBorder,blockHeight*8,70,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
     
     // if (width() >= 800) {
     //     p.setPen(QPen(QColor(192,192,192)));
