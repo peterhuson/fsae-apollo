@@ -112,9 +112,46 @@ void TMainWidget::onKeepAlive() {
          usageInfo = QString("%1 Bytes").arg(sys_info.totalram-sys_info.freeram);
     }
 
+    BoardHardwareInfo* retBoardInfo;
+    int boardId;
+    boardId = getBoardType(&retBoardInfo);
+    if (boardId >= 0) {
+        if ((boardId >= S5P4418_BASE && boardId <= S5P4418_MAX)
+            || (boardId >= S5P6818_BASE && boardId <= S5P6818_MAX)
+            ) {
+            QString templ_filename("/sys/class/hwmon/hwmon0/device/temp_label");
+        QString tempm_filename("/sys/class/hwmon/hwmon0/device/temp_max");
+        QFile f1(templ_filename);
+        QFile f2(tempm_filename);
+        if (f1.exists()) {
+            currentCPUTemp = Util::readFile(templ_filename).simplified();
+        }
+        if (f2.exists()) {
+            maxCPUTemp = Util::readFile(tempm_filename).simplified();
+        }
+
+    } else if (boardId >= ALLWINNER_BASE && boardId <= ALLWINNER_MAX) {
+        QString str;
+        bool ok=false;
+        QString templ_filename("/sys/class/thermal/thermal_zone0/temp");
+        QFile f3(templ_filename);
+        if (f3.exists()) {
+            float _currentCPUTemp = Util::readFile(templ_filename).simplified().toInt(&ok);
+            if (ok) {
+                if (_currentCPUTemp > 1000) {
+                    _currentCPUTemp = _currentCPUTemp / 1000;
+                }
+                currentCPUTemp = str.sprintf("%.1f",_currentCPUTemp);
+                maxCPUTemp = currentCPUTemp;
+            }
+        }
+    }
+
+    // Temp Parsing
+
     QString str;
     bool ok=false;
-    QString templ_filename("/sys/class/thermal/thermal_zone*/temp");
+    QString templ_filename("/sys/class/thermal/thermal_zone0/temp");
     QFile f3(templ_filename);
     if (f3.exists()) {
         float _currentCPUTemp = Util::readFile(templ_filename).simplified().toInt(&ok);
