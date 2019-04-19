@@ -251,7 +251,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     }
 
     p.setPen(QPen(QColor(255,255,255)));
-    p.drawText(space,itemHeight*0,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
+    p.drawText(space,-itemHeight*0,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
     p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
@@ -262,18 +262,19 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
     p.drawText(10,itemHeight*4,width()-space*9,itemHeight + 35,Qt::AlignRight | Qt::AlignVCenter,QString("Time: %1").arg(timeSinceStart));
 
-    int sideBorder = 30;
+//// 6 Main Number items on dash
+    int sideBorder = 50;
+    int fieldWidth = 200;
 
-    p.drawText(sideBorder,blockHeight*1,70,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("3400"));
-    p.drawText(sideBorder,blockHeight*4,70,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
-    p.drawText(sideBorder,blockHeight*8,70,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
+    p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("3400"));
+    p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
+    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
     
-    // if (width() >= 800) {
-    //     p.setPen(QPen(QColor(192,192,192)));
-    //     // const int buttonWidth = width()/4;                                                                   
-    //     const int buttonHeight = height()/12;                                                                
-    //     p.drawText(10,height()-5-buttonHeight-5-buttonHeight, QString("View source code on github: %1").arg(sourceCodeUrl));
-    // }
+    p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
+    p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("60.9"));
+    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
+
+
 
     if (1) {
         const int keyCount = sizeof(progresses)/sizeof(int);
