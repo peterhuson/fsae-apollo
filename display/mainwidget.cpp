@@ -39,15 +39,10 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
     mpKeepAliveTimer->start(50);
 
-    quitButton = new QPushButton("<< Quit", this);	
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));	
-
-     qtdemoButton = new QPushButton("Start Qt Demo >>", this);	
-    connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
-
     gettimeofday(&startTime,NULL);
 }
 
+<<<<<<< HEAD
 void TMainWidget::qtdemoButtonClicked() {
     QPushButton* btn = (QPushButton*) sender();
     if (btn == qtdemoButton) {
@@ -73,6 +68,8 @@ void TMainWidget::resizeEvent(QResizeEvent*) {
         quitButton->hide();
     }
 }
+=======
+>>>>>>> 669f0fe543fbb6a10526658dd68aea65868c6dbf
 
 static inline double time_diff(struct timeval _tstart,struct timeval _tend) {
   double t1 = 0.;
