@@ -208,8 +208,6 @@ void TMainWidget::onKeepAlive() {
     struct timeval endTime;
     gettimeofday(&endTime,NULL);
     double global_time = time_diff(startTime,endTime); 
-             memInfo = QString("%1/%2 MB").arg(totalmem-freemem).arg(totalmem);
-
     timeSinceStart = "";
     QString timestr;
     timeSinceStart = timestr.sprintf("globalTime: %.2fms", global_time);
