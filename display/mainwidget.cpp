@@ -37,7 +37,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     mpKeepAliveTimer = new QTimer();
     mpKeepAliveTimer->setSingleShot(false);
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
-    mpKeepAliveTimer->start(500);
+    mpKeepAliveTimer->start(20);
 
     quitButton = new QPushButton("<< Quit", this);
     connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
