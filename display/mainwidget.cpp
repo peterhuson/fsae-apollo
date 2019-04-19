@@ -228,7 +228,7 @@ void TMainWidget::onKeepAlive() {
     double global_time = time_diff(startTime,endTime); 
     timeSinceStart = "";
     QString timestr;
-    timeSinceStart = timestr.sprintf("globalTime: %.2fms", global_time);
+    timeSinceStart = timestr.sprintf("%.2fms", global_time);
 
     update();
 }
@@ -251,28 +251,28 @@ void TMainWidget::paintEvent(QPaintEvent *)
     }
 
     p.setPen(QPen(QColor(255,255,255)));
-    p.drawText(space,-itemHeight*0,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
-    p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
-    p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
-    p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
+    p.drawText(space,itemHeight*22,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
+    p.drawText(space*50,itemHeight*22,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
+    p.drawText(space*140,itemHeight*22,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
+    p.drawText(space*250,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
     
-    int blockHeight = 40;
 
-    p.setFont(QFont("Arial",35));
-    p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
-    p.drawText(10,itemHeight*4,width()-space*9,itemHeight + 35,Qt::AlignRight | Qt::AlignVCenter,QString("Time: %1").arg(timeSinceStart));
+    // p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
+    p.drawText(10,itemHeight*4,width()-space*9,itemHeight + 35,Qt::AlignRight | Qt::AlignVCenter,QString("t=%1").arg(timeSinceStart));
 
 //// 6 Main Number items on dash
-    int sideBorder = 50;
+    p.setFont(QFont("Arial",35));
+    int blockHeight = 40;
+    int sideBorder = 35;
     int fieldWidth = 200;
 
     p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("3400"));
     p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
     p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
     
-    p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
-    p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("60.9"));
-    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
+    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
+    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("60.9"));
+    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
 
 
 
