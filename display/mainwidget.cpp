@@ -237,6 +237,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
     p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
+    p.drawText(space,itemHeight*4,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Temp: %1, %2").arg(currentCPUTemp).arg(maxCPUTemp));
     p.drawText(60,itemHeight*8,width()-space*9,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Hey HEY HEYY!!!!!!! CPax wuz here!!!"));
     p.drawText(0,itemHeight*8,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
     
