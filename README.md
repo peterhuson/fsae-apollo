@@ -38,3 +38,8 @@ Deactivate the virtual environment using:
 ``` sh
 deactivate
 ```
+
+## Required `rc.local` changes
+```sh 
+
+```

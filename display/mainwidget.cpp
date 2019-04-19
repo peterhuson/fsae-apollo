@@ -214,10 +214,11 @@ void TMainWidget::paintEvent(QPaintEvent *)
 
     p.setPen(QPen(QColor(255,255,255)));
     p.drawText(space,itemHeight*0,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
-    p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("内存: %1").arg(memInfo));
+    p.drawText(space,itemHeight*1,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space,itemHeight*2,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
     p.drawText(space,itemHeight*3,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
 
+    p.drawText(space,itemHeight*8,width()-space*9,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Hey HEY HEYY!!!!!!! CPax wuz here!!!").arg(ip));
     if (width() >= 800) {
         p.setPen(QPen(QColor(192,192,192)));
         // const int buttonWidth = width()/4;                                                                   
