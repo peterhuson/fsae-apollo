@@ -258,7 +258,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     
 
     // p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
-    p.drawText(10,itemHeight*23,width()-space*9,itemHeight + 35,Qt::AlignRight | Qt::AlignVCenter,QString("t=%1").arg(timeSinceStart));
+    p.drawText(10,itemHeight*23,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("t=%1").arg(timeSinceStart));
 
 //// 6 Main Number items on dash
     p.setFont(QFont("Arial",35));
@@ -270,9 +270,9 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
     p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
     
-    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("12.4"));
-    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("60.9"));
-    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("50.2"));
+    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
+    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("60.9"));
+    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
 
 
 
