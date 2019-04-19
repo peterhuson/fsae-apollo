@@ -14,6 +14,40 @@ cd build/
 make
 ```
 
+## Pi setup
+
+wpa_supplicant.conf
+```sh
+update_config=1
+country=CN
+
+network={
+        ssid="Rhodedendron"
+        psk="********"
+}
+```
+
+rc.local
+```sh
+exec 1>/tmp/rc.local.log 2>&1  # send stdout and stderr from rc.local to a log file
+set -x
+
+. /usr/bin/setqt5env
+/usr/bin/lcd2usb_print "CPU: {{CPU}}" "Mem: {{MEM}}" "IP: {{IP}}" "LoadAvg: {{LOADAVG}}" 2>&1 > /dev/null&
+##/opt/QtE-Demo/run.sh&
+
+bash /root/fsae-apollo/master_run.sh &
+```
+/root/.bashrc
+```sh
+. /usr/bin/setqt5env
+
+source ~/fsae-apollo/venv/bin/activate
+cd ~
+```
+
+
+
 ## Install fsae-apollo 
 You will need Python 3.7 installed to run fsae-apollo. 
 
