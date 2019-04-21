@@ -1,5 +1,5 @@
-from driver import apa102
-# from apa102_led import apa102
+# from driver import apa102
+from apa102_led import apa102
 import time, sys
 
 OFF = 0x000000 #Off
@@ -11,7 +11,7 @@ BLUE = 0x0000FF #Blue
 PURPLE = 0x4B0082 #Indigo
 VIOLET = 0x9400D3 #Violet
 
-NUM_LED = 15
+NUM_LED = 13
 MOSI = 10
 SCLK = 11
 
