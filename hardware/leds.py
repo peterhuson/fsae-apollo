@@ -21,7 +21,7 @@ class LEDs:
         for rpm in range(MIN_RPM, REDLINE_RPM, 100):
             time.sleep(0.02)
             self.displayRPM(rpm)
-        for rpm in range(REDLINE_RPM, MIN_RPM, 200):
+        for rpm in range(REDLINE_RPM, MIN_RPM-1000, -200):
             time.sleep(0.02)
             self.displayRPM(rpm)
 
