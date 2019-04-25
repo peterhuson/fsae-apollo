@@ -11,11 +11,17 @@ SCLK = 11
 REDLINE_RPM = 13000
 MAX_RPM = 12000
 MIN_RPM = 8000
+DEFAULT_BRIGHTNESS = 3
 
 class LEDs:
 	def __init__(self):
 		self.strip = apa102.APA102(num_led=NUM_LED, mosi=MOSI, sclk=SCLK,order='rgb')
 		self.strip.clear_strip()
+
+        for rpm in range(MIN_RPM, REDLINE_RPM, 100):
+            time.sleep(0.05)
+            self.displayRPM(rpm)
+
 		#try:
 			# self.rainbow()
 		#except: 
@@ -42,16 +48,18 @@ class LEDs:
 		step = (RPM - MIN_RPM) / step_width
 		print("{} RPM calculated as step {}".format(RPM, step))
 
+        if RPM > MAX_RPM:
+            self.setall(RED, DEFAULT_BRIGHTNESS + 4)
+            pass
+
 		leds_to_change = np.copy(p.led_map)
-		print("LED map: {}".format(p.led_map))
-		leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.BLUE] # TODO p.OFF
+		leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
 		print("LEDs to change: {}".format(leds_to_change))
 
 		self.updateLeds(leds_to_change)
 
 	def updateLeds(self, update_map):
 		for i, elem in enumerate(update_map):
-			print("setting {} to {}".format(i, elem[2]))
 			self.strip.set_pixel_rgb(i,elem[2], 1)
 		self.strip.show()
 
