@@ -1,19 +1,15 @@
 # from driver import apa102
 from apa102_led import apa102
+import params as p
 import time, sys
-
-OFF = 0x000000 #Off
-RED = 0xFF0000 #Red
-ORANGE = 0xFF7F00 #Orange
-YELLOW = 0xFFFF00 #Yellow
-GREEN = 0x00FF00 #Green
-BLUE = 0x0000FF #Blue
-PURPLE = 0x4B0082 #Indigo
-VIOLET = 0x9400D3 #Violet
+import numpy as np
 
 NUM_LED = 13
 MOSI = 10
 SCLK = 11
+
+MAX_RPM = 13000
+MIN_RPM = 8000
 
 class LEDs:
 	def __init__(self):
@@ -39,6 +35,23 @@ class LEDs:
 		#self.strip.clear_strip()
 		#self.strip.cleanup()
 
+	def displayRPM(self, RPM):
+		num_steps = (NUM_LED / 2) + 1
+		step_width = (MAX_RPM - MIN_RPM) / num_steps
+		step = (RPM - MIN_RPM) / step_width
+		print("{} RPM calculated as step {}".format(RPM, step))
+
+		leds_to_change = p.led_map
+		leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.BLUE] # TODO p.OFF
+		print("LEDs to change: {}".format(leds_to_change))
+
+		self.updateLeds(leds_to_change)
+
+	def updateLeds(self, update_map):
+		for i, elem in enumerate(update_map):
+			print("setting {} to {}".format(i, elem[2]))
+			self.strip.set_pixel_rgb(i,elem[2], 0)
+		self.strip.show()
 
 	def setall(self, color, brightness):
 		for i in range(NUM_LED):
