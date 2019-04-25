@@ -15,10 +15,10 @@ class LEDs:
 	def __init__(self):
 		self.strip = apa102.APA102(num_led=NUM_LED, mosi=MOSI, sclk=SCLK,order='rgb')
 		self.strip.clear_strip()
-		try:
+		#try:
 			# self.rainbow()
-		except: 
-			self.shutdown()
+		#except: 
+		#	self.shutdown()
 		# print("Brightness 0-100")
 		# for a in range(0,10):
 		# 	for b in range(0,100):
@@ -51,7 +51,7 @@ class LEDs:
 	def updateLeds(self, update_map):
 		for i, elem in enumerate(update_map):
 			print("setting {} to {}".format(i, elem[2]))
-			self.strip.set_pixel_rgb(i,elem[2], 0)
+			self.strip.set_pixel_rgb(i,elem[2], 1)
 		self.strip.show()
 
 	def setall(self, color, brightness):
