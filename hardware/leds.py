@@ -11,7 +11,7 @@ SCLK = 11
 REDLINE_RPM = 13000
 MAX_RPM = 12000
 MIN_RPM = 8000
-DEFAULT_BRIGHTNESS = 3
+BRIGHTNESS_PERCENTAGE = 20
 
 class LEDs:
     def __init__(self):
@@ -19,7 +19,10 @@ class LEDs:
         self.strip.clear_strip()
 
         for rpm in range(MIN_RPM, REDLINE_RPM, 100):
-            time.sleep(0.05)
+            time.sleep(0.02)
+            self.displayRPM(rpm)
+        for rpm in range(REDLINE_RPM, MIN_RPM, 200):
+            time.sleep(0.02)
             self.displayRPM(rpm)
 
         #try:
@@ -46,21 +49,19 @@ class LEDs:
         num_steps = (NUM_LED / 2) + 1
         step_width = (MAX_RPM - MIN_RPM) / num_steps
         step = (RPM - MIN_RPM) / step_width
-        print("{} RPM calculated as step {}".format(RPM, step))
 
         if RPM > MAX_RPM:
-            self.setall(p.RED, DEFAULT_BRIGHTNESS + 4)
+            self.setall(p.RED, BRIGHTNESS_PERCENTAGE + 50)
             return
 
         leds_to_change = np.copy(p.led_map)
         leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
-        print("LEDs to change: {}".format(leds_to_change))
 
         self.updateLeds(leds_to_change)
 
     def updateLeds(self, update_map):
         for i, elem in enumerate(update_map):
-            self.strip.set_pixel_rgb(i,elem[2], 1)
+            self.strip.set_pixel_rgb(i,elem[2], BRIGHTNESS_PERCENTAGE)
         self.strip.show()
 
     def setall(self, color, brightness):
