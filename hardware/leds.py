@@ -16,7 +16,7 @@ class LEDs:
 		self.strip = apa102.APA102(num_led=NUM_LED, mosi=MOSI, sclk=SCLK,order='rgb')
 		self.strip.clear_strip()
 		try:
-			self.rainbow()
+			# self.rainbow()
 		except: 
 			self.shutdown()
 		# print("Brightness 0-100")
@@ -112,6 +112,6 @@ if __name__ == '__main__':
 	#try:
 	l = LEDs()
 	#except (KeyboardInterrupt, SystemExit):
-	l.shutdown()
-	sys.exit(0)
+	# l.shutdown()
+	# sys.exit(0)
 
