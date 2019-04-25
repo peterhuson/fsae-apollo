@@ -49,7 +49,7 @@ class LEDs:
         print("{} RPM calculated as step {}".format(RPM, step))
 
         if RPM > MAX_RPM:
-            self.setall(RED, DEFAULT_BRIGHTNESS + 4)
+            self.setall(p.RED, DEFAULT_BRIGHTNESS + 4)
             pass
 
         leds_to_change = np.copy(p.led_map)
