@@ -50,7 +50,7 @@ class LEDs:
 
         if RPM > MAX_RPM:
             self.setall(p.RED, DEFAULT_BRIGHTNESS + 4)
-            pass
+            return
 
         leds_to_change = np.copy(p.led_map)
         leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
