@@ -41,7 +41,7 @@ class LEDs:
 		step = (RPM - MIN_RPM) / step_width
 		print("{} RPM calculated as step {}".format(RPM, step))
 
-		leds_to_change = p.led_map
+		leds_to_change = np.copy(p.led_map)
 		print("LED map: {}".format(p.led_map))
 		leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.BLUE] # TODO p.OFF
 		print("LEDs to change: {}".format(leds_to_change))
