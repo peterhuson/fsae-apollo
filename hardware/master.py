@@ -7,7 +7,7 @@ class Master:
         self.l = LEDs()
         print("got an LED handler!")
 
-        self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
+        # self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
         
         self.serial_port = s.Serial('/dev/ttyAMA3', 9600, timeout=1) # Default Serial Baud rate is 9600
         self.serial_port.write(b'+++')
@@ -64,7 +64,7 @@ class Master:
 
                 
             time.sleep(0.01)
-            print("in read loop")
+            # print("in read loop")
             #Put the
 
 
