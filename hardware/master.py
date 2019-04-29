@@ -5,6 +5,7 @@ from leds import LEDs
 class Master:
     def __init__(self):
         self.l = LEDs()
+        self.l.displayRPM(8500)
         print("got an LED handler!")
 
         # self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
@@ -13,12 +14,13 @@ class Master:
         self.serial_port.write(b'+++')
         ret = self.serial_port.readline()
         print(ret)
-        self.serial_port.write(b'AT+C=18\n') # Set CanBus rate to 1Mb/s
+        self.serial_port.write(b'AT+C=13\n') # Set CanBus rate to 1Mb/s
         ret = self.serial_port.readline()
         print(ret)
         self.serial_port.write(b'AT+Q\n')
         ret = self.serial_port.readline()
         print(ret)
+        time.sleep(0.1)
 
         try:
             self.run()
