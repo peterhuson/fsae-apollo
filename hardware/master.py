@@ -13,10 +13,10 @@ class Master:
         self.serial_port.write(b'+++')
         ret = self.serial_port.readline()
         print(ret)
-        self.serial_port.write(b'AT+C=18') # Set CanBus rate to 1Mb/s
+        self.serial_port.write(b'AT+C=18\n') # Set CanBus rate to 1Mb/s
         ret = self.serial_port.readline()
         print(ret)
-        self.serial_port.write(b'AT+Q')
+        self.serial_port.write(b'AT+Q\n')
         ret = self.serial_port.readline()
         print(ret)
 
@@ -64,7 +64,7 @@ class Master:
 
                 
             time.sleep(0.01)
-            # print("in read loop")
+            print("in read loop")
             #Put the
 
 
