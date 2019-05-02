@@ -79,7 +79,7 @@ class Master:
             value_str = data_str[5:]
             print(key + "->" + value_str)
 
-            value = float(value_str)
+            value = float(value_str.strip())
             print("(int)" + str(value))
             if(0 <= value <= 10e6): # Hopefully only good values get through? 
                 if(key == "l700:"):
@@ -96,6 +96,7 @@ class Master:
                     os.write(self.fifo, "rspd:" + str(value) + "\n")
                 elif(key == "l703:"):
                     os.write(self.fifo, "rpm_:" + str(value) + "\n")
+                    self.l.displayRPM(value)
                 elif(key == "h703:"):
                     os.write(self.fifo, "accx:" + str(value) + "\n")
                 elif(key == "l704:"):

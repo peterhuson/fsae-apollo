@@ -32,14 +32,15 @@ void loop()
     unsigned char len = 0;
     unsigned char buf[8];
 
-    // Serial.println("rpm_:9500");
-    // delay(100);
+//     Serial.println("rpm_:10500");
+//     delay(100);
     
     // Serial.println("ctmp:34.56");
     // delay(100);
 
     if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming
     {
+//      Serial.println("got can!");
         CAN.readMsgBuf(&len, buf);    // read data,  len: data length, buf: data buf
 
         unsigned int canId = CAN.getCanId();
