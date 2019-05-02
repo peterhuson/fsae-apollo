@@ -76,7 +76,7 @@ class Master:
     def parse_data(self, data_str):
         try: 
             key = data_str[:5]
-            value_str = data_str[5:]
+            value_str = data_str[5:10]
             print(key + "->" + value_str)
 
             stripped = value_str.strip()
