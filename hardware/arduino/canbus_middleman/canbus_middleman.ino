@@ -32,11 +32,11 @@ void loop()
     unsigned char len = 0;
     unsigned char buf[8];
 
-    Serial.println("rpm_:9500");
-    delay(100);
+    // Serial.println("rpm_:9500");
+    // delay(100);
     
-    Serial.println("ctmp:34.56");
-    delay(100);
+    // Serial.println("ctmp:34.56");
+    // delay(100);
 
     if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming
     {
@@ -70,38 +70,38 @@ void loop()
               Serial.println(*low);
           }
           
-//        if(canId == 0x700){
-//            float *ctmp;
-//            unsigned long coolant_temp;
-//            coolant_temp = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);
-//            ctmp = (float *)&coolant_temp;
-//            Serial.print("ctmp:");
-//            Serial.println(*ctmp);
-//
-//            float *oilp;
-//            unsigned long oil_pressure;
-//            oil_pressure = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
-//            oilp = (float *)&oil_pressure;
-//            Serial.print("oilp:");
-//            Serial.println(*oilp);
-//        }
-//
-//        if(canId == 0x701){
-//            
-//            float *bv;
-//            unsigned long bat_voltage;
-//            bat_voltage = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);
-//            bv = (float *)&bat_voltage;
-//            Serial.print("vbat:");
-//            Serial.println(*bv);
-//
-//            float *lam;
-//            unsigned long lambda;
-//            lambda = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
-//            lam = (float *)&lambda;
-//            Serial.print("lamb:");
-//            Serial.println(*lam);
-//        }
+    //    if(canId == 0x700){
+    //        float *ctmp;
+    //        unsigned long coolant_temp;
+    //        coolant_temp = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);
+    //        ctmp = (float *)&coolant_temp;
+    //        Serial.print("ctmp:");
+    //        Serial.println(*ctmp);
+
+    //        float *oilp;
+    //        unsigned long oil_pressure;
+    //        oil_pressure = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
+    //        oilp = (float *)&oil_pressure;
+    //        Serial.print("oilp:");
+    //        Serial.println(*oilp);
+    //    }
+
+    //    if(canId == 0x701){
+           
+    //        float *bv;
+    //        unsigned long bat_voltage;
+    //        bat_voltage = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);
+    //        bv = (float *)&bat_voltage;
+    //        Serial.print("vbat:");
+    //        Serial.println(*bv);
+
+    //        float *lam;
+    //        unsigned long lambda;
+    //        lambda = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
+    //        lam = (float *)&lambda;
+    //        Serial.print("lamb:");
+    //        Serial.println(*lam);
+    //    }
 //
 //
 //        if(canId == 0x702){
@@ -121,22 +121,22 @@ void loop()
 //            Serial.println(*rspd);
 //        }
 
-//        if(canId == 0x703){
-//
-//            float *rpm;
-//            unsigned long engine_rpm;
-//            engine_rpm = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);
-//            rpm = (float *)&engine_rpm;
-//            Serial.print("rpm_:");
-//            Serial.println(*rpm);
-//            
-//            float *accx;
-//            unsigned long x_acceleration;
-//            x_acceleration = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
-//            accx = (float *)&x_acceleration;
-//            Serial.print("accx:");
-//            Serial.println(*accx);
-//        }
+    //    if(canId == 0x703){
+
+    //        float *rpm;
+    //        unsigned long engine_rpm;
+    //        engine_rpm = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);
+    //        rpm = (float *)&engine_rpm;
+    //        Serial.print("rpm_:");
+    //        Serial.println(*rpm);
+           
+    //        float *accx;
+    //        unsigned long x_acceleration;
+    //        x_acceleration = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
+    //        accx = (float *)&x_acceleration;
+    //        Serial.print("accx:");
+    //        Serial.println(*accx);
+    //    }
 //        
 //        if(canId == 0x704){
 //            

@@ -82,25 +82,25 @@ class Master:
             value = float(value_str)
             print("(int)" + str(value))
             if(0 <= value <= 10e6): # Hopefully only good values get through? 
-                if(key == "lf00:"):
+                if(key == "l700:"):
                     os.write(self.fifo, "ctmp:" + str(value) + "\n")
-                elif(key == "hf00:"):
+                elif(key == "h700:"):
                     os.write(self.fifo, "oilp:" + str(value) + "\n")
-                elif(key == "lf01:"):
+                elif(key == "l701:"):
                     os.write(self.fifo, "lamb:" + str(value) + "\n")
-                elif(key == "hf01:"):
+                elif(key == "h701:"):
                     os.write(self.fifo, "vbat:" + str(value) + "\n")
-                elif(key == "lf02:"):
+                elif(key == "l702:"):
                     os.write(self.fifo, "lspd:" + str(value) + "\n")
-                elif(key == "hf02:"):
+                elif(key == "h702:"):
                     os.write(self.fifo, "rspd:" + str(value) + "\n")
-                elif(key == "lf03:"):
+                elif(key == "l703:"):
                     os.write(self.fifo, "rpm_:" + str(value) + "\n")
-                elif(key == "hf03:"):
+                elif(key == "h703:"):
                     os.write(self.fifo, "accx:" + str(value) + "\n")
-                elif(key == "lf04:"):
+                elif(key == "l704:"):
                     os.write(self.fifo, "accy:" + str(value) + "\n")
-                elif(key == "hf04:"):
+                elif(key == "h704:"):
                     os.write(self.fifo, "accz:" + str(value) + "\n")
                 else:
                     print("Unknown Code" + key + str(value))
