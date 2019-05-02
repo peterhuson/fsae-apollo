@@ -23,6 +23,8 @@
 #include <unistd.h> 
 #include "boardtype_friendlyelec.h"
 
+int fd1;
+
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
     QWidget(parent),bg(QPixmap(":/backgrounds/screen1.png")),transparent(transparency),sourceCodeUrl(surl)
 {
@@ -50,7 +52,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
 
     gettimeofday(&startTime,NULL);
 
-    int fd1;   
+       
     // FIFO file path 
     char * myfifo = "/tmp/myfifo2"; 
     fd1 = open(myfifo,O_RDONLY); 
