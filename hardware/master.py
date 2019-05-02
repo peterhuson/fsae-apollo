@@ -166,7 +166,7 @@ class Master:
             print("(int)" + str(value))
             if(0 <= value <= 10e6): # Hopefully only good values get through? 
                 if(key == "ctmp:"):
-                    os.write(self.fifo, "ct:" + str(value))
+                    os.write(self.fifo, "ctmp:" + str(value) + ":")
                     
                 # if(key == "oilp:"):
 
@@ -177,6 +177,7 @@ class Master:
                 # if(key == "rspd:"):
 
                 if(key == "rpm_:"):
+                    os.write(self.fifo, "rpm_:" + str(value) + ":")
                     
                     print("sending {} to leds".format(value))
                     self.l.displayRPM(value)

@@ -248,9 +248,15 @@ void TMainWidget::onKeepAlive() {
     printf("%s\n", str1); 
     // Print the read string and close 
 
+    char *sub = str1+5;
+    int len = 9-5;
+    printf("%.*s\n",len,sub);
+
     std::string string = str1;
     std::string delimiter = ":";
-    std::string token = string.substr(1, string.find(delimiter));
+    printf("%s\n", string); 
+    std::string token = string.substr(0, string.find(delimiter));
+    printf("%s\n", token); 
     cTemp = "";
     QString str;
     printf("%s\n", token); 
