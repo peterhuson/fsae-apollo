@@ -58,7 +58,7 @@ class Master:
                  
                 key = data_str[:5]
                 value = data_str[5:]
-		        print(key + "->" + value)
+                print(key + "->" + value)
                 # if(key == "ctmp:"):
                     
                 # if(key == "oilp:"):
