@@ -251,6 +251,7 @@ void TMainWidget::onKeepAlive() {
     std::string string = str(str1);
     std::string delimiter = ":";
     std::string token = s.substr(1, s.find(delimiter));
+    QString cTemp;
     cTemp = QString("%1 C").arg(token);
 
     update();
