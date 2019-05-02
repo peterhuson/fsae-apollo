@@ -50,6 +50,7 @@ private:
     QString memInfo;
     QString usageInfo;
     QString timeSinceStart;
+    QString cTemp;
     QPixmap bg;
     QString eth0IP;
     QString wlan0IP;
