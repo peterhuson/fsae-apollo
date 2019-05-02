@@ -251,7 +251,7 @@ void TMainWidget::onKeepAlive() {
 
     QString value = QString(&str1[5]);
 
-    if (strcmp(str1, "oilp", 4) == 0) {
+    if (strncmp(str1, "oilp", 4) == 0) {
 	oilP = value;
     } else if (strncmp(str1, "ctmp", 4) == 0) {
 	ctmP = value;
