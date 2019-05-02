@@ -54,7 +54,7 @@ void loop()
 //                Serial.print("\t");
 //            }
 
-          if((canId >> 8) == 0x7){
+          if(canId == 0x703){
               float *high, *low;
               unsigned long high_buf, low_buf;
               low_buf = (unsigned long) buf[3] + ((unsigned long) buf[2] << 8) + ((unsigned long) buf[1] << 16) + ((unsigned long) buf[0] << 24);

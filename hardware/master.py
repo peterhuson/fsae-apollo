@@ -77,34 +77,34 @@ class Master:
         try: 
             key = data_str[:5]
             value_str = data_str[5:]
-            print(key + "->" + value_str)
+            print(repr(key) + "->" + repr(value_str))
 
             value = float(value_str.strip())
             print("(int)" + str(value))
-            if(0 <= value <= 10e6): # Hopefully only good values get through? 
-                if(key == "l700:"):
-                    os.write(self.fifo, "ctmp:" + str(value) + "\n")
-                elif(key == "h700:"):
-                    os.write(self.fifo, "oilp:" + str(value) + "\n")
-                elif(key == "l701:"):
-                    os.write(self.fifo, "lamb:" + str(value) + "\n")
-                elif(key == "h701:"):
-                    os.write(self.fifo, "vbat:" + str(value) + "\n")
-                elif(key == "l702:"):
-                    os.write(self.fifo, "lspd:" + str(value) + "\n")
-                elif(key == "h702:"):
-                    os.write(self.fifo, "rspd:" + str(value) + "\n")
-                elif(key == "l703:"):
-                    os.write(self.fifo, "rpm_:" + str(value) + "\n")
-                    self.l.displayRPM(value)
-                elif(key == "h703:"):
-                    os.write(self.fifo, "accx:" + str(value) + "\n")
-                elif(key == "l704:"):
-                    os.write(self.fifo, "accy:" + str(value) + "\n")
-                elif(key == "h704:"):
-                    os.write(self.fifo, "accz:" + str(value) + "\n")
-                else:
-                    print("Unknown Code" + key + str(value))
+            # if(0 <= value <= 10e6): # Hopefully only good values get through? 
+            if(key == "l700:"):
+                os.write(self.fifo, "ctmp:" + str(value) + "\n")
+            elif(key == "h700:"):
+                os.write(self.fifo, "oilp:" + str(value) + "\n")
+            elif(key == "l701:"):
+                os.write(self.fifo, "lamb:" + str(value) + "\n")
+            elif(key == "h701:"):
+                os.write(self.fifo, "vbat:" + str(value) + "\n")
+            elif(key == "l702:"):
+                os.write(self.fifo, "lspd:" + str(value) + "\n")
+            elif(key == "h702:"):
+                os.write(self.fifo, "rspd:" + str(value) + "\n")
+            elif(key == "l703:"):
+                os.write(self.fifo, "rpm_:" + str(value) + "\n")
+                self.l.displayRPM(value)
+            elif(key == "h703:"):
+                os.write(self.fifo, "accx:" + str(value) + "\n")
+            elif(key == "l704:"):
+                os.write(self.fifo, "accy:" + str(value) + "\n")
+            elif(key == "h704:"):
+                os.write(self.fifo, "accz:" + str(value) + "\n")
+            else:
+                print("Unknown Code" + key + str(value))
 
         except Exception:
             traceback.print_exc(file=sys.stdout)
