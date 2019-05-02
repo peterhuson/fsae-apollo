@@ -248,11 +248,12 @@ void TMainWidget::onKeepAlive() {
     printf("%s\n", str1); 
     // Print the read string and close 
 
-    std::string string = str(str1);
+    std::string string = std::str(str1);
     std::string delimiter = ":";
-    std::string token = s.substr(1, s.find(delimiter));
-    QString cTemp;
-    cTemp = QString("%1 C").arg(token);
+    std::string token = string.substr(1, s.find(delimiter));
+    cTemp = "";
+    QString str;
+    cTemp = str.sprintf("%.1f",token);
 
     update();
 }
@@ -292,10 +293,10 @@ void TMainWidget::paintEvent(QPaintEvent *)
 
     p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("3400"));
     p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
-    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
+    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("38.5"));
     
     p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
-    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,cTemp);
+    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("%1 C").arg(cTemp));
     p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
 
 
