@@ -54,7 +54,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
 
        
     // FIFO file path 
-    char * myfifo = "/tmp/myfifo2"; 
+    const char * myfifo = "/tmp/myfifo2"; 
     mkfifo(myfifo, 0666);
     fd1 = open(myfifo,O_RDONLY); 
 }
@@ -242,8 +242,8 @@ void TMainWidget::onKeepAlive() {
 
 
     // First open in read only and read 
-    char str1[32], str2[32];  
-    size_t bytes_read = read(fd1, str1, 32); 
+    char str1[10], str2[10];  
+    size_t bytes_read = read(fd1, str1, 10); 
     if (bytes_read <= 6) {
 	printf("Got garbage string: %s\n", str1);
 	return;

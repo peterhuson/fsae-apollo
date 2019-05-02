@@ -83,25 +83,25 @@ class Master:
             print("(int)" + str(value))
             if(0 <= value <= 10e6): # Hopefully only good values get through? 
                 if(key == "lf00:"):
-                    os.write(self.fifo, "ctmp:" + str(value))
+                    os.write(self.fifo, "ctmp:" + str(value) + "\n")
                 elif(key == "hf00:"):
-                    os.write(self.fifo, "oilp:" + str(value))
+                    os.write(self.fifo, "oilp:" + str(value) + "\n")
                 elif(key == "lf01:"):
-                    os.write(self.fifo, "lamb:" + str(value))
+                    os.write(self.fifo, "lamb:" + str(value) + "\n")
                 elif(key == "hf01:"):
-                    os.write(self.fifo, "vbat:" + str(value))
+                    os.write(self.fifo, "vbat:" + str(value) + "\n")
                 elif(key == "lf02:"):
-                    os.write(self.fifo, "lspd:" + str(value))
+                    os.write(self.fifo, "lspd:" + str(value) + "\n")
                 elif(key == "hf02:"):
-                    os.write(self.fifo, "rspd:" + str(value))
+                    os.write(self.fifo, "rspd:" + str(value) + "\n")
                 elif(key == "lf03:"):
-                    os.write(self.fifo, "rpm_:" + str(value))
+                    os.write(self.fifo, "rpm_:" + str(value) + "\n")
                 elif(key == "hf03:"):
-                    os.write(self.fifo, "accx:" + str(value))
+                    os.write(self.fifo, "accx:" + str(value) + "\n")
                 elif(key == "lf04:"):
-                    os.write(self.fifo, "accy:" + str(value))
+                    os.write(self.fifo, "accy:" + str(value) + "\n")
                 elif(key == "hf04:"):
-                    os.write(self.fifo, "accz:" + str(value))
+                    os.write(self.fifo, "accz:" + str(value) + "\n")
                 else:
                     print("Unknown Code" + key + str(value))
 
