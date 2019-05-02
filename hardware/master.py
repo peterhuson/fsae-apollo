@@ -44,7 +44,7 @@ class Master:
         # This will block until the reading side is open
         self.fifo = os.open(self.fifo_path, os.O_WRONLY)
         print("Opened fifo")
-        self.fifo.write("Beginning Pipe Messages") 
+        os.write(self.fifo, "Beginning Pipe Messages") 
             # pass
 
         # fifo = open(self.fifo_path, 'w')
@@ -61,7 +61,7 @@ class Master:
                 if(0 <= value <= 10e6): # Hopefully only good values get through? 
                     print(key + "->" + value)
                     if(key == "ctmp:"):
-                        self.fifo.write("ct:" + value)
+                        os.write(self.fifo, "ct:" + value)
                         
                     # if(key == "oilp:"):
 
