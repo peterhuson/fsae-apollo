@@ -231,13 +231,17 @@ void TMainWidget::onKeepAlive() {
     QString timestr;
     timeSinceStart = timestr.sprintf("%.2fms", global_time);
 
+    int fd1;   
+    // FIFO file path 
+    char * myfifo = "/tmp/myfifo2"; 
+
     char str1[80], str2[80];  
     // First open in read only and read 
     fd1 = open(myfifo,O_RDONLY); 
     read(fd1, str1, 80); 
 
     // Print the read string and close 
-    printf("User1: %s\n", str1); 
+    printf("Python: %s\n", str1); 
     close(fd1); 
 
 
