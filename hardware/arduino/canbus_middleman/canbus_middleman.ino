@@ -61,10 +61,11 @@ void loop()
               high_buf = (unsigned long) buf[7] + ((unsigned long) buf[6] << 8) + ((unsigned long) buf[5] << 16) + ((unsigned long) buf[4] << 24);
               high = (float *)&high_buf;
               low = (float *)&low_buf;
-              Serial.print("h");
-              Serial.print(canId, HEX);
-              Serial.print(":");
-              Serial.println(*high);
+//              Serial.print("h");
+//              Serial.print(canId, HEX);
+//              Serial.print(":");
+//              Serial.println(*high);
+//              Serial.println();
               Serial.print("l");
               Serial.print(canId, HEX);
               Serial.print(":");
