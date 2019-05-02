@@ -50,18 +50,17 @@ class Master:
 
         # fifo = open(self.fifo_path, 'w')
 
-        print("Waiting on serial from Arduino...")
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
-        print(self.serial_port)
+        print("Got serial from Arduino")
         while (True):
-            print("In Loop: ")
+            # print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
                 data_str = self.serial_port.read(self.serial_port.inWaiting())
                  
                 key = data_str[:5]
                 value = data_str[5:]
                 print(key + "->" + value)
-                print("(int)" + int(value))
+                print("(int)" + str(int(value)))
                 if(0 <= value <= 10e6): # Hopefully only good values get through? 
                     if(key == "ctmp:"):
                         os.write(self.fifo, "ct:" + value)
