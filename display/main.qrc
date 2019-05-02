@@ -2,5 +2,6 @@
     <qresource prefix="/">
 	<file>bg.png</file>
 	<file>backgrounds/screen1.png</file>
+	<file>backgrounds/thompsonscreenhappiness.png</file>
     </qresource>
 </RCC>
