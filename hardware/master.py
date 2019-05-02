@@ -41,6 +41,7 @@ class Master:
         except OSError, e:
             print "Failed to create FIFO: %s" % e
         
+        print("Waiting on fifo pipe")
         # This will block until the reading side is open
         self.fifo = os.open(self.fifo_path, os.O_WRONLY)
         print("Opened fifo")
@@ -49,11 +50,11 @@ class Master:
 
         # fifo = open(self.fifo_path, 'w')
 
-
+        print("Waiting on serial from Arduino...")
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print(self.serial_port)
         while (True):
-        
+            print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
                 data_str = self.serial_port.read(self.serial_port.inWaiting())
                  
@@ -183,6 +184,7 @@ class Master:
 
     def shutdown(self):
         print("Shutdown heard...exiting")
+        os.close(self.fifo)
         os.remove(self.fifo_path)
 
 
