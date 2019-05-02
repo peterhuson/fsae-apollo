@@ -253,23 +253,23 @@ void TMainWidget::onKeepAlive() {
 
     if (strcmp(str1, "oilp", 4) == 0) {
 	oilP = value;
-    } else if (strcmp(str1, "ctmp", 4) == 0) {
+    } else if (strncmp(str1, "ctmp", 4) == 0) {
 	ctmP = value;
-    } else if (strcmp(str1, "vbat", 4) == 0) {
+    } else if (strncmp(str1, "vbat", 4) == 0) {
 	vbaT = value;
-    } else if (strcmp(str1, "lamb", 4) == 0) {
+    } else if (strncmp(str1, "lamb", 4) == 0) {
 	lamB = value;
-    } else if (strcmp(str1, "lspd", 4) == 0) {
+    } else if (strncmp(str1, "lspd", 4) == 0) {
 	lspD = value;
-    } else if (strcmp(str1, "rspd", 4) == 0) {
+    } else if (strncmp(str1, "rspd", 4) == 0) {
 	rspD = value;
-    } else if (strcmp(str1, "rmp_", 4) == 0) {
+    } else if (strncmp(str1, "rmp_", 4) == 0) {
 	rpM_ = value;
-    } else if (strcmp(str1, "accx", 4) == 0) {
+    } else if (strncmp(str1, "accx", 4) == 0) {
 	accX = value;
-    } else if (strcmp(str1, "accy", 4) == 0) {
+    } else if (strncmp(str1, "accy", 4) == 0) {
 	accY = value;
-    } else if (strcmp(str1, "accz", 4) == 0) {
+    } else if (strncmp(str1, "accz", 4) == 0) {
 	accZ = value;
     } else {
 	printf("Unknown string: %s\n", str1);
