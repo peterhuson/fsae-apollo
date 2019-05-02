@@ -5,7 +5,7 @@ from leds import LEDs
 class Master:
     def __init__(self):
         self.l = LEDs()
-        self.l.displayRPM(8500)
+        self.l.displayRPM(9500)
         print("got an LED handler!")
 
         # self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
@@ -54,24 +54,22 @@ class Master:
         print("Got serial from Arduino")
         
 
-        os.write(self.fifo, "ctmp:100.0")
-        os.write(self.fifo, "oilp:134.2")
-        os.write(self.fifo, "vbat:13.4")
-        os.write(self.fifo, "lamb:0.89") 
-        os.write(self.fifo, "lspd:45.2")
-        os.write(self.fifo, "rspd:45.4:")
-        os.write(self.fifo, "rpm_:11003")
-        os.write(self.fifo, "accx:0.87") 
-        os.write(self.fifo, "accy:1.04")
-        os.write(self.fifo, "accz:0.08")
+        os.write(self.fifo, "ctmp:100.0\n")
+        os.write(self.fifo, "oilp:134.2\n")
+        os.write(self.fifo, "vbat:13.4\n")
+        os.write(self.fifo, "lamb:0.89\n") 
+        os.write(self.fifo, "lspd:45.2\n")
+        os.write(self.fifo, "rspd:45.4\n")
+        os.write(self.fifo, "rpm_:9500\n")
+        os.write(self.fifo, "accx:0.87\n") 
+        os.write(self.fifo, "accy:1.04\n")
+        os.write(self.fifo, "accz:0.08\n")
         
         while (True):
             # print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
                 data_str = self.serial_port.read(self.serial_port.inWaiting())
                 self.parse_data(data_str)
-                 
-
                 
             time.sleep(0.01)
 
