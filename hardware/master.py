@@ -52,33 +52,32 @@ class Master:
 
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Default Serial Baud rate is 9600
         while (True):
-            ret = self.serial_port.readline()
-            print(ret)
         
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
                 data_str = self.serial_port.read(self.serial_port.inWaiting())
                  
                 key = data_str[:5]
                 value = data_str[5:]
-		print(key + "->" + value)
-                if(key == "ctmp:"):
-                if(key == "oilp:"):
+		        print(key + "->" + value)
+                # if(key == "ctmp:"):
+                    
+                # if(key == "oilp:"):
 
-                if(key == "vbat:"):
-                if(key == "lamb:"):
+                # if(key == "vbat:"):
+                # if(key == "lamb:"):
 
-                if(key == "lspd:"):
-                if(key == "rspd:"):
+                # if(key == "lspd:"):
+                # if(key == "rspd:"):
 
                 if(key == "rpm_:"):
                     
                     print("sending {} to leds".format(value))
                     self.l.displaycoolant_temp(value)
 
-                if(key == "accx:"):
+                # if(key == "accx:"):
 
-                if(key == "accy:"):
-                if(key == "accz:"):
+                # if(key == "accy:"):
+                # if(key == "accz:"):
                 
 
         # if(canId == 0x700){

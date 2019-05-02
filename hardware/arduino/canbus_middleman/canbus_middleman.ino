@@ -32,6 +32,9 @@ void loop()
     unsigned char len = 0;
     unsigned char buf[8];
 
+    Serial.println("rpm_:3500");
+    delay(100);
+
     if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming
     {
         CAN.readMsgBuf(&len, buf);    // read data,  len: data length, buf: data buf
