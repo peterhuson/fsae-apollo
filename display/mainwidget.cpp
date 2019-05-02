@@ -274,7 +274,7 @@ void TMainWidget::onKeepAlive() {
     } else if (strncmp(str1, "accz", 4) == 0) {
 	accZ = value;
     } else {
-	printf("Unknown string: %s\n", str1);
+	printf("Unknown string: '%s'\n", str1);
 	return;
     }
 
