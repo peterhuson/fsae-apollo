@@ -42,9 +42,9 @@ class Master:
         except OSError, e:
             print "Failed to create FIFO: %s" % e
         
-        self.fifo.write("Beginning Pipe Messages") 
-        print("Opened fifo")
         self.fifo = os.open(self.fifo_path, os.O_WRONLY | os.O_NONBLOCK)
+        print("Opened fifo")
+        self.fifo.write("Beginning Pipe Messages") 
             # pass
 
         # fifo = open(self.fifo_path, 'w')
