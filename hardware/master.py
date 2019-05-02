@@ -98,6 +98,7 @@ class Master:
             elif(key == "h702:"):
                 os.write(self.fifo, "rspd:" + str(value) + "\n")
             elif(key == "l703:"):
+                value = value / 10
                 os.write(self.fifo, "rpm_:" + str(value) + "\n")
                 print("Sending {} to leds".format(value))
                 self.l.displayRPM(value)
