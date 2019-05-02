@@ -243,11 +243,43 @@ void TMainWidget::onKeepAlive() {
 
     // First open in read only and read 
     char str1[32], str2[32];  
-    read(fd1, str1, 32); 
+    size_t bytes_read = read(fd1, str1, 32); 
+    if (bytes_read <= 6) {
+	printf("Got garbage string: %s\n", str1);
+	return;
+    }
 
+    QString value = QString(&str1[5]);
+
+    if (strcmp(str1, "oilp", 4) == 0) {
+	oilP = value;
+    } else if (strncmp(str1, "ctmp", 4) == 0) {
+	ctmP = value;
+    } else if (strncmp(str1, "vbat", 4) == 0) {
+	vbaT = value;
+    } else if (strncmp(str1, "lamb", 4) == 0) {
+	lamB = value;
+    } else if (strncmp(str1, "lspd", 4) == 0) {
+	lspD = value;
+    } else if (strncmp(str1, "rspd", 4) == 0) {
+	rspD = value;
+    } else if (strncmp(str1, "rmp_", 4) == 0) {
+	rpM_ = value;
+    } else if (strncmp(str1, "accx", 4) == 0) {
+	accX = value;
+    } else if (strncmp(str1, "accy", 4) == 0) {
+	accY = value;
+    } else if (strncmp(str1, "accz", 4) == 0) {
+	accZ = value;
+    } else {
+	printf("Unknown string: %s\n", str1);
+	return;
+    }
+
+    /*
     printf("%s\n", str1); 
     // Print the read string and close 
-
+    if (
     char *sub = str1+5;
     int len = 9-5;
     printf("%.*s\n",len,sub);
@@ -261,7 +293,7 @@ void TMainWidget::onKeepAlive() {
     QString str;
     printf("%s\n", token); 
     cTemp = str.sprintf("%s",token);
-
+    */
     update();
 }
 
@@ -298,13 +330,13 @@ void TMainWidget::paintEvent(QPaintEvent *)
     int sideBorder = 30;
     int fieldWidth = 130;
 
-    p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("3400"));
-    p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("80.2"));
-    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("38.5"));
+    p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
+    p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);
+    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString(lamB));
     
-    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
-    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("%1 C").arg(cTemp));
-    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
+    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
+    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
+    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("100"));
 
 
 

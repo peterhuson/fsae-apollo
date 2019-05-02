@@ -52,6 +52,19 @@ class Master:
 
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
+        
+
+        os.write(self.fifo, "ctmp:100.0")
+        os.write(self.fifo, "oilp:134.2")
+        os.write(self.fifo, "vbat:13.4")
+        os.write(self.fifo, "lamb:0.89") 
+        os.write(self.fifo, "lspd:45.2")
+        os.write(self.fifo, "rspd:45.4:")
+        os.write(self.fifo, "rpm_:11003")
+        os.write(self.fifo, "accx:0.87") 
+        os.write(self.fifo, "accy:1.04")
+        os.write(self.fifo, "accz:0.08")
+        
         while (True):
             # print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
@@ -165,27 +178,29 @@ class Master:
             value = float(value_str)
             print("(int)" + str(value))
             if(0 <= value <= 10e6): # Hopefully only good values get through? 
-                if(key == "ctmp:"):
-                    os.write(self.fifo, "ctmp:" + str(value) + ":")
-                    
-                # if(key == "oilp:"):
+                if(key == "lf00:"):
+                    os.write(self.fifo, "ctmp:" + str(value))
+                elif(key == "hf00:"):
+                    os.write(self.fifo, "oilp:" + str(value))
+                elif(key == "lf01:"):
+                    os.write(self.fifo, "lamb:" + str(value))
+                elif(key == "hf01:"):
+                    os.write(self.fifo, "vbat:" + str(value))
+                elif(key == "lf02:"):
+                    os.write(self.fifo, "lspd:" + str(value))
+                elif(key == "hf02:"):
+                    os.write(self.fifo, "rspd:" + str(value))
+                elif(key == "lf03:"):
+                    os.write(self.fifo, "rpm_:" + str(value))
+                elif(key == "hf03:"):
+                    os.write(self.fifo, "accx:" + str(value))
+                elif(key == "lf04:"):
+                    os.write(self.fifo, "accy:" + str(value))
+                elif(key == "hf04:"):
+                    os.write(self.fifo, "accz:" + str(value))
+                else
+                    print("Unknown Code" + key + str(value))
 
-                # if(key == "vbat:"):
-                # if(key == "lamb:"):
-
-                # if(key == "lspd:"):
-                # if(key == "rspd:"):
-
-                if(key == "rpm_:"):
-                    os.write(self.fifo, "rpm_:" + str(value) + ":")
-                    
-                    print("sending {} to leds".format(value))
-                    self.l.displayRPM(value)
-
-                # if(key == "accx:"):
-
-                # if(key == "accy:"):
-                # if(key == "accz:"):
         except Exception:
             traceback.print_exc(file=sys.stdout)
             
