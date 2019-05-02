@@ -46,6 +46,7 @@ class LEDs:
         #self.strip.cleanup()
 
     def displayRPM(self, RPM):
+        RPM = (int) RPM
         num_steps = (NUM_LED / 2) + 1
         step_width = (MAX_RPM - MIN_RPM) / num_steps
         step = (RPM - MIN_RPM) / step_width
