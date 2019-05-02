@@ -5,7 +5,7 @@ from leds import LEDs
 class Master:
     def __init__(self):
         self.l = LEDs()
-        self.l.displaycoolant_temp(8500)
+        self.l.displayRPM(8500)
         print("got an LED handler!")
 
         # self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
@@ -72,7 +72,7 @@ class Master:
                 if(key == "rpm_:"):
                     
                     print("sending {} to leds".format(value))
-                    self.l.displaycoolant_temp(value)
+                    self.l.displayRPM(value)
 
                 # if(key == "accx:"):
 
