@@ -242,7 +242,7 @@ void TMainWidget::onKeepAlive() {
 
 
     // First open in read only and read 
-    char str1[10], str2[10];  
+    char str1[10];  
     size_t bytes_read = read(fd1, str1, 10); 
     if (bytes_read <= 6) {
 	printf("Got garbage string: %s\n", str1);
