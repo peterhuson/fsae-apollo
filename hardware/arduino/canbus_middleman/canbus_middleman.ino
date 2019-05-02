@@ -35,7 +35,7 @@ void loop()
     Serial.println("rpm_:9500");
     delay(100);
     
-    Serial.println("ctpm:34.56");
+    Serial.println("ctmp:34.56");
     delay(100);
 
     if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming

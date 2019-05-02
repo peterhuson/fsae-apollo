@@ -56,32 +56,9 @@ class Master:
             # print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
                 data_str = self.serial_port.read(self.serial_port.inWaiting())
+                self.parse_data(data_str)
                  
-                key = data_str[:5]
-                value = data_str[5:]
-                print(key + "->" + value)
-                print("(int)" + str(float(value)))
-                if(0 <= value <= 10e6): # Hopefully only good values get through? 
-                    if(key == "ctmp:"):
-                        os.write(self.fifo, "ct:" + value)
-                        
-                    # if(key == "oilp:"):
-
-                    # if(key == "vbat:"):
-                    # if(key == "lamb:"):
-
-                    # if(key == "lspd:"):
-                    # if(key == "rspd:"):
-
-                    if(key == "rpm_:"):
-                        
-                        print("sending {} to leds".format(value))
-                        self.l.displayRPM(value)
-
-                    # if(key == "accx:"):
-
-                    # if(key == "accy:"):
-                    # if(key == "accz:"):
+                
                 
 
         # if(canId == 0x700){
@@ -178,8 +155,39 @@ class Master:
 
                 
             time.sleep(0.01)
-            #Put the
 
+    def parse_data(self, data_str):
+        try: 
+            key = data_str[:5]
+            value_str = data_str[5:]
+            print(key + "->" + value_str)
+
+            value = float(value_str)
+            print("(int)" + str(value))
+            if(0 <= value <= 10e6): # Hopefully only good values get through? 
+                if(key == "ctmp:"):
+                    os.write(self.fifo, "ct:" + value)
+                    
+                # if(key == "oilp:"):
+
+                # if(key == "vbat:"):
+                # if(key == "lamb:"):
+
+                # if(key == "lspd:"):
+                # if(key == "rspd:"):
+
+                if(key == "rpm_:"):
+                    
+                    print("sending {} to leds".format(value))
+                    self.l.displayRPM(value)
+
+                # if(key == "accx:"):
+
+                # if(key == "accy:"):
+                # if(key == "accz:"):
+        except Exception:
+            traceback.print_exc(file=sys.stdout)
+            
 
     def shutdown(self):
         print("Shutdown heard...exiting")
