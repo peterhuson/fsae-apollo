@@ -41,10 +41,10 @@ class Master:
             print("Made Fifo")
         except OSError, e:
             print "Failed to create FIFO: %s" % e
-        else:
-            print("Opened fifo")
-            self.fifo = os.open(self.fifo_path, os.O_WRONLY | os.O_NONBLOCK)
-            self.fifo.write("Beginning Pipe Messages") 
+        
+        self.fifo.write("Beginning Pipe Messages") 
+        print("Opened fifo")
+        self.fifo = os.open(self.fifo_path, os.O_WRONLY | os.O_NONBLOCK)
             # pass
 
         # fifo = open(self.fifo_path, 'w')
@@ -58,27 +58,28 @@ class Master:
                  
                 key = data_str[:5]
                 value = data_str[5:]
-                print(key + "->" + value)
-                if(key == "ctmp:"):
-                    self.fifo.write("ct:" + value)
-                    
-                # if(key == "oilp:"):
+                if(0 <= value <= 10e6): # Hopefully only good values get through? 
+                    print(key + "->" + value)
+                    if(key == "ctmp:"):
+                        self.fifo.write("ct:" + value)
+                        
+                    # if(key == "oilp:"):
 
-                # if(key == "vbat:"):
-                # if(key == "lamb:"):
+                    # if(key == "vbat:"):
+                    # if(key == "lamb:"):
 
-                # if(key == "lspd:"):
-                # if(key == "rspd:"):
+                    # if(key == "lspd:"):
+                    # if(key == "rspd:"):
 
-                if(key == "rpm_:"):
-                    
-                    print("sending {} to leds".format(value))
-                    self.l.displayRPM(value)
+                    if(key == "rpm_:"):
+                        
+                        print("sending {} to leds".format(value))
+                        self.l.displayRPM(value)
 
-                # if(key == "accx:"):
+                    # if(key == "accx:"):
 
-                # if(key == "accy:"):
-                # if(key == "accz:"):
+                    # if(key == "accy:"):
+                    # if(key == "accz:"):
                 
 
         # if(canId == 0x700){
