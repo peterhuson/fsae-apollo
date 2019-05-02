@@ -55,6 +55,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
        
     // FIFO file path 
     char * myfifo = "/tmp/myfifo2"; 
+    mkfifo(myfifo, 0666);
     fd1 = open(myfifo,O_RDONLY); 
 }
 
