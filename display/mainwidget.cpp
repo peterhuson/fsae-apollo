@@ -242,11 +242,16 @@ void TMainWidget::onKeepAlive() {
 
 
     // First open in read only and read 
-    char str1[80], str2[80];  
-    read(fd1, str1, 80); 
+    char str1[32], str2[32];  
+    read(fd1, str1, 32); 
 
-    printf("Python: %s\n", str1); 
+    printf("%s\n", str1); 
     // Print the read string and close 
+
+    std::string string = str(str1);
+    std::string delimiter = ":";
+    std::string token = s.substr(1, s.find(delimiter));
+    cTemp = QString("%1 C").arg(token);
 
     update();
 }
@@ -289,7 +294,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString("34.5"));
     
     p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("12.4"));
-    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("60.9"));
+    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,cTemp);
     p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("50.2"));
 
 
