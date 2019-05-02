@@ -253,7 +253,8 @@ void TMainWidget::onKeepAlive() {
     std::string token = string.substr(1, string.find(delimiter));
     cTemp = "";
     QString str;
-    cTemp = str.sprintf("%.1f",token);
+    printf("%s\n", token); 
+    cTemp = str.sprintf("%s",token);
 
     update();
 }
