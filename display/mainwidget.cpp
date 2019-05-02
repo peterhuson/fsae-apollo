@@ -49,6 +49,11 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
 
     gettimeofday(&startTime,NULL);
+
+    int fd1;   
+    // FIFO file path 
+    char * myfifo = "/tmp/myfifo2"; 
+    fd1 = open(myfifo,O_RDONLY); 
 }
 
 void TMainWidget::qtdemoButtonClicked() {
@@ -232,19 +237,13 @@ void TMainWidget::onKeepAlive() {
     QString timestr;
     timeSinceStart = timestr.sprintf("%.2fms", global_time);
 
-    int fd1;   
-    // FIFO file path 
-    char * myfifo = "/tmp/myfifo2"; 
 
-    char str1[80], str2[80];  
     // First open in read only and read 
-    fd1 = open(myfifo,O_RDONLY); 
+    char str1[80], str2[80];  
     read(fd1, str1, 80); 
 
-    // Print the read string and close 
     printf("Python: %s\n", str1); 
-    close(fd1); 
-
+    // Print the read string and close 
 
     update();
 }
