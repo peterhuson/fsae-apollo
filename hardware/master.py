@@ -60,7 +60,7 @@ class Master:
                 key = data_str[:5]
                 value = data_str[5:]
                 print(key + "->" + value)
-                print("(int)" + str(int(value)))
+                print("(int)" + str(float(value)))
                 if(0 <= value <= 10e6): # Hopefully only good values get through? 
                     if(key == "ctmp:"):
                         os.write(self.fifo, "ct:" + value)
