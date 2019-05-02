@@ -77,10 +77,13 @@ class Master:
         try: 
             key = data_str[:5]
             value_str = data_str[5:]
-            print(repr(key) + "->" + repr(value_str))
+            print(key + "->" + value_str)
 
-            value = float(value_str.strip())
-            print("(int)" + str(value))
+            stripped = value_str.strip()
+
+            print("(stripped)" + repr(stripped))
+            value = float(stripped)
+            print("(float)" + repr(value))
             # if(0 <= value <= 10e6): # Hopefully only good values get through? 
             if(key == "l700:"):
                 os.write(self.fifo, "ctmp:" + str(value) + "\n")
