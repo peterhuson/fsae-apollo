@@ -18,6 +18,8 @@
 #include "mainwidget.h"
 #include "util.h"
 #include "sys/sysinfo.h"
+#include <fcntl.h> 
+#include <stdio.h> 
 #include "boardtype_friendlyelec.h"
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
@@ -228,6 +230,16 @@ void TMainWidget::onKeepAlive() {
     timeSinceStart = "";
     QString timestr;
     timeSinceStart = timestr.sprintf("%.2fms", global_time);
+
+    char str1[80], str2[80];  
+    // First open in read only and read 
+    fd1 = open(myfifo,O_RDONLY); 
+    read(fd1, str1, 80); 
+
+    // Print the read string and close 
+    printf("User1: %s\n", str1); 
+    close(fd1); 
+
 
     update();
 }

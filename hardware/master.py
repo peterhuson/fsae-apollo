@@ -35,14 +35,14 @@ class Master:
         
         self.fifo_path = '/tmp/myfifo2'
 
-        # FIFO Pipe can only be opened non-blocking when something is reading it
         try:
-            os.mkfifo(self.fifo_path)
+            os.mkfifo(self.fifo_path, 644)
             print("Made Fifo")
         except OSError, e:
             print "Failed to create FIFO: %s" % e
         
-        self.fifo = os.open(self.fifo_path, os.O_WRONLY | os.O_NONBLOCK)
+        # This will block until the reading side is open
+        self.fifo = os.open(self.fifo_path, os.O_WRONLY)
         print("Opened fifo")
         self.fifo.write("Beginning Pipe Messages") 
             # pass
