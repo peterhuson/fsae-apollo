@@ -50,16 +50,17 @@ class Master:
         # fifo = open(self.fifo_path, 'w')
 
 
+        self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Default Serial Baud rate is 9600
         while (True):
             ret = self.serial_port.readline()
             print(ret)
         
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
                 data_str = self.serial_port.read(self.serial_port.inWaiting())
-                print(data_str) 
+                 
                 key = data_str[:5]
                 value = data_str[5:]
-
+		print(key + "->" + value)
                 if(key == "ctmp:"):
                 if(key == "oilp:"):
 
