@@ -166,7 +166,7 @@ class Master:
             print("(int)" + str(value))
             if(0 <= value <= 10e6): # Hopefully only good values get through? 
                 if(key == "ctmp:"):
-                    os.write(self.fifo, "ct:" + value)
+                    os.write(self.fifo, "ct:" + str(value))
                     
                 # if(key == "oilp:"):
 
