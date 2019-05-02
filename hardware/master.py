@@ -52,6 +52,19 @@ class Master:
 
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
+        
+
+        os.write(self.fifo, "ctmp:100.0")
+        os.write(self.fifo, "oilp:134.2")
+        os.write(self.fifo, "vbat:13.4")
+        os.write(self.fifo, "lamb:0.89") 
+        os.write(self.fifo, "lspd:45.2")
+        os.write(self.fifo, "rspd:45.4:")
+        os.write(self.fifo, "rpm_:11003")
+        os.write(self.fifo, "accx:0.87") 
+        os.write(self.fifo, "accy:1.04")
+        os.write(self.fifo, "accz:0.08")
+        
         while (True):
             # print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
