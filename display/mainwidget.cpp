@@ -20,6 +20,7 @@
 #include "sys/sysinfo.h"
 #include <fcntl.h> 
 #include <stdio.h> 
+#include <unistd.h> 
 #include "boardtype_friendlyelec.h"
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
