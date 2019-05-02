@@ -251,7 +251,7 @@ void TMainWidget::onKeepAlive() {
 
     QString value = QString(&str1[5]);
 
-    QString::sprintf("Value: %s\n", value);
+    printf("Value: %s\n", value.toStdString().c_str());
 
     if (strncmp(str1, "oilp", 4) == 0) {
 	oilP = value;
