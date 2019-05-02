@@ -36,16 +36,15 @@ class Master:
         self.fifo_path = '/tmp/myfifo2'
 
         # FIFO Pipe can only be opened non-blocking when something is reading it
-        # try:
-        #     os.mkfifo(self.fifo_path)
-        # except OSError, e:
-        #     print "Failed to create FIFO: %s" % e
-        # else:
-        #     fifo = open(self.fifo_path, os.O_NONBLOCK)
-        #     print("Opened fifo")
-        #     fifo.close() 
-        #     os.remove(filename)
-        #     # pass
+        try:
+            os.mkfifo(self.fifo_path)
+        except OSError, e:
+            print "Failed to create FIFO: %s" % e
+        else:
+            self.fifo = os.open(self.fifo_path, os.O_WRONLY | os.O_NONBLOCK)
+            print("Opened fifo")
+            self.fifo.write("Beginning Pipe Messages") 
+            # pass
 
         # fifo = open(self.fifo_path, 'w')
 
@@ -59,7 +58,8 @@ class Master:
                 key = data_str[:5]
                 value = data_str[5:]
                 print(key + "->" + value)
-                # if(key == "ctmp:"):
+                if(key == "ctmp:"):
+                    self.fifo.write("ct:" + value)
                     
                 # if(key == "oilp:"):
 
@@ -174,7 +174,6 @@ class Master:
 
                 
             time.sleep(0.01)
-            print("in read loop")
             #Put the
 
 
