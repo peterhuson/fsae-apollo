@@ -27,8 +27,6 @@ int fd1;
 fd_set set;
 struct timeval timeout;   
 int rv;
-timeout.tv_sec = 0;
-timeout.tv_usec = 10000;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
     QWidget(parent),bg(QPixmap(":/backgrounds/thompsonscreenhappiness.png")),transparent(transparency),sourceCodeUrl(surl)
@@ -62,6 +60,9 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     const char * myfifo = "/tmp/myfifo2"; 
     mkfifo(myfifo, 0666);
     fd1 = open(myfifo,O_RDONLY); 
+    timeout.tv_sec = 0;
+    timeout.tv_usec = 10000;
+
 }
 
 void TMainWidget::qtdemoButtonClicked() {
