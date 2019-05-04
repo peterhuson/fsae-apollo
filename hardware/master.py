@@ -87,7 +87,7 @@ class Master:
             print("Parsing: '{}'".format(data_str))
 
             key = data_str[:5]
-            value_str = data_str[5:10]
+            value_str = data_str[5:11]
             print(key + "->" + value_str)
 
             stripped = value_str.strip()
