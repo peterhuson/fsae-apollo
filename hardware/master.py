@@ -97,7 +97,7 @@ class Master:
             if(key == "l700:"):
                 os.write(self.fifo, "ctmp:" + str(value) + "\n")
             elif(key == "h700:"):
-                value = (value / 1000.0) * 0.145
+                value = round(((value / 1000.0) * 0.145), 2)
                 os.write(self.fifo, "oilp:" + str(value) + "\n")
             elif(key == "l701:"):
                 os.write(self.fifo, "vbat:" + str(value) + "\n")
