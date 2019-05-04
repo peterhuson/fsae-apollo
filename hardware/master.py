@@ -67,10 +67,10 @@ class Master:
 
         for rpm in range(p.MIN_RPM, p.REDLINE_RPM, 100):
             time.sleep(0.02)
-            self.parse_data("l703:" + (rpm * 10) + "\n")
+            self.parse_data("l703:" + str(rpm * 10) + "\n")
         for rpm in range(p.REDLINE_RPM, p.MIN_RPM-1000, -200):
             time.sleep(0.02)
-            self.parse_data("l703:" + (rpm * 10) + "\n")
+            self.parse_data("l703:" + str(rpm * 10) + "\n")
 
         
         while (True):
