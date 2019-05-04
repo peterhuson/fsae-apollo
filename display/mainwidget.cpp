@@ -24,6 +24,11 @@
 #include "boardtype_friendlyelec.h"
 
 int fd1;
+fd_set set;
+struct timeval timeout;   
+int rv;
+timeout.tv_sec = 0;
+timeout.tv_usec = 10000;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
     QWidget(parent),bg(QPixmap(":/backgrounds/thompsonscreenhappiness.png")),transparent(transparency),sourceCodeUrl(surl)
@@ -265,7 +270,19 @@ void TMainWidget::onKeepAlive() {
         char str1[20];  
         memset(str1, 0, 20);
 
-        readline(fd1, str1);
+
+        FD_ZERO(&set); /* clear the set */
+        FD_SET(fd1, &set); /* add our file descriptor to the set */
+
+        rv = select(fd1 + 1, &set, NULL, NULL, &timeout);
+        if(rv == -1)
+            perror("select \n"); /* an error accured */
+        else if(rv == 0){
+            printf("timeout \n"); /* a timeout occured */
+            continue;
+        }
+        else
+            readline(fd1, str1);
         printf("iteration: %d Data: %s\n", i, str1); 	
 
         QString value = QString(&str1[5]);
@@ -299,51 +316,6 @@ void TMainWidget::onKeepAlive() {
         }
     }
 
-    // printf("Value: %s\n", value.toStdString().c_str());
-
-    // if (strncmp(str1, "oilp", 4) == 0) {
-	// oilP = value;
-    // } else if (strncmp(str1, "ctmp", 4) == 0) {
-	// ctmP = value;
-    // } else if (strncmp(str1, "vbat", 4) == 0) {
-	// vbaT = value;
-    // } else if (strncmp(str1, "lamb", 4) == 0) {
-	// lamB = value;
-    // } else if (strncmp(str1, "lspd", 4) == 0) {
-	// lspD = value;
-    // } else if (strncmp(str1, "rspd", 4) == 0) {
-	// rspD = value;
-    // } else if (strncmp(str1, "rmp_", 4) == 0) {
-	// rpM_ = value;
-    // } else if (strncmp(str1, "accx", 4) == 0) {
-	// accX = value;
-    // } else if (strncmp(str1, "accy", 4) == 0) {
-	// accY = value;
-    // } else if (strncmp(str1, "accz", 4) == 0) {
-	// accZ = value;
-    // } else {
-	// printf("Unknown string: '%s'\n", str1);
-	// return;
-    // }
-
-    /*
-    printf("%s\n", str1); 
-    // Print the read string and close 
-    if (
-    char *sub = str1+5;
-    int len = 9-5;
-    printf("%.*s\n",len,sub);
-
-    std::string string = str1;
-    std::string delimiter = ":";
-    printf("%s\n", string); 
-    std::string token = string.substr(0, string.find(delimiter));
-    printf("%s\n", token); 
-    cTemp = "";
-    QString str;
-    printf("%s\n", token); 
-    cTemp = str.sprintf("%s",token);
-    */
     update();
 }
 

@@ -30,14 +30,7 @@ char *readline(int fd, char * buffer) {
 
 int main() 	
 { 	
-    int fd1; 	
-    fd_set set;
-    struct timeval timeout;   
-    int rv;
-    int n;
-    
-    timeout.tv_sec = 0;
-    timeout.tv_usec = 100000;
+    int fd1;
 
      // FIFO file path 	
     const char * myfifo = "/tmp/myfifo"; 	
@@ -46,21 +39,33 @@ int main()
     // mkfifo(<pathname>,<permission>) 	
     mkfifo(myfifo, 0666); 	
 
+    fd_set set;
+    struct timeval timeout;   
+    int rv;
+    timeout.tv_sec = 0;
+    timeout.tv_usec = 100000;
+
+    fd1 = open(myfifo,O_RDONLY); 	
+
+
     while (1) 	
     { 	
         for(int i = 0; i < 10; i++){
             char str1[50]; 	
             memset(str1, 0, 50);
             // First open in read only and read 	
-            fd1 = open(myfifo,O_RDONLY); 	
+            // fd1 = open(myfifo,O_RDONLY); 	
+            
             FD_ZERO(&set); /* clear the set */
             FD_SET(fd1, &set); /* add our file descriptor to the set */
 
-            rv = select(1, &set, NULL, NULL, &timeout);
+            rv = select(fd1 + 1, &set, NULL, NULL, &timeout);
             if(rv == -1)
-                perror("select"); /* an error accured */
-            else if(rv == 0)
-                printf("timeout"); /* a timeout occured */
+                perror("select \n"); /* an error accured */
+            else if(rv == 0){
+                printf("timeout \n"); /* a timeout occured */
+                continue;
+            }
             else
                 readline(fd1, str1);
 
@@ -69,8 +74,8 @@ int main()
             // readline(fd1, str1);
             
             // Print the read string and close 	
-            printf("iteration: %d User1: %s\n", i, str1); 	
-            close(fd1); 	
+            printf(" %s  ", str1); 	
+            // close(fd1); 	
         }   
 
      } 	
