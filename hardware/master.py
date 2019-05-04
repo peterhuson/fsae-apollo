@@ -46,10 +46,7 @@ class Master:
         # This will block until the reading side is open
         self.fifo = os.open(self.fifo_path, os.O_WRONLY)
         print("Opened fifo")
-        os.write(self.fifo, "Pipe Open\n") 
-            # pass
-
-        # fifo = open(self.fifo_path, 'w')
+        os.write(self.fifo, "Pipe Open\n")
 
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
@@ -72,6 +69,7 @@ class Master:
             time.sleep(0.02)
             self.parse_data("l703:" + str(rpm * 10) + "\n")
 
+        self.parse_data("l703:0\n")
         
         while (True):
             # print("In Loop: ")
@@ -133,9 +131,4 @@ class Master:
 
 
 if __name__ == '__main__':
-    #try:
     m = Master()
-    #except (KeyboardInterrupt, SystemExit):
-    # l.shutdown()
-    # sys.exit(0)
-

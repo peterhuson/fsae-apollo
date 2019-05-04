@@ -25,26 +25,6 @@ class LEDs:
         #     time.sleep(0.02)
         #     self.displayRPM(rpm)
 
-        #try:
-            # self.rainbow()
-        #except: 
-        #	self.shutdown()
-        # print("Brightness 0-100")
-        # for a in range(0,10):
-        # 	for b in range(0,100):
-        # 			strip.set_pixel_rgb(0,0xFF0000, b) #Red
-        # 			strip.set_pixel_rgb(1,0xFF7F00, b) #Orange
-        # 			strip.set_pixel_rgb(2,0xFFFF00, b) #Yellow
-        # 			strip.set_pixel_rgb(3,0x00FF00, b) #Green
-        # 			strip.set_pixel_rgb(4,0x0000FF, b) #Blue
-        # 			strip.set_pixel_rgb(5,0x4B0082, b) #Indigo
-        # 			strip.set_pixel_rgb(6,0x9400D3, b) #Violet
-        # 			strip.show()
-        # 			time.sleep(0.03)
-
-        #self.strip.clear_strip()
-        #self.strip.cleanup()
-
     def displayRPM(self, RPM):
         RPM = int(RPM)
         num_steps = (NUM_LED / 2) + 1
