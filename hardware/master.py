@@ -117,6 +117,7 @@ class Master:
             elif(key == "l704:"):
                 os.write(self.fifo, "accy:" + str(value) + "\n")
             elif(key == "h704:"):
+                # Up
                 os.write(self.fifo, "accz:" + str(value) + "\n")
             else:
                 print("Unknown Code" + key + str(value))
