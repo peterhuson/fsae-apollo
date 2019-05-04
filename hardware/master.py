@@ -59,7 +59,7 @@ class Master:
         self.parse_data("l701:0.89\n") 
         self.parse_data("l702:45.2\n")
         self.parse_data("h702:45.4\n")
-        self.parse_data("l703:9500\n")
+        self.parse_data("l703:95000\n")
         self.parse_data("h703:0.87\n") 
         self.parse_data("l704:1.04\n")
         self.parse_data("h704:0.08\n")
