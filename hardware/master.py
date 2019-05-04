@@ -53,16 +53,16 @@ class Master:
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
         
-        self.parse_data("ctmp:100.0\n")
-        self.parse_data("oilp:134.2\n")
-        self.parse_data("vbat:13.4\n")
-        self.parse_data("lamb:0.89\n") 
-        self.parse_data("lspd:45.2\n")
-        self.parse_data("rspd:45.4\n")
-        self.parse_data("rpm_:9500\n")
-        self.parse_data("accx:0.87\n") 
-        self.parse_data("accy:1.04\n")
-        self.parse_data("accz:0.08\n")
+        self.parse_data("l700:100.0\n")
+        self.parse_data("h700:134.2\n")
+        self.parse_data("h701:13.4\n")
+        self.parse_data("l701:0.89\n") 
+        self.parse_data("l702:45.2\n")
+        self.parse_data("h702:45.4\n")
+        self.parse_data("l703:9500\n")
+        self.parse_data("h703:0.87\n") 
+        self.parse_data("l704:1.04\n")
+        self.parse_data("h704:0.08\n")
         
         while (True):
             # print("In Loop: ")
@@ -74,6 +74,7 @@ class Master:
 
     def parse_data(self, data_str):
         try: 
+            data_str = data_str.strip()
             print("Parsing: '{}'".format(data_str))
 
             key = data_str[:5]
