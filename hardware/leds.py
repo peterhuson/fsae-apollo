@@ -18,12 +18,12 @@ class LEDs:
         self.strip = apa102.APA102(num_led=NUM_LED, mosi=MOSI, sclk=SCLK,order='rgb')
         self.strip.clear_strip()
 
-        for rpm in range(MIN_RPM, REDLINE_RPM, 100):
-            time.sleep(0.02)
-            self.displayRPM(rpm)
-        for rpm in range(REDLINE_RPM, MIN_RPM-1000, -200):
-            time.sleep(0.02)
-            self.displayRPM(rpm)
+        # for rpm in range(MIN_RPM, REDLINE_RPM, 100):
+        #     time.sleep(0.02)
+        #     self.displayRPM(rpm)
+        # for rpm in range(REDLINE_RPM, MIN_RPM-1000, -200):
+        #     time.sleep(0.02)
+        #     self.displayRPM(rpm)
 
         #try:
             # self.rainbow()

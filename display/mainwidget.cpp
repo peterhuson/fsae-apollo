@@ -378,15 +378,15 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.setFont(QFont("Arial",35));
     int blockHeight = 40;
     int sideBorder = 30;
-    int fieldWidth = 130;
+    int fieldWidth = 160;
 
     p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
     p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);
     p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString(lamB));
     
-    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
-    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
-    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("100"));
+    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
+    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
+    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("100"));
 
 
 
