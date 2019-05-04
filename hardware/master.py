@@ -53,17 +53,16 @@ class Master:
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
         
-
-        os.write(self.fifo, "ctmp:100.0\n")
-        os.write(self.fifo, "oilp:134.2\n")
-        os.write(self.fifo, "vbat:13.4\n")
-        os.write(self.fifo, "lamb:0.89\n") 
-        os.write(self.fifo, "lspd:45.2\n")
-        os.write(self.fifo, "rspd:45.4\n")
-        os.write(self.fifo, "rpm_:9500\n")
-        os.write(self.fifo, "accx:0.87\n") 
-        os.write(self.fifo, "accy:1.04\n")
-        os.write(self.fifo, "accz:0.08\n")
+        self.parse_data("ctmp:100.0\n")
+        self.parse_data("oilp:134.2\n")
+        self.parse_data("vbat:13.4\n")
+        self.parse_data("lamb:0.89\n") 
+        self.parse_data("lspd:45.2\n")
+        self.parse_data("rspd:45.4\n")
+        self.parse_data("rpm_:9500\n")
+        self.parse_data("accx:0.87\n") 
+        self.parse_data("accy:1.04\n")
+        self.parse_data("accz:0.08\n")
         
         while (True):
             # print("In Loop: ")
