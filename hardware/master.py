@@ -97,21 +97,22 @@ class Master:
             if(key == "l700:"):
                 os.write(self.fifo, "ctmp:" + str(value) + "\n")
             elif(key == "h700:"):
+                value = (value / 1000.0) * 0.145
                 os.write(self.fifo, "oilp:" + str(value) + "\n")
             elif(key == "l701:"):
                 os.write(self.fifo, "vbat:" + str(value) + "\n")
             elif(key == "h701:"):
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
-            elif(key == "l702:"):
-                os.write(self.fifo, "lspd:" + str(value) + "\n")
-            elif(key == "h702:"):
-                os.write(self.fifo, "rspd:" + str(value) + "\n")
             elif(key == "l703:"):
+                os.write(self.fifo, "lspd:" + str(value) + "\n")
+            elif(key == "h703:"):
+                os.write(self.fifo, "rspd:" + str(value) + "\n")
+            elif(key == "l702:"):
                 value = value / 10
                 os.write(self.fifo, "rpm_:" + str(value) + "\n")
                 print("Sending {} to leds".format(value))
                 self.l.displayRPM(value)
-            elif(key == "h703:"):
+            elif(key == "h702:"):
                 os.write(self.fifo, "accx:" + str(value) + "\n")
             elif(key == "l704:"):
                 os.write(self.fifo, "accy:" + str(value) + "\n")
