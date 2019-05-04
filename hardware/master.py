@@ -53,8 +53,8 @@ class Master:
         
         self.parse_data("l700:100.0\n")
         self.parse_data("h700:134.2\n")
-        self.parse_data("h701:13.4\n")
-        self.parse_data("l701:0.89\n") 
+        self.parse_data("l701:13.4\n") 
+        self.parse_data("h701:0.98\n")
         self.parse_data("l702:45.2\n")
         self.parse_data("h702:45.4\n")
         self.parse_data("l703:95000\n")
@@ -74,7 +74,7 @@ class Master:
         while (True):
             # print("In Loop: ")
             if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
-                data_str = self.serial_port.read(self.serial_port.inWaiting())
+                data_str = self.serial_port.readline()
                 self.parse_data(data_str)
                 
             time.sleep(0.01)
@@ -99,9 +99,9 @@ class Master:
             elif(key == "h700:"):
                 os.write(self.fifo, "oilp:" + str(value) + "\n")
             elif(key == "l701:"):
-                os.write(self.fifo, "lamb:" + str(value) + "\n")
-            elif(key == "h701:"):
                 os.write(self.fifo, "vbat:" + str(value) + "\n")
+            elif(key == "h701:"):
+                os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l702:"):
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
             elif(key == "h702:"):
