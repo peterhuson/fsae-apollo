@@ -5,6 +5,7 @@
 #include <string.h> 
 #include <fcntl.h> 
 
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,6 +13,7 @@
 
 #include <sys/stat.h> 
 #include <sys/types.h> 
+#include <sys/select.h>
 #include <unistd.h> 
 
 char *readline(int fd, char * buffer) {
@@ -29,7 +31,13 @@ char *readline(int fd, char * buffer) {
 int main() 	
 { 	
     int fd1; 	
+    fd_set set;
+    struct timeval timeout;   
+    int rv;
     int n;
+    
+    timeout.tv_sec = 0;
+    timeout.tv_usec = 100000;
 
      // FIFO file path 	
     const char * myfifo = "/tmp/myfifo"; 	
@@ -45,9 +53,20 @@ int main()
             memset(str1, 0, 50);
             // First open in read only and read 	
             fd1 = open(myfifo,O_RDONLY); 	
+            FD_ZERO(&set); /* clear the set */
+            FD_SET(fd1, &set); /* add our file descriptor to the set */
+
+            rv = select(1, &set, NULL, NULL, &timeout);
+            if(rv == -1)
+                perror("select"); /* an error accured */
+            else if(rv == 0)
+                printf("timeout"); /* a timeout occured */
+            else
+                readline(fd1, str1);
+
+
             // read(fd1, str1, 80); 	
             // readline(fd1, str1);
-            readline(fd1, str1);
             
             // Print the read string and close 	
             printf("iteration: %d User1: %s\n", i, str1); 	

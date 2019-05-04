@@ -1,4 +1,5 @@
 import serial as s
+import params as p
 import sys, traceback, os, time
 from leds import LEDs
  
@@ -63,6 +64,14 @@ class Master:
         self.parse_data("h703:0.87\n") 
         self.parse_data("l704:1.04\n")
         self.parse_data("h704:0.08\n")
+
+        for rpm in range(p.MIN_RPM, p.REDLINE_RPM, 100):
+            time.sleep(0.02)
+            self.parse_data("l703:" + (rpm * 10) + "\n")
+        for rpm in range(p.REDLINE_RPM, p.MIN_RPM-1000, -200):
+            time.sleep(0.02)
+            self.parse_data("l703:" + (rpm * 10) + "\n")
+
         
         while (True):
             # print("In Loop: ")
