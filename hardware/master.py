@@ -45,7 +45,7 @@ class Master:
         # This will block until the reading side is open
         self.fifo = os.open(self.fifo_path, os.O_WRONLY)
         print("Opened fifo")
-        os.write(self.fifo, "Beginning Pipe Messages\n") 
+        os.write(self.fifo, "Pipe Open\n") 
             # pass
 
         # fifo = open(self.fifo_path, 'w')

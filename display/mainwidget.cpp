@@ -285,7 +285,7 @@ void TMainWidget::onKeepAlive() {
             lspD = value;
         } else if (strncmp(str1, "rspd", 4) == 0) {
             rspD = value;
-        } else if (strncmp(str1, "rmp_", 4) == 0) {
+        } else if (strncmp(str1, "rpm_", 4) == 0) {
             rpM_ = value;
         } else if (strncmp(str1, "accx", 4) == 0) {
             accX = value;
