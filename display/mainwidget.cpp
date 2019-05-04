@@ -270,8 +270,8 @@ void TMainWidget::onKeepAlive() {
 
         QString value = QString(&str1[5]);
         printf("Value: %s\n", value.toStdString().c_str());
-        print("strncmp for oilp: %d", strncmp(str1, "oilp", 4));
-        print("strncmp for ctmp: %d", strncmp(str1, "ctmp", 4));
+        printf("strncmp for oilp: %d", strncmp(str1, "oilp", 4));
+        printf("strncmp for ctmp: %d", strncmp(str1, "ctmp", 4));
     }
 
     // printf("Value: %s\n", value.toStdString().c_str());
