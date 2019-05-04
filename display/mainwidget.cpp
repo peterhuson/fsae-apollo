@@ -95,6 +95,18 @@ static inline double time_diff(struct timeval _tstart,struct timeval _tend) {
   return t2-t1;
 }
 
+char *readline(int fd, char * buffer) {
+    char c;
+    int counter = 0;
+    while (read(fd, &c, 1) != 0) {
+        if (c == '\n') {
+            break;
+        }
+        buffer[counter++] = c;
+    }
+    return buffer;
+}
+
 void TMainWidget::onKeepAlive() {
     static char ipStr[50];
     memset(ipStr, 0, sizeof(ipStr));
@@ -242,41 +254,52 @@ void TMainWidget::onKeepAlive() {
 
 
     // First open in read only and read 
-    char str1[10];  
-    size_t bytes_read = read(fd1, str1, 10); 
-    if (bytes_read <= 6) {
-	printf("Got garbage string: %s\n", str1);
-	return;
+    char str1[12];  
+    // size_t bytes_read = read(fd1, str1, 10); 
+    // size_t bytes_read = read(fd1, str1, 10); 
+    // if (bytes_read <= 6) {
+    //     printf("Got garbage string: %s\n", str1);
+    //     return;
+    // }
+    for(int i = 0; i < 10; i++){ 
+        char str1[12];  
+        memset(str1, 0, 12);
+
+        readline(fd1, str1);
+        printf("iteration: %d Data: %s\n", i, str1); 	
+
+        QString value = QString(&str1[5]);
+        printf("Value: %s\n", value.toStdString().c_str());
+        print("strncmp for oilp: %d", strncmp(str1, "oilp", 4));
+        print("strncmp for ctmp: %d", strncmp(str1, "ctmp", 4));
     }
 
-    QString value = QString(&str1[5]);
+    // printf("Value: %s\n", value.toStdString().c_str());
 
-    printf("Value: %s\n", value.toStdString().c_str());
-
-    if (strncmp(str1, "oilp", 4) == 0) {
-	oilP = value;
-    } else if (strncmp(str1, "ctmp", 4) == 0) {
-	ctmP = value;
-    } else if (strncmp(str1, "vbat", 4) == 0) {
-	vbaT = value;
-    } else if (strncmp(str1, "lamb", 4) == 0) {
-	lamB = value;
-    } else if (strncmp(str1, "lspd", 4) == 0) {
-	lspD = value;
-    } else if (strncmp(str1, "rspd", 4) == 0) {
-	rspD = value;
-    } else if (strncmp(str1, "rmp_", 4) == 0) {
-	rpM_ = value;
-    } else if (strncmp(str1, "accx", 4) == 0) {
-	accX = value;
-    } else if (strncmp(str1, "accy", 4) == 0) {
-	accY = value;
-    } else if (strncmp(str1, "accz", 4) == 0) {
-	accZ = value;
-    } else {
-	printf("Unknown string: '%s'\n", str1);
-	return;
-    }
+    // if (strncmp(str1, "oilp", 4) == 0) {
+	// oilP = value;
+    // } else if (strncmp(str1, "ctmp", 4) == 0) {
+	// ctmP = value;
+    // } else if (strncmp(str1, "vbat", 4) == 0) {
+	// vbaT = value;
+    // } else if (strncmp(str1, "lamb", 4) == 0) {
+	// lamB = value;
+    // } else if (strncmp(str1, "lspd", 4) == 0) {
+	// lspD = value;
+    // } else if (strncmp(str1, "rspd", 4) == 0) {
+	// rspD = value;
+    // } else if (strncmp(str1, "rmp_", 4) == 0) {
+	// rpM_ = value;
+    // } else if (strncmp(str1, "accx", 4) == 0) {
+	// accX = value;
+    // } else if (strncmp(str1, "accy", 4) == 0) {
+	// accY = value;
+    // } else if (strncmp(str1, "accz", 4) == 0) {
+	// accZ = value;
+    // } else {
+	// printf("Unknown string: '%s'\n", str1);
+	// return;
+    // }
 
     /*
     printf("%s\n", str1); 
