@@ -42,8 +42,8 @@ void loop()
 
         unsigned int canId = CAN.getCanId();
 
-        Serial.print("Get data from ID: ");
-        Serial.println(canId, HEX);
+//        Serial.print("Get data from ID: ");
+//        Serial.println(canId, HEX);
         //
         //            for(int i = 0; i<len; i++)    // print the data
         //            {
