@@ -260,7 +260,7 @@ void TMainWidget::onKeepAlive() {
 
 
     // First open in read only and read 
-    char str1[20];  
+    // char str1[20];  
     // size_t bytes_read = read(fd1, str1, 10); 
     // size_t bytes_read = read(fd1, str1, 10); 
     // if (bytes_read <= 6) {
@@ -353,7 +353,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     int sideBorder = 30;
     int fieldWidth = 160;
 
-    p.drawText(sideBorder + 100,blockHeight*10,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,vbaT);
+    p.drawText(sideBorder + 120,blockHeight*10,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,vbaT);
     p.setFont(QFont("Arial",35));
 
     p.drawText(sideBorder,blockHeight*2+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
@@ -361,11 +361,15 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(sideBorder,blockHeight*8+20,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString(lamB));
     
     p.drawText(sideBorder,blockHeight*2+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
+
+    // Voltage in 2nd right position
+    // p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
+    
     p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accX);
     p.drawText(sideBorder,blockHeight*8+20,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accY);
 
-    p.setFont(QFont("Arial",65));
-    p.drawText(400,blockHeight*5,100,200,Qt::AlignCenter | Qt::AlignVCenter,lspD);
+    p.setFont(QFont("Arial",150));
+    p.drawText(320,blockHeight*4,160,200,Qt::AlignCenter | Qt::AlignVCenter,lspD);
 
 
     if (1) {

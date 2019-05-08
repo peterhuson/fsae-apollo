@@ -55,11 +55,11 @@ class Master:
         self.parse_data("l701:13.4\n") 
         self.parse_data("h701:0.98\n")
         self.parse_data("l702:45.2\n") # Spec swithced. RPM is now 702l (not reflected in all code)
-        self.parse_data("h702:45.4\n")
-        self.parse_data("l703:95000\n")
-        self.parse_data("h703:0.87\n") 
-        self.parse_data("l704:1.04\n")
-        self.parse_data("h704:0.08\n")
+        self.parse_data("h702:4.4\n") #accx
+        self.parse_data("l703:95000\n") # RPM
+        self.parse_data("h703:0.87\n") # rspd
+        self.parse_data("l704:9.814\n") #accy
+        self.parse_data("h704:0.08\n") #accz
 
         for rpm in range(0, p.REDLINE_RPM, 100):
             time.sleep(0.01)
