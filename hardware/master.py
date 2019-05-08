@@ -54,7 +54,7 @@ class Master:
         self.parse_data("h700:134.2\n")
         self.parse_data("l701:13.4\n") 
         self.parse_data("h701:0.98\n")
-        self.parse_data("l702:45.2\n") # Spec swithced. RPM is now 702l (not reflected in all code)
+        self.parse_data("l702:0\n") # Spec swithced. RPM is now 702l (not reflected in all code)
         self.parse_data("h702:4.4\n") #accx
         self.parse_data("l703:95\n") # lspd
         self.parse_data("h703:0.87\n") # rspd

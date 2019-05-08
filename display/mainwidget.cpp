@@ -45,7 +45,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     mpKeepAliveTimer = new QTimer();
     mpKeepAliveTimer->setSingleShot(false);
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
-    mpKeepAliveTimer->start(50);
+    mpKeepAliveTimer->start(35);
 
     quitButton = new QPushButton("<< Quit", this);	
     connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));	
@@ -61,7 +61,7 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     mkfifo(myfifo, 0666);
     fd1 = open(myfifo,O_RDONLY); 
     timeout.tv_sec = 0;
-    timeout.tv_usec = 10000;
+    timeout.tv_usec = 4000;
 
 }
 
