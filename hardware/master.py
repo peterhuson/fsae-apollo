@@ -107,10 +107,10 @@ class Master:
             elif(key == "h701:"):
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l703:"):
-                value = round(value, 0)
+                value = int(round(value, 0))
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
             elif(key == "h703:"):
-                value = round(value, 0)
+                value = int(round(value, 0))
                 os.write(self.fifo, "rspd:" + str(value) + "\n")
             elif(key == "l702:"):
                 value = value / 10
