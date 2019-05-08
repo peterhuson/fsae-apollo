@@ -86,7 +86,7 @@ class Master:
     def parse_data(self, data_str):
         try: 
             data_str = data_str.strip()
-            print("Parsing: '{}'".format(data_str))
+            # print("Parsing: '{}'".format(data_str))
 
             key = data_str[:5]
             value_str = data_str[5:11]
@@ -94,9 +94,9 @@ class Master:
 
             stripped = value_str.strip()
 
-            print("(stripped)" + repr(stripped))
+            # print("(stripped)" + repr(stripped))
             value = float(stripped)
-            print("(float)" + repr(value))
+            # print("(float)" + repr(value))
             # if(0 <= value <= 10e6): # Hopefully only good values get through? 
             if(key == "l700:"):
                 os.write(self.fifo, "ctmp:" + str(value) + "C\n")
@@ -109,6 +109,7 @@ class Master:
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l703:"):
                 value = int(round(value, 0))
+                print("Sending {} to lspd".format(value))
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
             elif(key == "h703:"):
                 value = int(round(value, 0))
@@ -116,7 +117,7 @@ class Master:
             elif(key == "l702:"):
                 value = value / 10
                 os.write(self.fifo, "rpm_:" + str(value) + "\n")
-                print("Sending {} to leds".format(value))
+                # print("Sending {} to leds".format(value))
                 self.l.displayRPM(value)
             elif(key == "h702:"):
                 value = round((value / p.GRAVITY), 2)

@@ -284,10 +284,10 @@ void TMainWidget::onKeepAlive() {
         }
         else
             readline(fd1, str1);
-        printf("iteration: %d Data: %s\n", i, str1); 	
+        // printf("iteration: %d Data: %s\n", i, str1); 	
 
         QString value = QString(&str1[5]);
-        printf("Value: %s\n", value.toStdString().c_str());
+        printf("%s Value: %s\n", str1, value.toStdString().c_str());
         // printf("strncmp for oilp: %d\n", strncmp(str1, "oilp", 4));
         // printf("strncmp for ctmp: %d\n", strncmp(str1, "ctmp", 4));
 
