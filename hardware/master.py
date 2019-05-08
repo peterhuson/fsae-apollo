@@ -6,7 +6,6 @@ from leds import LEDs
 class Master:
     def __init__(self):
         self.l = LEDs()
-        self.l.displayRPM(9500)
         print("got an LED handler!")
 
         # self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
@@ -62,11 +61,11 @@ class Master:
         self.parse_data("l704:1.04\n")
         self.parse_data("h704:0.08\n")
 
-        for rpm in range(p.MIN_RPM, p.REDLINE_RPM, 50):
-            time.sleep(0.02)
+        for rpm in range(0, p.REDLINE_RPM, 100):
+            time.sleep(0.01)
             self.parse_data("l702:" + str(rpm * 10) + "\n")
-        for rpm in range(p.REDLINE_RPM, p.MIN_RPM-1000, -100):
-            time.sleep(0.02)
+        for rpm in range(p.REDLINE_RPM, p.MIN_RPM-3000, -100):
+            time.sleep(0.01)
             self.parse_data("l702:" + str(rpm * 10) + "\n")
 
         self.parse_data("l703:0\n")
@@ -95,17 +94,19 @@ class Master:
             print("(float)" + repr(value))
             # if(0 <= value <= 10e6): # Hopefully only good values get through? 
             if(key == "l700:"):
-                os.write(self.fifo, "ctmp:" + str(value) + "\n")
+                os.write(self.fifo, "ctmp:" + str(value) + "C\n")
             elif(key == "h700:"):
                 value = round(((value / 1000.0) * 0.145), 2)
                 os.write(self.fifo, "oilp:" + str(value) + "\n")
             elif(key == "l701:"):
-                os.write(self.fifo, "vbat:" + str(value) + "\n")
+                os.write(self.fifo, "vbat:" + str(value) + "V\n")
             elif(key == "h701:"):
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l703:"):
+                value = round(value, 0)
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
-            elif(key == "h703:"):
+            elif(key == "h703:"):1
+                value = round(value, 0)
                 os.write(self.fifo, "rspd:" + str(value) + "\n")
             elif(key == "l702:"):
                 value = value / 10
@@ -113,12 +114,15 @@ class Master:
                 print("Sending {} to leds".format(value))
                 self.l.displayRPM(value)
             elif(key == "h702:"):
-                os.write(self.fifo, "accx:" + str(value) + "\n")
+                value = round((value / p.GRAVITY), 2)
+                os.write(self.fifo, "accx:" + str(value) + "G\n")
             elif(key == "l704:"):
-                os.write(self.fifo, "accy:" + str(value) + "\n")
+                value = round((value / p.GRAVITY), 2)
+                os.write(self.fifo, "accy:" + str(value) + "G\n")
             elif(key == "h704:"):
                 # Up
-                os.write(self.fifo, "accz:" + str(value) + "\n")
+                value = round((value / p.GRAVITY), 2)
+                os.write(self.fifo, "accz:" + str(value) + "G\n")
             else:
                 print("Unknown Code" + key + str(value))
 
