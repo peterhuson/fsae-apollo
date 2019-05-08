@@ -68,8 +68,9 @@ class Master:
             time.sleep(0.01)
             self.parse_data("l702:" + str(rpm * 10) + "\n")
 
-        for lspd in range(0, 80, 2):
+        for lspd in range(80, 0, 2):
             time.sleep(0.01)
+            print(lspd)
             self.parse_data("l703:" + str(lspd) + "\n")
 
         self.parse_data("l703:0\n")
