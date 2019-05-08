@@ -29,7 +29,7 @@ struct timeval timeout;
 int rv;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
-    QWidget(parent),bg(QPixmap(":/backgrounds/thompsonscreenhappiness.png")),transparent(transparency),sourceCodeUrl(surl)
+    QWidget(parent),bg(QPixmap(":/backgrounds/CompetitionRaceTemplate.png")),transparent(transparency),sourceCodeUrl(surl)
 {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
     isUsingTFT28LCD = qwsDisplay.contains("/dev/fb-st7789s");
@@ -288,8 +288,8 @@ void TMainWidget::onKeepAlive() {
 
         QString value = QString(&str1[5]);
         printf("Value: %s\n", value.toStdString().c_str());
-        printf("strncmp for oilp: %d\n", strncmp(str1, "oilp", 4));
-        printf("strncmp for ctmp: %d\n", strncmp(str1, "ctmp", 4));
+        // printf("strncmp for oilp: %d\n", strncmp(str1, "oilp", 4));
+        // printf("strncmp for ctmp: %d\n", strncmp(str1, "ctmp", 4));
 
         if (strncmp(str1, "oilp", 4) == 0) {
             oilP = value;
@@ -348,19 +348,24 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(5,itemHeight*23,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("t=%1").arg(timeSinceStart));
 
 //// 6 Main Number items on dash
-    p.setFont(QFont("Arial",35));
+
     int blockHeight = 40;
     int sideBorder = 30;
     int fieldWidth = 160;
 
-    p.drawText(sideBorder,blockHeight*2,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
-    p.drawText(sideBorder,blockHeight*5,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);
-    p.drawText(sideBorder,blockHeight*8,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString(lamB));
-    
-    p.drawText(sideBorder,blockHeight*2,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
-    p.drawText(sideBorder,blockHeight*5,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
-    p.drawText(sideBorder,blockHeight*8,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,QString("100"));
+    p.drawText(sideBorder + 100,blockHeight*10,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,vbaT);
+    p.setFont(QFont("Arial",35));
 
+    p.drawText(sideBorder,blockHeight*2+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
+    p.drawText(sideBorder,blockHeight*5+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);
+    p.drawText(sideBorder,blockHeight*8+20,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString(lamB));
+    
+    p.drawText(sideBorder,blockHeight*2+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
+    p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accX);
+    p.drawText(sideBorder,blockHeight*8+20,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accY);
+
+    p.setFont(QFont("Arial",65));
+    p.drawText(400,blockHeight*5,100,200,Qt::AlignCenter | Qt::AlignVCenter,lspD);
 
 
     if (1) {
