@@ -369,7 +369,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(sideBorder,blockHeight*8+20,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accY);
 
     p.setFont(QFont("Arial",150));
-    p.drawText(320,blockHeight*4,160,200,Qt::AlignCenter | Qt::AlignVCenter,lspD);
+    p.drawText(320,blockHeight*4,260,200,Qt::AlignCenter | Qt::AlignVCenter,lspD);
 
 
     if (1) {
