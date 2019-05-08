@@ -105,7 +105,7 @@ class Master:
             elif(key == "l703:"):
                 value = round(value, 0)
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
-            elif(key == "h703:"):1
+            elif(key == "h703:"):
                 value = round(value, 0)
                 os.write(self.fifo, "rspd:" + str(value) + "\n")
             elif(key == "l702:"):
