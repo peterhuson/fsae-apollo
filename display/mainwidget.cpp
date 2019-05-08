@@ -29,7 +29,7 @@ struct timeval timeout;
 int rv;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
-    QWidget(parent),bg(QPixmap(":/backgrounds/CompetitionRaceTemplate.png")),transparent(transparency),sourceCodeUrl(surl)
+    QWidget(parent),bg(QPixmap(":/backgrounds/BlackOnWhite.png")),transparent(transparency),sourceCodeUrl(surl)
 {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
     isUsingTFT28LCD = qwsDisplay.contains("/dev/fb-st7789s");
@@ -337,7 +337,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
         ip = wlan0IP;
     }
 
-    p.setPen(QPen(QColor(255,255,255)));
+    p.setPen(QPen(QColor(0,0,0)));
     p.drawText(space,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(space*50,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space*120,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
