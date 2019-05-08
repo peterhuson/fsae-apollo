@@ -56,7 +56,7 @@ class Master:
         self.parse_data("h701:0.98\n")
         self.parse_data("l702:45.2\n") # Spec swithced. RPM is now 702l (not reflected in all code)
         self.parse_data("h702:4.4\n") #accx
-        self.parse_data("l703:95000\n") # lspd
+        self.parse_data("l703:95\n") # lspd
         self.parse_data("h703:0.87\n") # rspd
         self.parse_data("l704:9.814\n") #accy
         self.parse_data("h704:0.08\n") #accz
@@ -68,7 +68,7 @@ class Master:
             time.sleep(0.01)
             self.parse_data("l702:" + str(rpm * 10) + "\n")
 
-        for lspd in range(80, 0, 2):
+        for lspd in range(80, 0, -2):
             time.sleep(0.01)
             print(lspd)
             self.parse_data("l703:" + str(lspd) + "\n")
