@@ -50,12 +50,12 @@ class Master:
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
         
-        self.parse_data("l700:100.0\n")
-        self.parse_data("h700:134.2\n")
-        self.parse_data("l701:13.4\n") 
-        self.parse_data("h701:0.98\n")
-        self.parse_data("l702:0\n") # Spec swithced. RPM is now 702l (not reflected in all code)
-        self.parse_data("h702:4.4\n") #accx
+        self.parse_data("l700:100.0\n") # ctmp
+        self.parse_data("h700:134.2\n") # oilp (pascals)
+        self.parse_data("l701:13.4\n") # vbat
+        self.parse_data("h701:0.98\n") # lambda
+        self.parse_data("l702:0\n") # RPM 
+        self.parse_data("h702:4.4\n") # TPS
         self.parse_data("l703:95\n") # lspd
         self.parse_data("h703:0.87\n") # rspd
         self.parse_data("l704:9.814\n") #accy
@@ -84,6 +84,9 @@ class Master:
             time.sleep(0.01)
 
     def parse_data(self, data_str):
+        last_rpm = 0.
+        last_rspd = 0.
+
         try: 
             data_str = data_str.strip()
             # print("Parsing: '{}'".format(data_str))
@@ -112,16 +115,19 @@ class Master:
                 print("Sending {} to lspd".format(value))
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
             elif(key == "h703:"):
-                value = int(round(value, 0))
-                os.write(self.fifo, "rspd:" + str(value) + "\n")
+                value = round(value, 0)
+                last_rspd = value
+                os.write(self.fifo, "rspd:" + str(int(value)) + "\n")
+                self.calculate_gear_position(last_rspd, last_rpm)
             elif(key == "l702:"):
                 value = value / 10
+                last_rpm = value
                 os.write(self.fifo, "rpm_:" + str(value) + "\n")
                 # print("Sending {} to leds".format(value))
                 self.l.displayRPM(value)
             elif(key == "h702:"):
                 value = round((value / p.GRAVITY), 2)
-                os.write(self.fifo, "accx:" + str(value) + "G\n")
+                os.write(self.fifo, "tps_:" + str(value) + "\n")
             elif(key == "l704:"):
                 value = round((value / p.GRAVITY), 2)
                 os.write(self.fifo, "accy:" + str(value) + "G\n")
@@ -134,7 +140,10 @@ class Master:
 
         except Exception:
             traceback.print_exc(file=sys.stdout)
-            
+
+        # Translate the ratio between wheelspeed and RPM, then send a guess at gear position    
+    def calculate_gear_position(self, wheelspeed, rpm):
+        pass
 
     def shutdown(self):
         print("Shutdown heard...exiting")
