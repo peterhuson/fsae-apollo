@@ -120,7 +120,7 @@ class Master:
                 os.write(self.fifo, "rspd:" + str(int(value)) + "\n")
                 self.calculate_gear_position(last_rspd, last_rpm)
             elif(key == "l702:"):
-                value = (value / (2*3.14))
+                value = int((value / (2*3.14)))
                 last_rpm = value
                 os.write(self.fifo, "rpm_:" + str(value) + "\n")
                 # print("Sending {} to leds".format(value))
