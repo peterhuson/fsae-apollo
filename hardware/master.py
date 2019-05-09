@@ -107,7 +107,7 @@ class Master:
                 value = round(((value / 1000.0) * 0.145), 2)
                 os.write(self.fifo, "oilp:" + str(value) + "\n")
             elif(key == "l701:"):
-                os.write(self.fifo, "vbat:" + str(value) + "V\n")
+                os.write(self.fifo, "vbat:" + str(value) + "\n")
             elif(key == "h701:"):
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l703:"):
@@ -120,7 +120,7 @@ class Master:
                 os.write(self.fifo, "rspd:" + str(int(value)) + "\n")
                 self.calculate_gear_position(last_rspd, last_rpm)
             elif(key == "l702:"):
-                value = value / 10
+                value = (value / (2*np.pi))
                 last_rpm = value
                 os.write(self.fifo, "rpm_:" + str(value) + "\n")
                 # print("Sending {} to leds".format(value))
