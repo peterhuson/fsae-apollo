@@ -305,8 +305,8 @@ void TMainWidget::onKeepAlive() {
             rspD = value;
         } else if (strncmp(str1, "rpm_", 4) == 0) {
             rpM_ = value;
-        } else if (strncmp(str1, "accx", 4) == 0) {
-            accX = value;
+        } else if (strncmp(str1, "tps_", 4) == 0) {
+            tpS_ = value;
         } else if (strncmp(str1, "accy", 4) == 0) {
             accY = value;
         } else if (strncmp(str1, "accz", 4) == 0) {
@@ -363,13 +363,13 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(sideBorder,blockHeight*2+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
 
     // Voltage in 2nd right position
-    // p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
+    p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
     
-    p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accX);
-    p.drawText(sideBorder,blockHeight*8+20,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,accY);
+    // p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,tpS_);
+    p.drawText(sideBorder,blockHeight*8+20,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,tpS_);
 
     p.setFont(QFont("Arial",150));
-    p.drawText(220,blockHeight*3,360,300,Qt::AlignCenter | Qt::AlignVCenter,lspD);
+    p.drawText(220,blockHeight*3,360,300,Qt::AlignCenter | Qt::AlignVCenter,rspD);
 
 
     if (1) {

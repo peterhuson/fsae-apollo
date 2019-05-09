@@ -57,7 +57,7 @@ private:
     QString lspD;
     QString rspD;
     QString rpM_;
-    QString accX;
+    QString tpS_;
     QString accY;
     QString accZ;
     QPixmap bg;
