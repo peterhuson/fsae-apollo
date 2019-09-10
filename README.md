@@ -1,6 +1,26 @@
 # fsae-apollo
 
-This project contains the bare bones for the Brown FSAE Driver Feedback Project. Feel free to play around with `main.py` and figure out how PyQt5 works. 
+This project contains the Brown FSAE Driver Feedback Project. 
+
+## Project Structure
+
+```
+fsae-apollo/
+│   master_run.sh  
+│
+└───hardware
+│   │   leds.py
+│   │   master.py
+│   │   params.py
+│   └───arduino/canbus_middleman
+│   │   │   canbus_middleman.ino
+│
+└───display
+│   │   main.qrc
+│   │   mainwidget.cpp
+│   │   mainwidget.h
+│   └───backgrounds
+```
 
 ## Compile Qt 
 
@@ -14,7 +34,9 @@ cd build/
 make -j4
 ```
 
-## Pi setup
+## NanoPi setup
+
+The NanoPi is running a Xenial image installed into eMMC from the (friendlyarm wiki)[http://wiki.friendlyarm.com/wiki/index.php/NanoPi_S2#Boot_from_SD_Card].
 
 wpa_supplicant.conf
 ```sh
@@ -23,7 +45,7 @@ country=CN
 
 network={
         ssid="Rhodedendron"
-        psk="********"
+        psk="********" //Old Faithful
 }
 ```
 
@@ -45,8 +67,6 @@ bash /root/fsae-apollo/master_run.sh &
 source ~/fsae-apollo/venv/bin/activate
 cd ~
 ```
-
-TODO: Flash a friendlycore image onto the NanoPi and get it to boot reliably. I tried with the image they have at the following link, but it seemed to have console logging disabled and/or would not boot. https://drive.google.com/drive/folders/1177wtytvjXfSYFHc6MyalHUWK_ilKIlr
 
 ## Install fsae-apollo 
 You will need Python 3.7 installed to run fsae-apollo. 
