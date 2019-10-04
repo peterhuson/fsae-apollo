@@ -12,29 +12,36 @@ class LEDs:
     def __init__(self):
         self.strip = apa102.APA102(num_led=p.NUM_LED, mosi=MOSI, sclk=SCLK,order='rgb')
         self.strip.clear_strip()
-        self.num_steps = (p.NUM_LED / 2) + 1
-        self.step_width = (p.MAX_RPM - p.MIN_RPM) / self.num_steps
+        self.num_steps = (p.NUM_LED / 2) # 7 steps with 13 LEDs, we want the first n - 1 steps to be equal length, and the last to be whatever length it needs
+        self.step_width = (p.LAST_LINE_RPM - p.MIN_RPM) / self.num_steps
 
 
     def displayRPM(self, RPM):
         RPM = int(RPM)
 
-        if RPM > p.MAX_RPM: # Flash Red
+        if RPM > p.REDLINE_RPM: # Flash Red
             self.setall(p.RED, p.BRIGHTNESS_PERCENTAGE + 50)
             return
-        elif RPM < p.MIN_RPM: # Below MIN_RPM the side-most lights will slowly ramp brightness
-            brightness = int(p.BRIGHTNESS_PERCENTAGE * ((RPM * 1.) / p.MIN_RPM))
-            self.strip.set_pixel_rgb(0, p.GREEN, brightness)
-            self.strip.set_pixel_rgb(12, p.GREEN, brightness)
-            self.strip.show()
-            return 
-        elif p.MIN_RPM <= RPM <= p.MAX_RPM:
+        elif RPM > p.LAST_LINE_RPM:
+            leds_to_change = np.copy(p.led_map)
+            step = self.num_steps + 1 
+            leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
+
+            self.updateLeds(leds_to_change)
+        elif p.MIN_RPM <= RPM <= p.LAST_LINE_RPM:
             leds_to_change = np.copy(p.led_map)
 
             step = (RPM - p.MIN_RPM) / self.step_width
             leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
 
             self.updateLeds(leds_to_change)
+        elif RPM < p.MIN_RPM: # Below MIN_RPM the side-most lights will slowly ramp brightness
+            brightness = int(p.BRIGHTNESS_PERCENTAGE * ((RPM * 1.) / p.MIN_RPM))
+            self.strip.clear_strip() # could be dangerous, also potentially not necessary
+            self.strip.set_pixel_rgb(0, p.GREEN, brightness)
+            self.strip.set_pixel_rgb(12, p.GREEN, brightness)
+            self.strip.show()
+            return 
         else: 
             print("RPM value {} could not be displayed".format(RPM))
 
