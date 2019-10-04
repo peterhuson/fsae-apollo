@@ -37,7 +37,7 @@ class LEDs:
             self.updateLeds(leds_to_change)
         elif RPM < p.MIN_RPM: # Below MIN_RPM the side-most lights will slowly ramp brightness
             brightness = int(p.BRIGHTNESS_PERCENTAGE * ((RPM * 1.) / p.MIN_RPM))
-            self.clear_strip() # could be dangerous, also potentially not necessary
+            self.strip.clear_strip() # could be dangerous, also potentially not necessary
             self.strip.set_pixel_rgb(0, p.GREEN, brightness)
             self.strip.set_pixel_rgb(12, p.GREEN, brightness)
             self.strip.show()
