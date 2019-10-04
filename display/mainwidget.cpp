@@ -18,14 +18,14 @@
 #include "mainwidget.h"
 #include "util.h"
 #include "sys/sysinfo.h"
-#include <fcntl.h> 
-#include <stdio.h> 
-#include <unistd.h> 
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "boardtype_friendlyelec.h"
 
 int fd1;
 fd_set set;
-struct timeval timeout;   
+struct timeval timeout;
 int rv;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl) :
@@ -47,19 +47,19 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString& surl
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
     mpKeepAliveTimer->start(35);
 
-    quitButton = new QPushButton("<< Quit", this);	
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));	
+    quitButton = new QPushButton("<< Quit", this);
+    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
 
-     qtdemoButton = new QPushButton("Start Qt Demo >>", this);	
+     qtdemoButton = new QPushButton("Start Qt Demo >>", this);
     connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
 
     gettimeofday(&startTime,NULL);
 
-       
-    // FIFO file path 
-    const char * myfifo = "/tmp/myfifo2"; 
+
+    // FIFO file path
+    const char * myfifo = "/tmp/myfifo2";
     mkfifo(myfifo, 0666);
-    fd1 = open(myfifo,O_RDONLY); 
+    fd1 = open(myfifo,O_RDONLY);
     timeout.tv_sec = 0;
     timeout.tv_usec = 4000;
 
@@ -192,7 +192,7 @@ void TMainWidget::onKeepAlive() {
             maxCPUTemp = currentCPUTemp;
         }
     }
-	
+
 	bool ok1=false;
         float _currentCPUTemp = currentCPUTemp.toInt(&ok1);
 	if (_currentCPUTemp>1000.0 && ok1) {
@@ -238,7 +238,7 @@ void TMainWidget::onKeepAlive() {
         QString str = Util::readFile(fileName).simplified();
         bool ok = false;
         int freq = str.toInt(&ok,10);
-        
+
         if (ok) {
             QString str;
             if (freq > 1000000) {
@@ -253,22 +253,22 @@ void TMainWidget::onKeepAlive() {
 
     struct timeval endTime;
     gettimeofday(&endTime,NULL);
-    double global_time = time_diff(startTime,endTime); 
+    double global_time = time_diff(startTime,endTime);
     timeSinceStart = "";
     QString timestr;
     timeSinceStart = timestr.sprintf("%.2fms", global_time);
 
 
-    // First open in read only and read 
-    // char str1[20];  
-    // size_t bytes_read = read(fd1, str1, 10); 
-    // size_t bytes_read = read(fd1, str1, 10); 
+    // First open in read only and read
+    // char str1[20];
+    // size_t bytes_read = read(fd1, str1, 10);
+    // size_t bytes_read = read(fd1, str1, 10);
     // if (bytes_read <= 6) {
     //     printf("Got garbage string: %s\n", str1);
     //     return;
     // }
-    for(int i = 0; i < 10; i++){ 
-        char str1[20];  
+    for(int i = 0; i < 10; i++){
+        char str1[20];
         memset(str1, 0, 20);
 
 
@@ -284,7 +284,7 @@ void TMainWidget::onKeepAlive() {
         }
         else
             readline(fd1, str1);
-        // printf("iteration: %d Data: %s\n", i, str1); 	
+        // printf("iteration: %d Data: %s\n", i, str1);
 
         QString value = QString(&str1[5]);
         printf("%s Value: %s\n", str1, value.toStdString().c_str());
@@ -325,7 +325,8 @@ void TMainWidget::paintEvent(QPaintEvent *)
     QPainter p(this);
 
     int space = 3;
-    int itemHeight = 20;
+    int itemWidth = (width() - space * 2) * 2;
+    int itemHeight = 40;
 
     if (!transparent) {
         p.fillRect(0,0,width(),height(),QBrush(QColor(0,0,0)));
@@ -337,12 +338,16 @@ void TMainWidget::paintEvent(QPaintEvent *)
         ip = wlan0IP;
     }
 
+    /* Printing dashboard values */
+
     p.setPen(QPen(QColor(0,0,0)));
-    p.drawText(space,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
-    p.drawText(space*50,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
-    p.drawText(space*120,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
-    p.drawText(space*180,itemHeight*23,width()-space*2,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
-    
+    p.setFont(QFont("Helvetica"));
+    p.setBold(true);
+    p.drawText(space,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
+    p.drawText(space*50,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
+    p.drawText(space*120,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
+    p.drawText(space*180,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("IP: %1").arg(ip));
+
 
     // p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
     p.drawText(5,itemHeight*23,width()-space*9,itemHeight,Qt::AlignRight | Qt::AlignVCenter,QString("t=%1").arg(timeSinceStart));
@@ -359,12 +364,12 @@ void TMainWidget::paintEvent(QPaintEvent *)
     p.drawText(sideBorder,blockHeight*2+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
     p.drawText(sideBorder,blockHeight*5+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);
     p.drawText(sideBorder,blockHeight*8+20,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,QString(lamB));
-    
+
     p.drawText(sideBorder,blockHeight*2+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,oilP);
 
     // Voltage in 2nd right position
     p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,vbaT);
-    
+
     // p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,tpS_);
     p.drawText(sideBorder,blockHeight*8+20,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,tpS_);
 
