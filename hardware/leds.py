@@ -22,7 +22,7 @@ class LEDs:
         if RPM > p.REDLINE_RPM: # Flash Red
             self.setall(p.RED, p.BRIGHTNESS_PERCENTAGE + 50)
             return
-        elif RPM > LAST_LINE_RPM:
+        elif RPM > p.LAST_LINE_RPM:
             leds_to_change = np.copy(p.led_map)
             step = self.num_steps + 1 
             leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
