@@ -186,7 +186,7 @@ void TMainWidget::onKeepAlive() {
 
     QString contents = Util::readFile("/proc/loadavg").simplified();
     QStringList values = contents.split(" ");
-    int vCount = 3;
+    int vCount = 2;
     loadAvg = "";
     foreach (const QString &v, values) {
         QString str = v.simplified();
@@ -325,7 +325,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
                width() - space * 2,
                smallHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
-               QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
+               QString("CPU:%1/T%2C").arg(freqStr).arg(currentCPUTemp));
     p.drawText(
         space * 50, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
     p.drawText(space * 110,
@@ -333,8 +333,8 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
                width() - space * 2,
                smallHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
-               QString("LoadAvg: %1").arg(loadAvg));
-    p.drawText(space * 170, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
+               QString("Load:%1").arg(loadAvg));
+    p.drawText(space * 180, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("%1").arg(ip));
     p.drawText(5, smallHeight * 23, width() - space * 9, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
 
     int rightborder = 15;
