@@ -42,6 +42,7 @@ private:
     void resizeEvent(QResizeEvent *);
     void paintEvent(QPaintEvent *);
     void customEvent(QEvent *);
+    void drawAccelerationScreen(QPainter &p);
 
 private:
     enum DisplayMode {
@@ -50,7 +51,6 @@ private:
         regular
     };
     DisplayMode currentDisplayMode;
-    void drawAccelerationScreen(QPainter &p);
 
     QTimer *mpKeepAliveTimer;
     QString loadAvg;

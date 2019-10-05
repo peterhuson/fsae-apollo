@@ -32,10 +32,10 @@ int rv;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString &surl) :
     QWidget(parent),
+    currentDisplayMode(acceleration),
     bg(QPixmap(":/backgrounds/BlackOnWhite.png")),
     transparent(transparency),
-    sourceCodeUrl(surl),
-    currentDisplayMode(acceleration) {
+    sourceCodeUrl(surl) {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
     isUsingTFT28LCD = qwsDisplay.contains("/dev/fb-st7789s");
     tft28LCDThread = NULL;
@@ -300,7 +300,21 @@ void TMainWidget::onKeepAlive() {
 }
 
 void TMainWidget::drawAccelerationScreen(QPainter &p) {
+    int space = 3;
+    int itemHeight = 20;
 
+    if (!transparent) {
+        p.fillRect(0, 0, width(), height(), QBrush(QColor(0, 0, 0)));
+        p.drawPixmap(0, 0, width(), height(), bg);
+    }
+
+    p.setPen(QPen(QColor(0, 0, 0)));
+    p.drawText(space,
+               itemHeight * 23,
+               width() - space * 2,
+               itemHeight,
+               Qt::AlignLeft | Qt::AlignVCenter,
+               QString("HELLO"));
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
@@ -310,6 +324,8 @@ void TMainWidget::paintEvent(QPaintEvent *) {
     case acceleration:
         drawAccelerationScreen(p);
         return;
+    default:
+        break;
     }
 
     int space = 3;
