@@ -68,7 +68,7 @@ class Master:
         self.parse_data("l702:0\n") # RPM 
         self.parse_data("h702:10\n") # TPS
         self.parse_data("l703:95\n") # lspd
-        self.parse_data("h703:3\n") # rspd
+        self.parse_data("h703:2\n") # rspd
         self.parse_data("l704:9.814\n") #accy
         self.parse_data("h704:0.08\n") #accz
 
