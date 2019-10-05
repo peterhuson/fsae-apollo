@@ -299,9 +299,9 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.setPen(QPen(QColor(255, 255, 255)));    
 
     int smallHeight = 20;
-    p.setFont(QFont("Courier",20, QFont::Bold));
-    p.drawText(580, 180, 50, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
-    p.drawText(380, 350, 50, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
+    p.setFont(QFont("Courier",30, QFont::Bold));
+    p.drawText(580, 190, 50, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
+    p.drawText(480, 400, 50, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
 
 
     int valuespacing = height() / 2;
