@@ -360,9 +360,9 @@ void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
 
     if (rspD >= 5){
-        currentDisplayMode(acceleration);
+        currentDisplayMode = acceleration;
     } else {
-        currentDisplayMode(debug);
+        currentDisplayMode = debug;
     }
 
     switch (currentDisplayMode) {
