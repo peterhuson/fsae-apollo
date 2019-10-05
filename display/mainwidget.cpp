@@ -342,7 +342,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
 
     p.setPen(QPen(QColor(0,0,0)));
     p.setFont(QFont("Helvetica"));
-    p.setBold(true);
+    // p.setBold(true);
     p.drawText(space,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(space*50,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
     p.drawText(space*120,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("LoadAvg: %1").arg(loadAvg));
@@ -354,9 +354,9 @@ void TMainWidget::paintEvent(QPaintEvent *)
 
 //// 6 Main Number items on dash
 
-    int blockHeight = 40;
-    int sideBorder = 30;
-    int fieldWidth = 160;
+    int blockHeight = 60;
+    int sideBorder = 40;
+    int fieldWidth = 180;
 
     p.drawText(sideBorder + 120,blockHeight*10,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,vbaT);
     p.setFont(QFont("Arial",35));
