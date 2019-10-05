@@ -341,7 +341,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     /* Printing dashboard values */
 
     p.setPen(QPen(QColor(0,0,0)));
-    p.setFont(QFont("Courier"),QFont::Bold);
+    p.setFont(QFont("Courier",12, QFont::Bold));
     // p.setBold(true);
     p.drawText(space,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(space*50,itemHeight*23,itemWidth,itemHeight,Qt::AlignLeft | Qt::AlignVCenter,QString("Memory: %1").arg(memInfo));
