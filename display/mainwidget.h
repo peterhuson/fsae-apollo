@@ -25,24 +25,26 @@
 #endif
 
 #include "tft28lcd.h"
+
 #include <sys/time.h>
 
-class TMainWidget : public QWidget
-{
+class TMainWidget : public QWidget {
     Q_OBJECT
 
 public:
-    explicit TMainWidget(QWidget *parent, bool transparency, const QString& surl);
+    explicit TMainWidget(QWidget *parent, bool transparency, const QString &surl);
     ~TMainWidget() {}
 private slots:
     void onKeepAlive();
     void qtdemoButtonClicked();
+
 private:
-    void resizeEvent(QResizeEvent*);
+    void resizeEvent(QResizeEvent *);
     void paintEvent(QPaintEvent *);
-    void customEvent(QEvent*);
+    void customEvent(QEvent *);
+
 private:
-    QTimer* mpKeepAliveTimer;
+    QTimer *mpKeepAliveTimer;
     QString loadAvg;
     QString currentCPUTemp;
     QString maxCPUTemp;
@@ -63,15 +65,14 @@ private:
     QPixmap bg;
     QString eth0IP;
     QString wlan0IP;
-    QPushButton* qtdemoButton;
-    QPushButton* quitButton;
+    QPushButton *qtdemoButton;
+    QPushButton *quitButton;
     bool transparent;
     QString sourceCodeUrl;
     bool isUsingTFT28LCD;
-    TFT28LCDThread* tft28LCDThread;
+    TFT28LCDThread *tft28LCDThread;
     int progresses[3];
     struct timeval startTime;
-
 };
 
 #endif // WIDGET_H
