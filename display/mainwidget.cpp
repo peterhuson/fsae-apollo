@@ -345,7 +345,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int itemWidth = (width() / 2) - rightborder * 2;
     int itemHeight = valuespacing;
 
-    p.setFont(QFont("Ubuntu",110, QFont::Bold));
+    p.setFont(QFont("Asap",110, QFont::Bold));
     p.drawText(leftcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, ctmP);
     p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
