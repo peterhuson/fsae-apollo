@@ -345,15 +345,15 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int itemWidth = (width() / 2) - rightborder * 2;
     int itemHeight = valuespacing;
 
-    p.setFont(QFont("Courier",120, QFont::Bold));
-    p.drawText(leftcolX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, ctmP);
-    p.drawText(leftcolX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
-    p.drawText(rightcolX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, oilP);
-    p.drawText(rightcolX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, lamB);
+    p.setFont(QFont("Courier",110, QFont::Bold));
+    p.drawText(leftcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, ctmP);
+    p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
+    p.drawText(rightcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, lamB);
 
-    int bigborder = 100;
+    int bigborder = 120;
     p.setFont(QFont("Courier",130, QFont::Bold));
-    p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, valuespacing, Qt::AlignRight | Qt::AlignVCenter, rpM_);
+    p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
 
 }
 
