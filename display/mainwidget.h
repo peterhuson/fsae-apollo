@@ -47,7 +47,7 @@ private:
     enum DisplayMode {
         acceleration,
         debug,
-        default
+        regular
     }
     DisplayMode currentDisplayMode;
     void drawAccelerationScreen(QPainter &p);
