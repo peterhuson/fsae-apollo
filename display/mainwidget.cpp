@@ -360,7 +360,8 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
 
-    if (rspD >= 5){
+    printf("rspd: %f", rspD.toFloat());
+    if (rspD.toFloat() > 5.f){
         currentDisplayMode = acceleration;
     } else {
         currentDisplayMode = debug;
