@@ -376,20 +376,25 @@ void TMainWidget::drawEnduranceScreen(QPainter &p) {
     p.setPen(QPen(QColor(255, 255, 255)));
 
     int smallHeight = 40;
+    int rightborder = 15;
+
+    int valuespacing = height() / 3 - 20;
+    int rightcolX = width()/2 + rightborder;
+    int leftcolX = rightborder;
+    int itemWidth = (width() / 2) - rightborder * 2;
+    int itemHeight = valuespacing;
+
     p.setFont(QFont("Courier",45, QFont::Bold));
-    p.drawText(40, 20, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
-    p.drawText(40, 420, 300, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("WatTmp"));
-    p.drawText(760, 420, 300, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("OilPre"));
+    p.drawText(leftcolX, valuespacing * 1 + 120, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
+    p.drawText(leftcolX, valuespacing * 1 + 120, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("WatTmp"));
+    p.drawText(rightcolX, valuespacing * 2 + 120, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("OilPre"));
     // p.drawText(470, 430, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
 
-
-    int valuespacing = height() / 2;
-    int itemHeight = valuespacing;
     int bigborder = 80;
     p.setFont(QFont("Courier",170, QFont::Bold));
-    p.drawText(50, 20, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rspD);
-    p.drawText(50, 250, 720, 170, Qt::AlignRight | Qt::AlignVCenter, ctmP);
-    p.drawText(770, 420, 720, 170, Qt::AlignRight | Qt::AlignVCenter, oilP);
+    p.drawText(leftcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, rspd);
+    p.drawText(leftcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, ctmP);
+    p.drawText(rightcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
