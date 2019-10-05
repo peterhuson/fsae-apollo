@@ -48,7 +48,7 @@ private:
         acceleration,
         debug,
         regular
-    }
+    };
     DisplayMode currentDisplayMode;
     void drawAccelerationScreen(QPainter &p);
 
