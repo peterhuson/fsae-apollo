@@ -296,7 +296,7 @@ void TMainWidget::onKeepAlive() {
 void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.fillRect(0, 0, width(), height(), QBrush(QColor(200, 255, 200)));
     p.drawPixmap(0, 0, width(), height(), bg);
-    p.setPen(QPen(QColor(255, 255, 255)));    
+    p.setPen(QPen(QColor(255, 255, 255)));
 
     int smallHeight = 40;
     p.setFont(QFont("Courier",45, QFont::Bold));
@@ -368,6 +368,28 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
                QString("Load:%1").arg(loadAvg));
     p.drawText(space * 180, tinyHeight * 23, width() - space * 2, tinyHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("%1").arg(ip));
     p.drawText(5, tinyHeight * 23, width() - space * 9, tinyHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
+}
+
+void TMainWidget::drawEnduranceScreen(QPainter &p) {
+    p.fillRect(0, 0, width(), height(), QBrush(QColor(200, 255, 200)));
+    p.drawPixmap(0, 0, width(), height(), bg);
+    p.setPen(QPen(QColor(255, 255, 255)));
+
+    int smallHeight = 40;
+    p.setFont(QFont("Courier",45, QFont::Bold));
+    p.drawText(40, 20, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
+    p.drawText(40, 420, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("WatTmp"));
+    p.drawText(590, 210, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("OilPre"));
+    // p.drawText(470, 430, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
+
+
+    int valuespacing = height() / 2;
+    int itemHeight = valuespacing;
+    int bigborder = 80;
+    p.setFont(QFont("Courier",170, QFont::Bold));
+    p.drawText(40, 80, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rspD);
+    p.drawText(40, 250, 720, 170, Qt::AlignRight | Qt::AlignVCenter, ctmP);
+    p.drawText(40, 420, 720, 170, Qt::AlignRight | Qt::AlignVCenter, oilPre);
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
