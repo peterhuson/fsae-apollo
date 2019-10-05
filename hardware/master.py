@@ -48,31 +48,8 @@ class Master:
         print("Got serial from Arduino")
         if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
             pass
-        else: # 
-            self.parse_data("l700:100\n") # ctmp
-            self.parse_data("h700:134\n") # oilp (pascals)
-            self.parse_data("l701:13.4\n") # vbat
-            self.parse_data("h701:0.9\n") # lambda
-            self.parse_data("l702:0\n") # RPM 
-            self.parse_data("h702:100\n") # TPS
-            self.parse_data("l703:95\n") # lspd
-            self.parse_data("h703:100\n") # rspd
-            self.parse_data("l704:9.814\n") #accy
-            self.parse_data("h704:0.08\n") #accz
-
-            for rpm in range(0, p.REDLINE_RPM, 100):
-                time.sleep(0.01)
-                self.parse_data("l702:" + str(rpm * 10) + "\n")
-            for rpm in range(p.REDLINE_RPM, 0, -100):
-                time.sleep(0.01)
-                self.parse_data("l702:" + str(rpm * 10) + "\n")
-
-            for lspd in range(80, 0, -2):
-                time.sleep(0.01)
-                print(lspd)
-                self.parse_data("l703:" + str(lspd) + "\n")
-
-            self.parse_data("l703:0\n")
+        else: 
+            self.fake_data()
         
         while (True):
             # print("In Loop: ")
@@ -81,6 +58,33 @@ class Master:
                 self.parse_data(data_str)
                 
             time.sleep(0.01)
+
+    def fake_data(self):
+        ### Show some fake data to excersize the screen ###
+        self.parse_data("l700:100\n") # ctmp
+        self.parse_data("h700:134\n") # oilp (pascals)
+        self.parse_data("l701:13.4\n") # vbat
+        self.parse_data("h701:0.9\n") # lambda
+        self.parse_data("l702:0\n") # RPM 
+        self.parse_data("h702:100\n") # TPS
+        self.parse_data("l703:95\n") # lspd
+        self.parse_data("h703:100\n") # rspd
+        self.parse_data("l704:9.814\n") #accy
+        self.parse_data("h704:0.08\n") #accz
+
+        for rpm in range(0, p.REDLINE_RPM, 100):
+            time.sleep(0.01)
+            self.parse_data("l702:" + str(rpm * 10) + "\n")
+        for rpm in range(p.REDLINE_RPM, 0, -100):
+            time.sleep(0.01)
+            self.parse_data("l702:" + str(rpm * 10) + "\n")
+
+        for lspd in range(80, 0, -2):
+            time.sleep(0.01)
+            print(lspd)
+            self.parse_data("l703:" + str(lspd) + "\n")
+
+        self.parse_data("l703:0\n")
 
     def parse_data(self, data_str):
         last_rpm = 0.
