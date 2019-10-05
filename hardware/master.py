@@ -8,8 +8,6 @@ class Master:
         self.l = LEDs()
         print("got an LED handler!")
 
-        # self.serial_port = s.Serial('/dev/tty.Bluetooth-Incoming-Port', 9600, timeout=1) # Default Serial Baud rate is 9600
-        
         # self.serial_port = s.Serial('/dev/ttyAMA3', 9600, timeout=1) # Default Serial Baud rate is 9600
         # self.serial_port.write(b'+++')
         # ret = self.serial_port.readline()
@@ -21,7 +19,6 @@ class Master:
         # self.serial_port.write(b'AT+Q\n')
         # ret = self.serial_port.readline()
         # print(ret)
-        # time.sleep(0.1)
 
         try:
             self.run()
@@ -49,31 +46,33 @@ class Master:
 
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
-        
-        self.parse_data("l700:100.0\n") # ctmp
-        self.parse_data("h700:134.2\n") # oilp (pascals)
-        self.parse_data("l701:13.4\n") # vbat
-        self.parse_data("h701:0.98\n") # lambda
-        self.parse_data("l702:0\n") # RPM 
-        self.parse_data("h702:4.4\n") # TPS
-        self.parse_data("l703:95\n") # lspd
-        self.parse_data("h703:0.87\n") # rspd
-        self.parse_data("l704:9.814\n") #accy
-        self.parse_data("h704:0.08\n") #accz
+        if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
+            pass
+        else: # 
+            self.parse_data("l700:100\n") # ctmp
+            self.parse_data("h700:134\n") # oilp (pascals)
+            self.parse_data("l701:13.4\n") # vbat
+            self.parse_data("h701:0.9\n") # lambda
+            self.parse_data("l702:0\n") # RPM 
+            self.parse_data("h702:100\n") # TPS
+            self.parse_data("l703:95\n") # lspd
+            self.parse_data("h703:100\n") # rspd
+            self.parse_data("l704:9.814\n") #accy
+            self.parse_data("h704:0.08\n") #accz
 
-        for rpm in range(0, p.REDLINE_RPM, 100):
-            time.sleep(0.01)
-            self.parse_data("l702:" + str(rpm * 10) + "\n")
-        for rpm in range(p.REDLINE_RPM, 0, -100):
-            time.sleep(0.01)
-            self.parse_data("l702:" + str(rpm * 10) + "\n")
+            for rpm in range(0, p.REDLINE_RPM, 100):
+                time.sleep(0.01)
+                self.parse_data("l702:" + str(rpm * 10) + "\n")
+            for rpm in range(p.REDLINE_RPM, 0, -100):
+                time.sleep(0.01)
+                self.parse_data("l702:" + str(rpm * 10) + "\n")
 
-        for lspd in range(80, 0, -2):
-            time.sleep(0.01)
-            print(lspd)
-            self.parse_data("l703:" + str(lspd) + "\n")
+            for lspd in range(80, 0, -2):
+                time.sleep(0.01)
+                print(lspd)
+                self.parse_data("l703:" + str(lspd) + "\n")
 
-        self.parse_data("l703:0\n")
+            self.parse_data("l703:0\n")
         
         while (True):
             # print("In Loop: ")
@@ -97,22 +96,24 @@ class Master:
 
             stripped = value_str.strip()
 
-            # print("(stripped)" + repr(stripped))
             value = float(stripped)
             # print("(float)" + repr(value))
             # if(0 <= value <= 10e6): # Hopefully only good values get through? 
             if(key == "l700:"):
-                os.write(self.fifo, "ctmp:" + str(value) + "C\n")
+                value = int(value)
+                os.write(self.fifo, "ctmp:" + str(value) + "\n")
             elif(key == "h700:"):
-                value = round(((value / 1000.0) * 0.145), 2)
+                value = int((value / 1000.0) * 0.145)
                 os.write(self.fifo, "oilp:" + str(value) + "\n")
             elif(key == "l701:"):
+                value = round(value, 1)
                 os.write(self.fifo, "vbat:" + str(value) + "\n")
             elif(key == "h701:"):
+                value = round(value, 1)
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l703:"):
                 value = int(round(value, 0))
-                print("Sending {} to lspd".format(value))
+                # print("Sending {} to lspd".format(value))
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
             elif(key == "h703:"):
                 value = round(value, 0)
