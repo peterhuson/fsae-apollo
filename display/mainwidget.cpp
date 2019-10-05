@@ -339,15 +339,17 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
 
     int rightborder = 30;
 
-    int valuespacing = height() / 4;
-    int leftX = width()/2 - rightborder;
+    int valuespacing = height() / 3;
+    int rightcolX = width()/2 - rightborder;
+    int leftcolX = rightborder;
     int itemWidth = (width() / 2) - rightborder;
     int itemHeight = valuespacing;
 
-    p.setFont(QFont("Courier",70, QFont::Bold));
-    p.drawText(leftX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
-    p.drawText(leftX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
-    p.drawText(leftX, valuespacing * 3, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.setFont(QFont("Courier",100, QFont::Bold));
+    p.drawText(rightcolX, valuespacing * 0, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(rightcolX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(leftcolX, valuespacing * 0, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(leftcolX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
