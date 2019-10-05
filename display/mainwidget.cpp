@@ -358,7 +358,7 @@ void TMainWidget::paintEvent(QPaintEvent *)
     int sideBorder = 30;
     int fieldWidth = 190;
 
-    p.setFont(QFont("Arial",45));
+    p.setFont(QFont("Arial",40));
 
     p.drawText(sideBorder,blockHeight*2+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
     p.drawText(sideBorder,blockHeight*5+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);

@@ -66,7 +66,7 @@ class Master:
         self.parse_data("l701:13.4\n") # vbat
         self.parse_data("h701:0.9\n") # lambda
         self.parse_data("l702:0\n") # RPM 
-        self.parse_data("h702:100\n") # TPS
+        self.parse_data("h702:10\n") # TPS
         self.parse_data("l703:95\n") # lspd
         self.parse_data("h703:100\n") # rspd
         self.parse_data("l704:9.814\n") #accy
@@ -131,7 +131,7 @@ class Master:
                 # print("Sending {} to leds".format(value))
                 self.l.displayRPM(value)
             elif(key == "h702:"):
-                value = round((value / p.GRAVITY), 2)
+                value = round(value, 0)
                 os.write(self.fifo, "tps_:" + str(value) + "\n")
             elif(key == "l704:"):
                 value = round((value / p.GRAVITY), 2)
