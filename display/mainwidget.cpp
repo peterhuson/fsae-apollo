@@ -300,8 +300,8 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
 
     int smallHeight = 40;
     p.setFont(QFont("Courier",45, QFont::Bold));
-    p.drawText(40, 40, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
-    p.drawText(40, 400, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
+    p.drawText(40, 20, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
+    p.drawText(40, 420, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
     // p.drawText(590, 210, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
     // p.drawText(470, 430, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
 
@@ -310,8 +310,8 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     int itemHeight = valuespacing;
     int bigborder = 80;
     p.setFont(QFont("Courier",170, QFont::Bold));
-    p.drawText(40, 80, 720, 160, Qt::AlignRight | Qt::AlignVCenter, rpM_);
-    p.drawText(40, 240, 720, 160, Qt::AlignRight | Qt::AlignVCenter, rspD);
+    p.drawText(40, 80, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rpM_);
+    p.drawText(40, 250, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rspD);
     // p.drawText(0, valuespacing * 0, width() - bigborder * 1, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
     // p.drawText(bigborder, valuespacing * 1, width() - bigborder * 4, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rspD);
 }
