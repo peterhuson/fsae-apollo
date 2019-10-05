@@ -338,12 +338,12 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
 
     int smallHeight = 40;
-    p.setFont(QFont("Courier",40, QFont::Bold));
+    p.setFont(QFont("Courier",30, QFont::Bold));
     p.drawText(40, 80, 750, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
-    p.drawText(leftcolX, 260, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Coolant Tmp"));
-    p.drawText(leftcolX, 410, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Batt V"));
-    p.drawText(rightcolX, 260, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Oil Pressure"));
-    p.drawText(rightcolX, 410, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Lambda"));
+    p.drawText(leftcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Water Tmp"));
+    p.drawText(leftcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Batt V"));
+    p.drawText(rightcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Oil psi"));
+    p.drawText(rightcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Lambda"));
 
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
