@@ -34,7 +34,8 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString &surl
     QWidget(parent),
     bg(QPixmap(":/backgrounds/BlackOnWhite.png")),
     transparent(transparency),
-    sourceCodeUrl(surl) {
+    sourceCodeUrl(surl),
+    currentDisplayMode(acceleration) {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
     isUsingTFT28LCD = qwsDisplay.contains("/dev/fb-st7789s");
     tft28LCDThread = NULL;
@@ -298,8 +299,18 @@ void TMainWidget::onKeepAlive() {
     update();
 }
 
+void TMainWidget::drawAccelerationScreen(QPainter &p) {
+
+}
+
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
+
+    switch (currentDisplayMode) {
+    case acceleration:
+        drawAccelerationScreen(p);
+        return;
+    }
 
     int space = 3;
     int itemHeight = 20;

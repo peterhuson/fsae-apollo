@@ -44,6 +44,14 @@ private:
     void customEvent(QEvent *);
 
 private:
+    enum DisplayMode {
+        acceleration,
+        debug,
+        default
+    }
+    DisplayMode currentDisplayMode;
+    void drawAccelerationScreen(QPainter &p);
+
     QTimer *mpKeepAliveTimer;
     QString loadAvg;
     QString currentCPUTemp;
