@@ -313,7 +313,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int smallHeight = 20;
 
     p.setPen(QPen(QColor(0, 0, 0)));
-    p.setFont(QFont("Courier",11, QFont::Bold));
+    p.setFont(QFont("Courier",10, QFont::Bold));
 
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
@@ -328,13 +328,13 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
                QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(
         space * 50, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
-    p.drawText(space * 120,
+    p.drawText(space * 100,
                smallHeight * 23,
                width() - space * 2,
                smallHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
                QString("LoadAvg: %1").arg(loadAvg));
-    p.drawText(space * 180, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
+    p.drawText(space * 170, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
     p.drawText(5, smallHeight * 23, width() - space * 9, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
 
     int rightborder = 30;
