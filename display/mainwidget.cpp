@@ -322,7 +322,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int rightborder = 15;
 
     int valuespacing = height() / 3 - 20;
-    int rightcolX = width()/2 - rightborder;
+    int rightcolX = width()/2 + rightborder;
     int leftcolX = rightborder;
     int itemWidth = (width() / 2) - rightborder * 2;
     int itemHeight = valuespacing;
