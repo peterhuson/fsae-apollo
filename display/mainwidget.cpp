@@ -354,12 +354,11 @@ void TMainWidget::paintEvent(QPaintEvent *)
 
 //// 6 Main Number items on dash
 
-    int blockHeight = 60;
-    int sideBorder = 40;
-    int fieldWidth = 180;
+    int blockHeight = 40;
+    int sideBorder = 30;
+    int fieldWidth = 190;
 
-    p.drawText(sideBorder + 120,blockHeight*10,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,vbaT);
-    p.setFont(QFont("Arial",35));
+    p.setFont(QFont("Arial",45));
 
     p.drawText(sideBorder,blockHeight*2+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,rpM_);
     p.drawText(sideBorder,blockHeight*5+15,fieldWidth,blockHeight,Qt::AlignCenter | Qt::AlignVCenter,ctmP);
