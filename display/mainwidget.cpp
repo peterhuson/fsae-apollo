@@ -403,95 +403,12 @@ void TMainWidget::paintEvent(QPaintEvent *) {
 
     switch (currentDisplayMode) {
     case acceleration:
-        drawAccelerationScreen(p);
+        drawEnduranceScreen(p);
         return;
     default:
         drawDebugScreen(p);
         return;
         break;
-    }
-
-    int space = 3;
-    int itemWidth = (width() - space * 2) * 2;
-    int itemHeight = 40;
-
-    if (!transparent) {
-        p.fillRect(0, 0, width(), height(), QBrush(QColor(0, 0, 0)));
-        p.drawPixmap(0, 0, width(), height(), bg);
-    }
-
-    QString ip = eth0IP;
-    if (ip == "0.0.0.0") {
-        ip = wlan0IP;
-    }
-
-    p.setPen(QPen(QColor(0, 0, 0)));
-    p.drawText(space,
-               itemHeight * 23,
-               width() - space * 2,
-               itemHeight,
-               Qt::AlignLeft | Qt::AlignVCenter,
-               QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
-    p.drawText(
-        space * 50, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
-    p.drawText(space * 120,
-               itemHeight * 23,
-               width() - space * 2,
-               itemHeight,
-               Qt::AlignLeft | Qt::AlignVCenter,
-               QString("LoadAvg: %1").arg(loadAvg));
-    p.drawText(space * 180, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
-
-    // p.drawText(0,itemHeight*8,width()-space*9,itemHeight + 30,Qt::AlignRight | Qt::AlignVCenter,QString("Memory: %1").arg(usageInfo));
-    p.drawText(5, itemHeight * 23, width() - space * 9, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
-
-    //// 6 Main Number items on dash
-
-    int blockHeight = 40;
-    int sideBorder = 30;
-    int fieldWidth = 190;
-
-    p.drawText(sideBorder + 120, blockHeight * 10, fieldWidth, blockHeight, Qt::AlignCenter | Qt::AlignVCenter, vbaT);
-    p.setFont(QFont("Arial", 35));
-
-    p.drawText(sideBorder, blockHeight * 2 + 15, fieldWidth, blockHeight, Qt::AlignCenter | Qt::AlignVCenter, rpM_);
-    p.drawText(sideBorder, blockHeight * 5 + 15, fieldWidth, blockHeight, Qt::AlignCenter | Qt::AlignVCenter, ctmP);
-    p.drawText(sideBorder, blockHeight * 8 + 20, fieldWidth, blockHeight, Qt::AlignCenter | Qt::AlignVCenter, QString(lamB));
-
-    p.drawText(sideBorder, blockHeight * 2 + 15, width() - fieldWidth + 50, blockHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
-
-    // Voltage in 2nd right position
-    p.drawText(sideBorder, blockHeight * 5 + 15, width() - fieldWidth + 50, blockHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
-
-    // p.drawText(sideBorder,blockHeight*5+15,width()-fieldWidth+50,blockHeight,Qt::AlignRight | Qt::AlignVCenter,tpS_);
-    p.drawText(sideBorder, blockHeight * 8 + 20, width() - fieldWidth + 50, blockHeight, Qt::AlignRight | Qt::AlignVCenter, tpS_);
-
-    p.setFont(QFont("Arial", 150));
-    p.drawText(220, blockHeight * 3, 360, 300, Qt::AlignCenter | Qt::AlignVCenter, rspD);
-
-    if (1) {
-        const int keyCount = sizeof(progresses) / sizeof(int);
-        const int maxProgressBarWidth = width() - 20;
-        const int space = 5;
-        const int progressBarX = 10;
-        const int progressBarHeight = 20;
-
-        int progressBarY = height() - progressBarHeight * keyCount - space * (keyCount - 1);
-        for (unsigned int i = 0; i < sizeof(progresses) / sizeof(int); i++) {
-            int progressBarWidth = int(maxProgressBarWidth * (progresses[i] / 100.0));
-            QRect rect(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
-            if (i == 0) {
-                p.setBrush(QColor(255, 0, 0));
-            } else if (i == 1) {
-                p.setBrush(QColor(0, 255, 0));
-            } else if (i == 2) {
-                p.setBrush(QColor(0, 0, 255));
-            } else {
-                p.setBrush(QColor(255, 0, 255));
-            }
-            p.drawRect(rect);
-            progressBarY += progressBarHeight + space;
-        }
     }
 }
 
