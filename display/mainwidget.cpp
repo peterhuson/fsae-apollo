@@ -346,25 +346,25 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     if (ip == "0.0.0.0") {
         ip = wlan0IP;
     }
-    int smallHeight = 20;
+    int tinyHeight = 20;
     int space = 3;
     p.setFont(QFont("Courier",11, QFont::Bold));
     p.drawText(space,
-               smallHeight * 23,
+               tinyHeight * 23,
                width() - space * 2,
-               smallHeight,
+               tinyHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
                QString("CPU:%1/T%2C").arg(freqStr).arg(currentCPUTemp));
     p.drawText(
-        space * 52, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
+        space * 52, tinyHeight * 23, width() - space * 2, tinyHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
     p.drawText(space * 120,
-               smallHeight * 23,
+               tinyHeight * 23,
                width() - space * 2,
-               smallHeight,
+               tinyHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
                QString("Load:%1").arg(loadAvg));
-    p.drawText(space * 180, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("%1").arg(ip));
-    p.drawText(5, smallHeight * 23, width() - space * 9, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
+    p.drawText(space * 180, tinyHeight * 23, width() - space * 2, tinyHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("%1").arg(ip));
+    p.drawText(5, tinyHeight * 23, width() - space * 9, tinyHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
