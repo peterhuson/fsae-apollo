@@ -389,7 +389,7 @@ void TMainWidget::drawEnduranceScreen(QPainter &p) {
     p.setFont(QFont("Courier",170, QFont::Bold));
     p.drawText(40, 80, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rspD);
     p.drawText(40, 250, 720, 170, Qt::AlignRight | Qt::AlignVCenter, ctmP);
-    p.drawText(40, 420, 720, 170, Qt::AlignRight | Qt::AlignVCenter, oilPre);
+    p.drawText(40, 420, 720, 170, Qt::AlignRight | Qt::AlignVCenter, oilP);
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
