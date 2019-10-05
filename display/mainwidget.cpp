@@ -327,8 +327,8 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
                Qt::AlignLeft | Qt::AlignVCenter,
                QString("CPU:%1/T%2C").arg(freqStr).arg(currentCPUTemp));
     p.drawText(
-        space * 50, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
-    p.drawText(space * 110,
+        space * 52, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
+    p.drawText(space * 120,
                smallHeight * 23,
                width() - space * 2,
                smallHeight,
