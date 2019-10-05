@@ -319,6 +319,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
 
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
+    return;
 
     switch (currentDisplayMode) {
     case acceleration:
