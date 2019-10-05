@@ -337,7 +337,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(space * 170, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
     p.drawText(5, smallHeight * 23, width() - space * 9, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
 
-    int rightborder = 20;
+    int rightborder = 15;
 
     int valuespacing = height() / 3;
     int rightcolX = width()/2 - rightborder;
@@ -345,14 +345,15 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int itemWidth = (width() / 2) - rightborder * 2;
     int itemHeight = valuespacing;
 
-    p.setFont(QFont("Courier",130, QFont::Bold));
+    p.setFont(QFont("Courier",120, QFont::Bold));
     p.drawText(leftcolX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, ctmP);
     p.drawText(leftcolX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, oilP);
     p.drawText(rightcolX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, lamB);
 
     int bigborder = 100;
-    p.drawText(bigborder, valuespacing * 0, width() - bigborder, valuespacing, Qt::AlignRight | Qt::AlignVCenter, rpM_);
+    p.setFont(QFont("Courier",130, QFont::Bold));
+    p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, valuespacing, Qt::AlignRight | Qt::AlignVCenter, rpM_);
 
 }
 
