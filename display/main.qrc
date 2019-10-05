@@ -1,9 +1,5 @@
 <RCC>
     <qresource prefix="/">
-	<file>bg.png</file>
-	<file>backgrounds/screen1.png</file>
-	<file>backgrounds/thompsonscreenhappiness.png</file>
-	<file>backgrounds/CompetitionRaceTemplate.png</file>
 	<file>backgrounds/BlackOnWhite.png</file>
     </qresource>
 </RCC>
