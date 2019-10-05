@@ -298,9 +298,13 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.drawPixmap(0, 0, width(), height(), bg);
     p.setPen(QPen(QColor(255, 255, 255)));    
 
+    int smallHeight = 20;
+    p.setFont(QFont("Courier",20, QFont::Bold));
+    p.drawText(380, 300, 50, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
+
+
     int valuespacing = height() / 2;
     int itemHeight = valuespacing;
-
     int bigborder = 80;
     p.setFont(QFont("Courier",170, QFont::Bold));
     p.drawText(0, valuespacing * 0, width() - bigborder * 1, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
@@ -360,7 +364,6 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
 
-    printf("rspd: %f", rspD.toFloat());
     if (rspD.toFloat() > 5.f){
         currentDisplayMode = acceleration;
     } else {
