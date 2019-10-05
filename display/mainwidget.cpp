@@ -294,17 +294,16 @@ void TMainWidget::onKeepAlive() {
 }
 
 void TMainWidget::drawAccelerationScreen(QPainter &p) {
-    p.fillRect(0, 0, width(), height(), QBrush(QColor(255, 255, 0)));
-    int space = 3;
-    int itemHeight = 20;
+    p.fillRect(0, 0, width(), height(), QBrush(QColor(200, 255, 200)));
+    p.setPen(QPen(QColor(0, 0, 0)));    
 
-    p.setPen(QPen(QColor(0, 0, 0)));
-    p.drawText(space,
-               itemHeight * 23,
-               width() - space * 2,
-               itemHeight,
-               Qt::AlignLeft | Qt::AlignVCenter,
-               QString("HELLO"));
+    int valuespacing = height() / 2;
+    int itemHeight = valuespacing;
+
+    int bigborder = 80;
+    p.setFont(QFont("Courier",150, QFont::Bold));
+    p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
+    p.drawText(bigborder, valuespacing * 1, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rspD);
 }
 
 void TMainWidget::drawDebugScreen(QPainter &p) {
@@ -313,7 +312,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int smallHeight = 20;
 
     p.setPen(QPen(QColor(0, 0, 0)));
-    p.setFont(QFont("Gotham",11, QFont::Bold));
+    p.setFont(QFont("Courier",11, QFont::Bold));
 
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
@@ -345,7 +344,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int itemWidth = (width() / 2) - rightborder * 2;
     int itemHeight = valuespacing;
 
-    p.setFont(QFont("Source",110, QFont::Bold));
+    p.setFont(QFont("Courier",110, QFont::Bold));
     p.drawText(leftcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, ctmP);
     p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
@@ -359,6 +358,12 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
 
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
+
+    if (rspD >= 5){
+        currentDisplayMode(acceleration);
+    } else {
+        currentDisplayMode(debug);
+    }
 
     switch (currentDisplayMode) {
     case acceleration:

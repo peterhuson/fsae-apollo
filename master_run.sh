@@ -6,7 +6,7 @@ export ROTATION=90
 screen -dm -S qtscreen /root/fsae-apollo/build/QtE-Demo -qws 
 
 ### Run LEDs 
-screen -dm -S master_py python /root/fsae-apollo/hardware/master.py
+screen -dm -S master_py python -i /root/fsae-apollo/hardware/master.py
 
 ### Run Serial Can Bus adapter
 # screen -S canbus 
