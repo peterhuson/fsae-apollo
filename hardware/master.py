@@ -61,14 +61,14 @@ class Master:
 
     def fake_data(self):
         ### Show some fake data to excersize the screen ###
-        self.parse_data("l700:100\n") # ctmp
-        self.parse_data("h700:134\n") # oilp (pascals)
-        self.parse_data("l701:13.4\n") # vbat
-        self.parse_data("h701:0.9\n") # lambda
+        self.parse_data("l700:55.69\n") # ctmp
+        self.parse_data("h700:3000\n") # oilp (pascals)
+        self.parse_data("l701:11.9\n") # vbat
+        self.parse_data("h701:1.1\n") # lambda
         self.parse_data("l702:0\n") # RPM 
         self.parse_data("h702:10\n") # TPS
         self.parse_data("l703:95\n") # lspd
-        self.parse_data("h703:100\n") # rspd
+        self.parse_data("h703:82\n") # rspd
         self.parse_data("l704:9.814\n") #accy
         self.parse_data("h704:0.08\n") #accz
 
