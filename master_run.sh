@@ -1,3 +1,4 @@
+killall screen
 
 ### Display Run Qt App
 export ROTATION=90
