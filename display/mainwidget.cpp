@@ -301,9 +301,9 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     int itemHeight = valuespacing;
 
     int bigborder = 80;
-    p.setFont(QFont("Courier",150, QFont::Bold));
+    p.setFont(QFont("Courier",170, QFont::Bold));
     p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
-    p.drawText(bigborder, valuespacing * 1, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rspD);
+    p.drawText(bigborder, valuespacing * 1, width() - bigborder * 6, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rspD);
 }
 
 void TMainWidget::drawDebugScreen(QPainter &p) {
@@ -359,7 +359,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
 
-    if (rspD >= 5){
+    if (rspD >= 3){
         currentDisplayMode = acceleration;
     } else {
         currentDisplayMode = debug;
