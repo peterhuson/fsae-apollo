@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
 	<file>backgrounds/BlackOnWhite.png</file>
+	<file>backgrounds/blueno.png</file>
     </qresource>
 </RCC>

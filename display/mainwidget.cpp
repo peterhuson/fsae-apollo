@@ -37,7 +37,7 @@ int rv;
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString &surl) :
     QWidget(parent),
     currentDisplayMode(debug), // `debug`, `acceleration`, and `regular` enum
-    bg(QPixmap(":/backgrounds/BlackOnWhite.png")),
+    bg(QPixmap(":/backgrounds/blueno.png")),
     transparent(transparency),
     sourceCodeUrl(surl) {
     const QString qwsDisplay = QString(qgetenv("QWS_DISPLAY"));
@@ -295,15 +295,16 @@ void TMainWidget::onKeepAlive() {
 
 void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.fillRect(0, 0, width(), height(), QBrush(QColor(200, 255, 200)));
-    p.setPen(QPen(QColor(0, 0, 0)));    
+    p.drawPixmap(0, 0, width(), height(), bg);
+    p.setPen(QPen(QColor(255, 255, 255)));    
 
     int valuespacing = height() / 2;
     int itemHeight = valuespacing;
 
     int bigborder = 80;
     p.setFont(QFont("Courier",170, QFont::Bold));
-    p.drawText(bigborder, valuespacing * 0, width() - bigborder * 2, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
-    p.drawText(bigborder, valuespacing * 1, width() - bigborder * 6, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rspD);
+    p.drawText(0, valuespacing * 0, width() - bigborder * 1, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rpM_);
+    p.drawText(bigborder, valuespacing * 1, width() - bigborder * 4, itemHeight, Qt::AlignRight | Qt::AlignVCenter, rspD);
 }
 
 void TMainWidget::drawDebugScreen(QPainter &p) {
@@ -359,7 +360,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
 
-    if (rspD >= 3){
+    if (rspD >= 5){
         currentDisplayMode = acceleration;
     } else {
         currentDisplayMode = debug;
