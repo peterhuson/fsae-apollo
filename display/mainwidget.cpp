@@ -300,14 +300,9 @@ void TMainWidget::onKeepAlive() {
 }
 
 void TMainWidget::drawAccelerationScreen(QPainter &p) {
-    p.fillRect(0, 0, width(), height(), QBrush(QColor(255, 0, 0)));
+    p.fillRect(0, 0, width(), height(), QBrush(QColor(255, 255, 0)));
     int space = 3;
     int itemHeight = 20;
-
-    if (!transparent) {
-        p.fillRect(0, 0, width(), height(), QBrush(QColor(0, 0, 0)));
-        p.drawPixmap(0, 0, width(), height(), bg);
-    }
 
     p.setPen(QPen(QColor(0, 0, 0)));
     p.drawText(space,
@@ -320,8 +315,6 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
 
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
-    p.fillRect(0, 0, width(), height(), QBrush(QColor(255, 0, 0)));
-    return;
 
     switch (currentDisplayMode) {
     case acceleration:
