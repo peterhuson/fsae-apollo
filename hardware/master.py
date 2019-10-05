@@ -46,7 +46,8 @@ class Master:
 
         self.serial_port = s.Serial('/dev/ttyAMA3', 115200, timeout=1) # Serial Baud rate from Arduino is 115200
         print("Got serial from Arduino")
-        if (self.serial_port.inWaiting()>0): #if incoming bytes are waiting to be read from the serial input buffer
+        time.sleep(0.1)
+        if (self.serial_port.inWaiting() > 0): #if incoming bytes are waiting to be read from the serial input buffer
             pass
         else: 
             self.fake_data()
@@ -80,11 +81,11 @@ class Master:
             self.parse_data("l702:" + str(rpm * 10) + "\n")
 
         for lspd in range(100, 0, -2):
-            time.sleep(0.12)
+            time.sleep(0.01)
             print(lspd)
             self.parse_data("h703:" + str(lspd) + "\n")
 
-        self.parse_data("h703:6\n")
+        self.parse_data("h703:0\n")
 
     def parse_data(self, data_str):
         last_rpm = 0.
