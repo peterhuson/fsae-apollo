@@ -43,6 +43,7 @@ private:
     void customEvent(QEvent *);
     void drawAccelerationScreen(QPainter &p);
     void drawDebugScreen(QPainter &p);
+    void drawEnduranceScreen(QPainter &p);
 
 private:
     enum DisplayMode {
