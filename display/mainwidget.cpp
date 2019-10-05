@@ -16,7 +16,11 @@
 // http://www.gnu.org/licenses/gpl-2.0.html.
 
 #include "mainwidget.h"
-
+#include "util.h"
+#include "sys/sysinfo.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "boardtype_friendlyelec.h"
 #include "sys/sysinfo.h"
 #include "util.h"
@@ -32,7 +36,7 @@ int rv;
 
 TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString &surl) :
     QWidget(parent),
-    currentDisplayMode(acceleration),
+    currentDisplayMode(debug), // `debug`, `acceleration`, and `regular` enum
     bg(QPixmap(":/backgrounds/BlackOnWhite.png")),
     transparent(transparency),
     sourceCodeUrl(surl) {
@@ -303,6 +307,39 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
                QString("HELLO"));
 }
 
+void TMainWidget::drawDebugScreen(QPainter &p) {
+    p.fillRect(0, 0, width(), height(), QBrush(QColor(100, 100, 100)));
+    int space = 3;
+    int itemHeight = 20;
+
+    p.setPen(QPen(QColor(0, 0, 0)));
+    p.setFont(QFont("Courier",9, QFont::Bold));
+
+    QString ip = eth0IP;
+    if (ip == "0.0.0.0") {
+        ip = wlan0IP;
+    }
+
+    p.setPen(QPen(QColor(0, 0, 0)));
+    p.drawText(space,
+               itemHeight * 23,
+               width() - space * 2,
+               itemHeight,
+               Qt::AlignLeft | Qt::AlignVCenter,
+               QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
+    p.drawText(
+        space * 50, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
+    p.drawText(space * 120,
+               itemHeight * 23,
+               width() - space * 2,
+               itemHeight,
+               Qt::AlignLeft | Qt::AlignVCenter,
+               QString("LoadAvg: %1").arg(loadAvg));
+    p.drawText(space * 180, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
+    p.drawText(5, itemHeight * 23, width() - space * 9, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
+
+}
+
 void TMainWidget::paintEvent(QPaintEvent *) {
     QPainter p(this);
 
@@ -311,11 +348,14 @@ void TMainWidget::paintEvent(QPaintEvent *) {
         drawAccelerationScreen(p);
         return;
     default:
+        drawDebugScreen(p);
+        return;
         break;
     }
 
     int space = 3;
-    int itemHeight = 20;
+    int itemWidth = (width() - space * 2) * 2;
+    int itemHeight = 40;
 
     if (!transparent) {
         p.fillRect(0, 0, width(), height(), QBrush(QColor(0, 0, 0)));
@@ -351,7 +391,7 @@ void TMainWidget::paintEvent(QPaintEvent *) {
 
     int blockHeight = 40;
     int sideBorder = 30;
-    int fieldWidth = 160;
+    int fieldWidth = 190;
 
     p.drawText(sideBorder + 120, blockHeight * 10, fieldWidth, blockHeight, Qt::AlignCenter | Qt::AlignVCenter, vbaT);
     p.setFont(QFont("Arial", 35));
