@@ -308,19 +308,18 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
 }
 
 void TMainWidget::drawDebugScreen(QPainter &p) {
-    p.fillRect(0, 0, width(), height(), QBrush(QColor(100, 100, 100)));
+    p.fillRect(0, 0, width(), height(), QBrush(QColor(255, 255, 255)));
     int space = 3;
     int itemHeight = 20;
 
     p.setPen(QPen(QColor(0, 0, 0)));
-    p.setFont(QFont("Courier",9, QFont::Bold));
+    p.setFont(QFont("Courier",11, QFont::Bold));
 
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
         ip = wlan0IP;
     }
 
-    p.setPen(QPen(QColor(0, 0, 0)));
     p.drawText(space,
                itemHeight * 23,
                width() - space * 2,
@@ -338,6 +337,16 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(space * 180, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
     p.drawText(5, itemHeight * 23, width() - space * 9, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
 
+    int rightborder = 30;
+
+    // int itemWidth = (width() - space * 2) * 2;
+    int valuespacing = height() / 4;
+    int rightX = width() - rightborder;
+
+    p.setFont(QFont("Courier",70, QFont::Bold));
+    p.drawText(rightX, valuespacing * 1, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(rightX, valuespacing * 2, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(rightX, valuespacing * 3, Qt::AlignRight | Qt::AlignVCenter, vbaT);
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
