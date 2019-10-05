@@ -340,14 +340,14 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int rightborder = 30;
 
     int valuespacing = height() / 4;
-    int rightX = width() - rightborder;
+    int leftX = width()/2 - rightborder;
     int itemWidth = (width() / 2) - rightborder;
     int itemHeight = valuespacing;
 
     p.setFont(QFont("Courier",70, QFont::Bold));
-    p.drawText(*rightX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
-    p.drawText(*rightX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
-    p.drawText(*rightX, valuespacing * 3, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(leftX, valuespacing * 1, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(leftX, valuespacing * 2, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
+    p.drawText(leftX, valuespacing * 3, itemWidth, valuespacing, Qt::AlignRight | Qt::AlignVCenter, vbaT);
 }
 
 void TMainWidget::paintEvent(QPaintEvent *) {
