@@ -313,7 +313,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int smallHeight = 20;
 
     p.setPen(QPen(QColor(0, 0, 0)));
-    p.setFont(QFont("Courier",11, QFont::Bold));
+    p.setFont(QFont("Gotham",11, QFont::Bold));
 
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
@@ -345,7 +345,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     int itemWidth = (width() / 2) - rightborder * 2;
     int itemHeight = valuespacing;
 
-    p.setFont(QFont("Courier",110, QFont::Bold));
+    p.setFont(QFont("Gotham",110, QFont::Bold));
     p.drawText(leftcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, ctmP);
     p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
