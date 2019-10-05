@@ -310,7 +310,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
 void TMainWidget::drawDebugScreen(QPainter &p) {
     p.fillRect(0, 0, width(), height(), QBrush(QColor(255, 255, 255)));
     int space = 3;
-    int itemHeight = 20;
+    int smallHeight = 20;
 
     p.setPen(QPen(QColor(0, 0, 0)));
     p.setFont(QFont("Courier",11, QFont::Bold));
@@ -321,21 +321,21 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     }
 
     p.drawText(space,
-               itemHeight * 23,
+               smallHeight * 23,
                width() - space * 2,
-               itemHeight,
+               smallHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
                QString("CPU: %1/T%2").arg(freqStr).arg(currentCPUTemp));
     p.drawText(
-        space * 50, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
+        space * 50, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("Memory: %1").arg(memInfo));
     p.drawText(space * 120,
-               itemHeight * 23,
+               smallHeight * 23,
                width() - space * 2,
-               itemHeight,
+               smallHeight,
                Qt::AlignLeft | Qt::AlignVCenter,
                QString("LoadAvg: %1").arg(loadAvg));
-    p.drawText(space * 180, itemHeight * 23, width() - space * 2, itemHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
-    p.drawText(5, itemHeight * 23, width() - space * 9, itemHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
+    p.drawText(space * 180, smallHeight * 23, width() - space * 2, smallHeight, Qt::AlignLeft | Qt::AlignVCenter, QString("IP: %1").arg(ip));
+    p.drawText(5, smallHeight * 23, width() - space * 9, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("t=%1").arg(timeSinceStart));
 
     int rightborder = 30;
 
