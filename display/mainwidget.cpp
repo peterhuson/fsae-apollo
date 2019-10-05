@@ -52,12 +52,6 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString &surl
     QObject::connect(mpKeepAliveTimer, SIGNAL(timeout()), this, SLOT(onKeepAlive()));
     mpKeepAliveTimer->start(35);
 
-    quitButton = new QPushButton("<< Quit", this);
-    connect(quitButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
-
-    qtdemoButton = new QPushButton("Start Qt Demo >>", this);
-    connect(qtdemoButton, SIGNAL(clicked()), this, SLOT(qtdemoButtonClicked()));
-
     gettimeofday(&startTime, NULL);
 
     // FIFO file path
@@ -66,10 +60,6 @@ TMainWidget::TMainWidget(QWidget *parent, bool transparency, const QString &surl
     fd1 = open(myfifo, O_RDONLY);
     timeout.tv_sec = 0;
     timeout.tv_usec = 4000;
-}
-
-void TMainWidget::qtdemoButtonClicked() {
-    // Do nothing.
 }
 
 void TMainWidget::resizeEvent(QResizeEvent *) {
