@@ -408,7 +408,7 @@ void TMainWidget::paintEvent(QPaintEvent *) {
 
     switch (currentDisplayMode) {
     case acceleration:
-        drawEnduranceScreen(p);
+        drawAccelerationScreen(p);
         return;
     default:
         drawDebugScreen(p);
