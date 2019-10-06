@@ -85,7 +85,7 @@ class Master:
             print(lspd)
             self.parse_data("h703:" + str(lspd) + "\n")
 
-        self.parse_data("h703:6\n")
+        self.parse_data("h703:3\n")
 
     def parse_data(self, data_str):
         last_rpm = 0.
