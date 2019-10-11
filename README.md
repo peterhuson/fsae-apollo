@@ -5,21 +5,21 @@ This project contains the Brown FSAE Driver Feedback Project.
 ## Project Structure
 
 ```
-fsae-apollo/
-│   master_run.sh  
+fsae-apollo/            
+│   master_run.sh               # Instantiates screens for both the display code and the data parsing code 
 │
-└───hardware
-│   │   leds.py
-│   │   master.py
-│   │   params.py
-│   └───arduino/canbus_middleman
-│   │   │   canbus_middleman.ino
+└───hardware                    # 
+│   │   leds.py                 # LED Class
+│   │   master.py               # Parses data, sends colors to LEDs, sends data to display
+│   │   params.py               # Parameters
+│   └───arduino/canbus_middleman        # 
+│   │   │   canbus_middleman.ino        # Interprets CANBUS data and sends it over the serial line
 │
-└───display
-│   │   main.qrc
-│   │   mainwidget.cpp
+└───display                     # Lots of random files that handle the display code. 
+│   │   main.qrc                # We should triage this to figure out what we actually need
+│   │   mainwidget.cpp          
 │   │   mainwidget.h
-│   └───backgrounds
+│   └───backgrounds             # Image files for the display
 ```
 
 ## Compile Qt 
