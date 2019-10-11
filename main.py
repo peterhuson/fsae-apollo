@@ -4,24 +4,37 @@ from display.screen import ScreenController
 import argparse
 
 
-def runDataReceiving():
-    pass
+def run_data_receiving(pipe_sender, use_test_data):
+    ...
 
 
-def runDisplay():
-    pass
+def run_display(pipe_reader, num_leds, data_pin, clock_pin):
+
+    screen = ScreenController()
+    leds = LEDController(..., ..., ...)
+    # TODO: run led initialization sequence
+
+    while True:
+        data = pipe_reader.recv()  # blocks until there's data to receive
+        leds.display_rpm(data["rpm"])
 
 
-def runSteeringWheel():
+def run_driver_screen():
+    settings = parse_args()
+
+    reader, writer = Pipe(duplex=False)
+
     # create process for display and data reception
-    dataReceiving = Process(target=runDataReceiving())
-    display = Process(target=runDisplay)
+    data_receiving = Process(target=run_data_receiving,
+                             args=(writer, settings.debug_data))
+    display = Process(target=run_display,
+                      args=(reader, settings.num_leds, settings.data_pin, settings.clock_pin))
 
-    dataReceiving.start()
+    data_receiving.start()
     display.start()
     
-    # don't finish while dataReceiving and display are running
-    dataReceiving.join()
+    # don't finish while data_receiving and display are running
+    data_receiving.join()
     display.join()
 
     # close out the pipe once the processes are done
@@ -70,4 +83,4 @@ def parse_args():
 
 
 if __name__ == "__main__":
-    runSteeringWheel()
+    run_driver_screen()
