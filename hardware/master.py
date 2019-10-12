@@ -8,18 +8,6 @@ class Master:
         self.l = LEDs()
         print("got an LED handler!")
 
-        # self.serial_port = s.Serial('/dev/ttyAMA3', 9600, timeout=1) # Default Serial Baud rate is 9600
-        # self.serial_port.write(b'+++')
-        # ret = self.serial_port.readline()
-        # print(ret)
-        # # self.serial_port.write(b'AT+C=18\n') # Set CanBus rate to 1Mb/s
-        # self.serial_port.write(b'AT+C=13\n') # Set CanBus rate to 125Kb/s
-        # ret = self.serial_port.readline()
-        # print(ret)
-        # self.serial_port.write(b'AT+Q\n')
-        # ret = self.serial_port.readline()
-        # print(ret)
-
         try:
             self.run()
         except KeyboardInterrupt:
