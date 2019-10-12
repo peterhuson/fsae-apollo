@@ -1,6 +1,4 @@
-from pint import UnitRegistry
-
-units = UnitRegistry()
+from dataTransfer.dataProcessing import units
 
 # Car constants
 WHEEL_RADIUS = 8 * units.inch
