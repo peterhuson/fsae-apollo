@@ -1,22 +1,29 @@
 from multiprocessing import Process, Pipe
-from display.leds import LEDController
-from display.screen import ScreenController
 import argparse
+from display.leds import LEDController
+from display.screen import ScreenController, modes
+from dataTransfer.dataReceiving import DataReader, SerialDataReader, StubDataReader
 
 
 def run_data_receiving(pipe_sender, use_test_data):
-    ...
-
-
-def run_display(pipe_reader, num_leds, data_pin, clock_pin):
-
-    screen = ScreenController()
-    leds = LEDController(..., ..., ...)
-    # TODO: run led initialization sequence
+    data_receiver: DataReader = StubDataReader() if use_test_data else SerialDataReader()
 
     while True:
-        data = pipe_reader.recv()  # blocks until there's data to receive
+        data = data_receiver.get_data()
+        pipe_sender.send(data)
+
+
+def run_display(pipe_reader, num_leds):
+
+    screen = ScreenController(modes)
+    leds = LEDController(num_leds)
+    leds.run_startup()
+
+    while True:
+        data = pipe_reader.recv()  # waits until there's data to receive
         leds.display_rpm(data["rpm"])
+
+        screen.display_data(data)
 
 
 def run_driver_screen():
@@ -28,7 +35,7 @@ def run_driver_screen():
     data_receiving = Process(target=run_data_receiving,
                              args=(writer, settings.debug_data))
     display = Process(target=run_display,
-                      args=(reader, settings.num_leds, settings.data_pin, settings.clock_pin))
+                      args=(reader, settings.num_leds))
 
     data_receiving.start()
     display.start()
@@ -66,20 +73,13 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
     # Parse number of LEDs
-    parser.add_argument("num_leds", type=check_valid_num_leds,
+    parser.add_argument("--num-leds", type=check_valid_num_leds, default=13,
                         help="Number of LEDs for the rpm indicator")
-    # Parse pin numbers for LED strip
-    pin_group = parser.add_argument_group("pinGroup")
-    pin_group.add_argument("data_pin", type=check_valid_pin,
-                           help="The pin where the data channel (MOSI) is plugged in")
-    pin_group.add_argument("clock_pin", type=check_valid_pin,
-                           help="The pin where the serial clock channel (SCLK) is plugged in")
     # Optional flag to use stub data source
     parser.add_argument("--debug-data", action="store_true")
 
     # Actually parse the data
     return parser.parse_args()
-
 
 
 if __name__ == "__main__":
