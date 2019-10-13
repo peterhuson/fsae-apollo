@@ -1,4 +1,5 @@
 # Run steering wheel
-# args: numLEDs, dataPin (MOSI), clockPin (SCLK)
-# optional: use debug data?
-python3 main.py 13 10 11 --debug-data
+
+# args: numLEDs, optional use debug data?
+# pipe logs to log file
+python3 main.py 13 --debug-data > "logs/$(date +"%FT%H%M").log"

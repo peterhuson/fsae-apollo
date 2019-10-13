@@ -1,3 +1,4 @@
 typing==3.7.4
+colorama==0.3.9
 Pint==0.9
 pyserial==3.4
