@@ -1,0 +1,8 @@
+venv*
+/build
+/.vscode
+*.pyc
+*.sw*
+*.o
+
+.DS_Store
