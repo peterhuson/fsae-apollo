@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any
+from typing import List, Dict
 from serial import Serial
-from dataTransfer.dataProcessing import parse_data
+from dataTransfer.dataProcessing import parse_data, units
 
 
 # General class data readers should implement
@@ -19,7 +19,7 @@ class SerialDataReader(DataReader):
     def get_raw_data(self) -> List[bytes]:
         return self.serial_port.readlines()
 
-    def get_parsed_data(self) -> Dict[str, Any]:
+    def get_data(self) -> Dict[str, units.Quantity]:
         return parse_data(self.serial_port.readlines())
 
     def close(self) -> None:

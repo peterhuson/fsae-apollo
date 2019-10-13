@@ -1,4 +1,4 @@
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Tuple
 from pint import UnitRegistry
 
 units = UnitRegistry()
@@ -7,13 +7,13 @@ units.define("percent = 1e-2 frac = pct")
 
 
 # Maps serial key to value's name, datatype, and the units the value is in when coming in
-key_mapping: Dict[str, Tuple[str, type, Any]] = {
+key_mapping: Dict[str, Tuple[str, type, units.Quantity]] = {
     "l700": ("coolant_temp", float, units.celsius),
     "h700": ("oil_pressure", float, units.pascal),
     "l701": ("battery_voltage", float, units.volt),
-    "h701": ("lambda", float, units.fraction),  # TODO: figure out units for lambda sensor
+    "h701": ("lambda", float, units.fraction),
     "l702": ("rpm", float, units.radian),
-    "h702": ("throttle_pos", float, units.percent),
+    "h702": ("throttle_pos", float, units.fraction),
     "l703": ("wheel_speed_L", float, units.mph),
     "h703": ("wheel_speed_R", float, units.mph),
     "l704": ("acceleration_Y", float, units.meter / (units.second ** 2)),
@@ -21,7 +21,7 @@ key_mapping: Dict[str, Tuple[str, type, Any]] = {
 }
 
 
-def parse_data(raw_data: List[bytes]) -> Dict[str, Any]:
+def parse_data(raw_data: List[bytes]) -> Dict[str, units.Quantity]:
 
     parsed_values = {}
 
