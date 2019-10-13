@@ -3,6 +3,10 @@ from pint import UnitRegistry
 
 units = UnitRegistry()
 
+# Data pin constants
+DATA_PIN = 10  # MOSI pin (master out slave in)
+CLOCK_PIN = 11  # SCLK pin (serial clock)
+
 # LED display settings
 LED_MIN_RPM = 7000 * units.rpm  # smallest rpm to display on the LEDs
 SHIFT_RPM = 13000 * units.rpm  # rpm at which to turn on last LED
