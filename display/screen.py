@@ -1,13 +1,16 @@
+from typing import Set, Dict, Any
 
-modes = {}
+
+modes = set()
+
 
 class ScreenMode:
-    def __init__(self, name, template_file, value_positions):
+    def __init__(self, name: str, template_file: str, value_positions):
         self.name = name
         self.template_file = template_file
         self.value_positions = value_positions
 
-        modes[name] = self  # add the mode into the list of all modes
+        modes.add(self)  # add the mode into the list of all modes
 
     def fill_template(self, **values):
         # Check that all open positions are given by args (may give more values than needed)
@@ -18,16 +21,16 @@ class ScreenMode:
 
 
 class ScreenController:
-    def __init__(self, modes):
-        assert len(modes) > 0  # must be at least one screen mode
-        self.modes = modes
-        self.current_mode = modes[0]  # initialize screen to first mode
+    def __init__(self, screen_modes: Set[ScreenMode]) -> None:
+        assert len(screen_modes) > 0  # must be at least one screen mode
+        self.modes = screen_modes
+        self.current_mode = screen_modes[0]  # initialize screen to first mode
 
-    def set_mode(self, mode_name):
+    def set_mode(self, mode_name: str) -> ScreenMode:
         self.current_mode = next(filter(lambda m: m.name == mode_name, self.modes))
         return self.current_mode
 
-    def display_data(self, data):
+    def display_data(self, data: Dict[str, Any]) -> None:
         self.current_mode.display(data)
 
 
