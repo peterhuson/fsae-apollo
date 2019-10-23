@@ -304,7 +304,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.setFont(QFont("Courier",45, QFont::Bold));
     p.drawText(40, 20, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
     p.drawText(40, 420, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
-    p.drawText(40, 420, 360, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("GEAR"));
+    p.drawText(40, 420, 240, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("GEAR"));
     // p.drawText(470, 430, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
 
 
@@ -314,7 +314,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.setFont(QFont("Courier",170, QFont::Bold));
     p.drawText(40, 80, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rpM_);
     p.drawText(40, 250, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rspD);
-    p.drawText(40, 250, 360, 170, Qt::AlignRight | Qt::AlignVCenter, gear);
+    p.drawText(40, 250, 240, 170, Qt::AlignRight | Qt::AlignVCenter, gear);
 }
 
 void TMainWidget::drawDebugScreen(QPainter &p) {
