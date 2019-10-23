@@ -304,7 +304,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.setFont(QFont("Courier",45, QFont::Bold));
     p.drawText(40, 20, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
     p.drawText(40, 420, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
-    p.drawText(40, 20, 350, smallHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
+    p.drawText(40, 420, 360, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("GEAR"));
     // p.drawText(470, 430, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
 
 
@@ -314,6 +314,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.setFont(QFont("Courier",170, QFont::Bold));
     p.drawText(40, 80, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rpM_);
     p.drawText(40, 250, 720, 170, Qt::AlignRight | Qt::AlignVCenter, rspD);
+    p.drawText(40, 250, 360, 170, Qt::AlignRight | Qt::AlignVCenter, gear);
 }
 
 void TMainWidget::drawDebugScreen(QPainter &p) {
@@ -334,7 +335,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
     p.drawText(rightcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, lamB);
-    p.drawText(leftcolX, valuespacing * 0, 200, itemHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
+    p.drawText(leftcolX, valuespacing * 0, 100, itemHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
 
     int bigborder = 120;
     p.setFont(QFont("Courier",130, QFont::Bold));
@@ -348,7 +349,6 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(rightcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Oil psi"));
     p.drawText(rightcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Lambda"));
     p.drawText(leftcolX, valuespacing * 0 + 120, 100, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Gear"));
-
     
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {

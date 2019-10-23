@@ -85,7 +85,8 @@ class Master:
             print(lspd)
             self.parse_data("h703:" + str(lspd) + "\n")
 
-        self.parse_data("h703:3\n")
+        self.parse_data("h703:3\n") #rspd
+        self.parse_data("l704:0\n") #Gearpos
 
     def parse_data(self, data_str):
         last_rpm = 0.
