@@ -22,13 +22,13 @@ class LEDs:
         if RPM > p.REDLINE_RPM: # Flash Red
             self.setall(p.RED, p.BRIGHTNESS_PERCENTAGE + 50)
             return
-        elif RPM > p.LAST_LINE_RPM:
+        elif RPM > p.LAST_LINE_RPM: # Last middle light
             leds_to_change = np.copy(p.led_map)
             step = self.num_steps + 1 
             leds_to_change[p.led_map[:, 0] > step] = [0, 0, p.OFF]
 
             self.updateLeds(leds_to_change)
-        elif p.MIN_RPM <= RPM <= p.LAST_LINE_RPM:
+        elif p.MIN_RPM <= RPM <= p.LAST_LINE_RPM: # Above min_rpm but below final light
             leds_to_change = np.copy(p.led_map)
 
             step = (RPM - p.MIN_RPM) / self.step_width
@@ -75,40 +75,6 @@ class LEDs:
             self.setall(PURPLE, brightness)
             time.sleep(0.2)
 
-        # self.strip.set_pixel_rgb(0,RED)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(1,RED)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(2,RED)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(0,GREEN)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(1,GREEN)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(2,GREEN)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(0,OFF)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(1,OFF)
-        # self.strip.show()
-        # time.sleep(0.1)
-        # self.strip.set_pixel_rgb(2,OFF)
-        # self.strip.show()
-        # time.sleep(0.1)
-
-        print("rainbow test complete")
-
 if __name__ == '__main__':
-    #try:
     l = LEDs()
-    #except (KeyboardInterrupt, SystemExit):
-    # l.shutdown()
-    # sys.exit(0)
 
