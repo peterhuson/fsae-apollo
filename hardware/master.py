@@ -136,7 +136,7 @@ class Master:
                 os.write(self.fifo, "tps_:" + str(value) + "\n")
             elif(key == "l704:"):
                 print("gear: " + str(int(value)) + "\n")
-                os.write(self.fifo, "gear:" + int(value) + "\n")
+                os.write(self.fifo, "gear:" + str(int(value)) + "\n")
             elif(key == "h704:"):
                 # Up
                 value = round((value / p.GRAVITY), 2)
