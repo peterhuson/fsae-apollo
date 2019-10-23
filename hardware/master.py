@@ -117,7 +117,7 @@ class Master:
                 value = round(value, 1)
                 os.write(self.fifo, "lamb:" + str(value) + "\n")
             elif(key == "l703:"):
-                value = int(round(value, 0))
+                # value = int(round(value, 0))
                 # print("Sending {} to lspd".format(value))
                 os.write(self.fifo, "lspd:" + str(value) + "\n")
             elif(key == "h703:"):
@@ -135,8 +135,8 @@ class Master:
                 value = round(value, 0)
                 os.write(self.fifo, "tps_:" + str(value) + "\n")
             elif(key == "l704:"):
-                print("gear: " + str(value) + "\n")
-                os.write(self.fifo, "gear:" + str(value) + "\n")
+                print("gear: " + int(value) + "\n")
+                os.write(self.fifo, "gear:" + int(value) + "\n")
             elif(key == "h704:"):
                 # Up
                 value = round((value / p.GRAVITY), 2)

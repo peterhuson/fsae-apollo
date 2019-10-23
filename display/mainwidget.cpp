@@ -334,6 +334,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
     p.drawText(rightcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, lamB);
+    p.drawText(leftcolX, valuespacing * 0, 150, itemHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
 
     int bigborder = 120;
     p.setFont(QFont("Courier",130, QFont::Bold));
@@ -346,8 +347,8 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(leftcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Batt V"));
     p.drawText(rightcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Oil psi"));
     p.drawText(rightcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Lambda"));
+    p.drawText(leftcolX, valuespacing * 0 + 120, 100, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Gear"));
 
-    p.drawText(leftcolX, valuespacing * 1 + 120, 200, smallHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
     
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
