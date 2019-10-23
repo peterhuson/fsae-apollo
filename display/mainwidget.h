@@ -70,6 +70,7 @@ private:
     QString rpM_;
     QString tpS_;
     QString accY;
+    QString gear;
     QString accZ;
     QPixmap bg;
     QString eth0IP;

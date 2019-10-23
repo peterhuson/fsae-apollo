@@ -282,6 +282,8 @@ void TMainWidget::onKeepAlive() {
             tpS_ = value;
         } else if (strncmp(str1, "accy", 4) == 0) {
             accY = value;
+        } else if (strncmp(str1, "gear", 4) == 0) {
+            gear = value;
         } else if (strncmp(str1, "accz", 4) == 0) {
             accZ = value;
         } else {
@@ -302,7 +304,7 @@ void TMainWidget::drawAccelerationScreen(QPainter &p) {
     p.setFont(QFont("Courier",45, QFont::Bold));
     p.drawText(40, 20, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
     p.drawText(40, 420, 720, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
-    // p.drawText(590, 210, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("RPM"));
+    p.drawText(40, 20, 350, smallHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
     // p.drawText(470, 430, 150, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("MPH"));
 
 
@@ -345,6 +347,8 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(rightcolX, valuespacing * 1 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Oil psi"));
     p.drawText(rightcolX, valuespacing * 2 + 120, itemWidth, smallHeight, Qt::AlignRight | Qt::AlignVCenter, QString("Lambda"));
 
+    p.drawText(leftcolX, valuespacing * 1 + 120, 200, smallHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
+    
     QString ip = eth0IP;
     if (ip == "0.0.0.0") {
         ip = wlan0IP;
