@@ -334,7 +334,7 @@ void TMainWidget::drawDebugScreen(QPainter &p) {
     p.drawText(leftcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, vbaT);
     p.drawText(rightcolX, valuespacing * 1, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, oilP);
     p.drawText(rightcolX, valuespacing * 2, itemWidth, itemHeight, Qt::AlignRight | Qt::AlignVCenter, lamB);
-    p.drawText(leftcolX, valuespacing * 0, 150, itemHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
+    p.drawText(leftcolX, valuespacing * 0, 200, itemHeight, Qt::AlignRight | Qt::AlignVCenter, gear);
 
     int bigborder = 120;
     p.setFont(QFont("Courier",130, QFont::Bold));

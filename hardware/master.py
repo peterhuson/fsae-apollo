@@ -97,7 +97,7 @@ class Master:
 
             key = data_str[:5]
             value_str = data_str[5:11]
-            print(key + "->" + value_str)
+            # print(key + "->" + value_str)
 
             stripped = value_str.strip()
 
@@ -135,7 +135,7 @@ class Master:
                 value = round(value, 0)
                 os.write(self.fifo, "tps_:" + str(value) + "\n")
             elif(key == "l704:"):
-                print("gear: " + int(value) + "\n")
+                print("gear: " + str(int(value)) + "\n")
                 os.write(self.fifo, "gear:" + int(value) + "\n")
             elif(key == "h704:"):
                 # Up
