@@ -3,15 +3,16 @@
 
 This repo houses code for the Brown FSAE Driver Feedback system.
 
-2019 Design:
-
-<img src="readme_resources/WheelScreenshot.png" alt="text" width="500"/>
-
 A new design is in the pipeline ;) 
 <p float="left">
         <img src="readme_resources/NewWheel.jpg" width="300"/>
         <img src="readme_resources/NewDash.png" width="300"/>
 </p>
+
+2019 Design:
+
+<img src="readme_resources/WheelScreenshot.png" alt="text" width="500"/>
+
 
 
 ## Project Structure
