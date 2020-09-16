@@ -1,6 +1,18 @@
-# fsae-apollo
 
-This project contains the Brown FSAE Driver Feedback Project. 
+# FSAE Apollo
+
+This repo houses code for the Brown FSAE Driver Feedback system.
+
+2019 Design:
+
+<img src="readme_resources/WheelScreenshot.png" alt="text" width="500"/>
+
+A new design is in the pipeline ;) 
+<p float="left">
+        <img src="readme_resources/NewWheel.jpg" width="300"/>
+        <img src="readme_resources/NewDash.png" width="300"/>
+</p>
+
 
 ## Project Structure
 
@@ -10,10 +22,10 @@ fsae-apollo/
 │
 └───hardware                    # 
 │   │   leds.py                 # LED Class
-│   │   master.py               # Parses data, sends colors to LEDs, sends data to display
+│   │   master.py               # Parses data, controls to LEDs, draws display
 │   │   params.py               # Parameters
 │   └───arduino/canbus_middleman        # 
-│   │   │   canbus_middleman.ino        # Interprets CANBUS data and sends it over the serial line
+│   │   │   canbus_middleman.ino        # Interprets CANBUS and retransmits over serial
 │
 └───display                     # Lots of random files that handle the display code. 
 │   │   main.qrc                # We should triage this to figure out what we actually need
